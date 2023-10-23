@@ -1,5 +1,5 @@
 import { Card, Space, Typography } from 'antd';
-import moment from 'moment';
+import * as moment from 'moment';
 
 const { Title, Text } = Typography;
 
@@ -14,7 +14,7 @@ function EventInList({ title, description, start, end }: EventProps) {
   const endFormat = start.getDate() === end.getDate() ? 'LT' : 'lll';
 
   return (
-    <Card>
+    <Card data-testid="event">
       <Space direction="vertical">
         <Title level={4} style={{ margin: 0 }}>
           {title}
