@@ -7,7 +7,10 @@ settings:
 dependencies:
   antd:
     specifier: ^5.10.2
-    version: 5.10.2(react-dom@18.2.0)(react@18.2.0)
+    version: 5.10.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
+  moment:
+    specifier: ^2.29.4
+    version: 2.29.4
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -1556,7 +1559,7 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /antd@5.10.2(react-dom@18.2.0)(react@18.2.0):
+  /antd@5.10.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-0kV6PmlJi7vhPmYH9GCAlU62ZhiuLF+gE3REJ/9MZTo++/3i5q6SALNoRgHLMsa+rX50U3RO3wJVY+fPib594Q==}
     peerDependencies:
       react: '>=16.9.0'
@@ -1591,7 +1594,7 @@ packages:
       rc-motion: 2.9.0(react-dom@18.2.0)(react@18.2.0)
       rc-notification: 5.2.0(react-dom@18.2.0)(react@18.2.0)
       rc-pagination: 3.6.1(react-dom@18.2.0)(react@18.2.0)
-      rc-picker: 3.14.5(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0)
+      rc-picker: 3.14.5(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
       rc-progress: 3.5.1(react-dom@18.2.0)(react@18.2.0)
       rc-rate: 2.12.0(react-dom@18.2.0)(react@18.2.0)
       rc-resize-observer: 1.4.0(react-dom@18.2.0)(react@18.2.0)
@@ -3105,6 +3108,10 @@ packages:
       brace-expansion: 1.1.11
     dev: true
 
+  /moment@2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: false
+
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
@@ -3550,7 +3557,7 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /rc-picker@3.14.5(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0):
+  /rc-picker@3.14.5(dayjs@1.11.10)(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-h0O8b5AYfWwHSRUUH/9F2oBXB5gZerHIyGG6z2r5rn/kfSQodyCXEO4GNqrG30iUC1qkvLFIOn/JqI4XaO0+2A==}
     engines: {node: '>=8.x'}
     peerDependencies:
@@ -3574,6 +3581,7 @@ packages:
       '@rc-component/trigger': 1.17.2(react-dom@18.2.0)(react@18.2.0)
       classnames: 2.3.2
       dayjs: 1.11.10
+      moment: 2.29.4
       rc-util: 5.38.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
