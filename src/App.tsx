@@ -1,18 +1,8 @@
-import { useState } from 'react';
-import { Button } from 'antd';
+import { events } from './calendar/tests/Event.fixtures';
+import EventList from './calendar/components/EventList';
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const onChange = () => {
-    setCount(count + 1);
-  }
-
-  return (
-    <>
-      <Button type='primary' onClick={onChange}>{count}</Button>
-    </>
-  );
+  return <EventList events={events} />;
 }
 
 export default App;
