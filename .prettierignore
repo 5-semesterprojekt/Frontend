@@ -1,0 +1,19 @@
+# Folders
+.github
+.vscode
+dist
+node_modules/
+**/l/**
+build/
+
+# Files
+.npmrc
+.prettierignore
+.prettierrc
+netlify.toml
+
+# File extensions
+**/*.json
+**/*.css
+**/*.md
+**/*.html

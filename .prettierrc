@@ -1,0 +1,16 @@
+{
+  "printWidth": 80,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "overrides": [
+    {
+      "files": "src/app/**/*.html",
+      "options": {
+        "htmlWhitespaceSensitivity": "css",
+        "parser": "angular"
+      }
+    }
+  ]
+}
