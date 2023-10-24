@@ -1,5 +1,5 @@
 import { Card, Space, Typography } from 'antd';
-import * as moment from 'moment';
+import moment from 'moment';
 
 const { Title, Text } = Typography;
 
