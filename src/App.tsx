@@ -4,7 +4,6 @@ import { GetEvents } from './calendar/state/event';
 
 function App() {
   const events = useRecoilValue(GetEvents);
-  console.log(events);
 
   return <EventList events={events} />;
 }
