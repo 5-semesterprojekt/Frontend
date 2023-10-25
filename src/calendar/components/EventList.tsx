@@ -10,13 +10,7 @@ function EventList({ events }: EventListProps) {
   return (
     <Space direction="vertical" style={{ width: '100%' }}>
       {events.map((event) => (
-        <EventInList
-          key={`event-${event.id}`}
-          title={event.title}
-          description={event.description}
-          start={new Date(event.start)}
-          end={new Date(event.end)}
-        />
+        <EventInList key={`event-${event.id}`} event={event} />
       ))}
     </Space>
   );

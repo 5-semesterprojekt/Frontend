@@ -1,28 +1,32 @@
-import { Card, Space, Typography } from 'antd';
-import moment from 'moment';
+import { Button, Card, Space, Typography } from 'antd';
+import showEventModal from './EventModal';
+import { Event } from '../types/event';
+import dayjs from 'dayjs';
 
 const { Title, Text } = Typography;
 
 export interface EventProps {
-  title: string;
-  description?: string;
-  start: Date;
-  end: Date;
+  event: Event;
 }
 
-function EventInList({ title, description, start, end }: EventProps) {
-  const endFormat = start.getDate() === end.getDate() ? 'LT' : 'lll';
+function EventInList({ event }: EventProps) {
+  const endFormat =
+    new Date(event.start).getDate() === new Date(event.end).getDate()
+      ? 'LT'
+      : 'lll';
 
   return (
     <Card data-testid="event">
       <Space direction="vertical">
         <Title level={4} style={{ margin: 0 }}>
-          {title}
+          {event.title}
         </Title>
         <Text>
-          {moment(start).format('lll')} - {moment(end).format(endFormat)}
+          {dayjs(new Date(event.start)).format('lll')} -{' '}
+          {dayjs(new Date(event.end)).format(endFormat)}
         </Text>
-        <Text>{description}</Text>
+        <Text>{event.description}</Text>
+        <Button onClick={() => showEventModal(event)}>Ændr</Button>
       </Space>
     </Card>
   );

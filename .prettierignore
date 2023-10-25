@@ -17,3 +17,4 @@ netlify.toml
 **/*.css
 **/*.md
 **/*.html
+**/*.yaml
