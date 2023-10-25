@@ -28,7 +28,7 @@ const EventModal = NiceModal.create(() => {
       event.start.setMilliseconds(0);
       event.end.setMilliseconds(0);
 
-      const response = await fetch(
+      await fetch(
         import.meta.env.VITE_BACKEND_URL +
           '/events/' +
           import.meta.env.VITE_ORGANIZATION_ID,
@@ -40,8 +40,6 @@ const EventModal = NiceModal.create(() => {
           body: JSON.stringify(event),
         },
       );
-
-      console.log(response);
 
       refreshEvents();
       modal.hide();

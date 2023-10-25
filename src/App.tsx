@@ -9,7 +9,9 @@ function App() {
 
   return (
     <Space direction="vertical" style={{ width: '100%' }}>
-      <Button onClick={showEventModal} type="primary">Add event</Button>
+      <Button onClick={showEventModal} type="primary">
+        Add event
+      </Button>
       <EventList events={events} />
     </Space>
   );
