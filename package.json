@@ -11,6 +11,7 @@
     "prettier": "prettier . --write **/*.{js,ts,tsx}"
   },
   "dependencies": {
+    "@ebay/nice-modal-react": "^1.2.13",
     "antd": "^5.10.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",

@@ -6,7 +6,9 @@ export const GetEvents = selector<Event[]>({
   get: async () => {
     try {
       const response = await fetch(
-        import.meta.env.VITE_BACKEND_URL + '/events/123',
+        import.meta.env.VITE_BACKEND_URL +
+          '/events/' +
+          import.meta.env.VITE_ORGANIZATION_ID,
       );
       const events = await response.json();
 

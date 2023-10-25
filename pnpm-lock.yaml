@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@ebay/nice-modal-react':
+    specifier: ^1.2.13
+    version: 1.2.13(react-dom@18.2.0)(react@18.2.0)
   antd:
     specifier: ^5.10.2
     version: 5.10.2(moment@2.29.4)(react-dom@18.2.0)(react@18.2.0)
@@ -480,6 +483,16 @@ packages:
   /@ctrl/tinycolor@3.6.1:
     resolution: {integrity: sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==}
     engines: {node: '>=10'}
+    dev: false
+
+  /@ebay/nice-modal-react@1.2.13(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-jx8xIWe/Up4tpNuM02M+rbnLoxdngTGk3Y8LjJsLGXXcSoKd/+eZStZcAlIO/jwxyz/bhPZnpqPJZWAmhOofuA==}
+    peerDependencies:
+      react: '>16.8.0'
+      react-dom: '>16.8.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@emotion/hash@0.8.0:
