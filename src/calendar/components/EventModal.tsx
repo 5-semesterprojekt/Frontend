@@ -51,7 +51,9 @@ const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
 
       refreshEvents();
       modal.hide();
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
