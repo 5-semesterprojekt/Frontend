@@ -12,10 +12,7 @@ function EventList({ events }: EventListProps) {
       {events.map((event) => (
         <EventInList
           key={`event-${event.id}`}
-          title={event.title}
-          description={event.description}
-          start={new Date(event.start)}
-          end={new Date(event.end)}
+          event={event}
         />
       ))}
     </Space>

@@ -5,41 +5,53 @@ import { useForm } from 'antd/es/form/Form';
 import { Event } from '../types/event';
 import { useRecoilRefresher_UNSTABLE } from 'recoil';
 import { GetEvents } from '../state/event';
+import dayjs from 'dayjs';
 
-const EventModal = NiceModal.create(() => {
+const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
   const modal = useModal('EventModal');
   const [form] = useForm();
   const refreshEvents = useRecoilRefresher_UNSTABLE(GetEvents);
+
+  const initialValues = {
+    title: event?.title,
+    description: event?.description,
+    range: [dayjs(event?.start), dayjs(event?.end)],
+  };
 
   const onOk = useCallback(async () => {
     try {
       await form.validateFields();
       const results = form.getFieldsValue();
 
-      const event: Event = {
+      const payload: Event = {
         title: results.title,
         description: results.description || '',
         start: results.range[0].$d,
         end: results.range[1].$d,
       };
 
-      event.start.setSeconds(0);
-      event.end.setSeconds(0);
-      event.start.setMilliseconds(0);
-      event.end.setMilliseconds(0);
+      payload.start.setSeconds(0);
+      payload.end.setSeconds(0);
+      payload.start.setMilliseconds(0);
+      payload.end.setMilliseconds(0);
 
-      await fetch(
+      const url =
         import.meta.env.VITE_BACKEND_URL +
-          '/events/' +
-          import.meta.env.VITE_ORGANIZATION_ID,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(event),
+        '/events/' +
+        import.meta.env.VITE_ORGANIZATION_ID +
+        (event
+          ? '/' + event.id
+          : '');
+
+      console.log(import.meta.env.VITE_BACKEND_URL);
+
+      await fetch(url, {
+        method: event ? 'PUT' : 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+        body: JSON.stringify(payload),
+      });
 
       refreshEvents();
       modal.hide();
@@ -48,12 +60,12 @@ const EventModal = NiceModal.create(() => {
 
   return (
     <Modal
-      title="Ny begivenhed"
+      title={event ? 'Ændr begivenhed' : 'Ny begivenhed'}
       {...antdModalV5(modal)}
       onOk={onOk}
       cancelText="Annullér"
     >
-      <Form form={form} layout="vertical">
+      <Form form={form} initialValues={initialValues} layout="vertical">
         <Form.Item
           label="Titel"
           name="title"
@@ -86,6 +98,6 @@ const EventModal = NiceModal.create(() => {
 
 NiceModal.register('EventModal', EventModal);
 
-export default function showEventModal() {
-  return NiceModal.show('EventModal');
+export default function showEventModal(event?: Event) {
+  return NiceModal.show('EventModal', { event });
 }
