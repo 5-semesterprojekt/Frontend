@@ -47,7 +47,12 @@ const EventModal = NiceModal.create(() => {
   }, []);
 
   return (
-    <Modal title="Ny begivenhed" {...antdModalV5(modal)} onOk={onOk}>
+    <Modal
+      title="Ny begivenhed"
+      {...antdModalV5(modal)}
+      onOk={onOk}
+      cancelText="Annullér"
+    >
       <Form form={form} layout="vertical">
         <Form.Item
           label="Titel"
@@ -63,6 +68,7 @@ const EventModal = NiceModal.create(() => {
           rules={[{ required: true, message: 'Dato er påkrævet!' }]}
         >
           <DatePicker.RangePicker
+            placeholder={['Start', 'Slut']}
             format="YYYY-MM-DD HH:mm"
             showTime
             showSecond={false}
