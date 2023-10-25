@@ -39,11 +39,7 @@ const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
         import.meta.env.VITE_BACKEND_URL +
         '/events/' +
         import.meta.env.VITE_ORGANIZATION_ID +
-        (event
-          ? '/' + event.id
-          : '');
-
-      console.log(import.meta.env.VITE_BACKEND_URL);
+        (event ? '/' + event.id : '');
 
       await fetch(url, {
         method: event ? 'PUT' : 'POST',
