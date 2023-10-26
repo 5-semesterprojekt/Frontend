@@ -5,14 +5,7 @@ import EventInList from '../components/EventInList';
 test('it can render an event', async () => {
   const event = events[0];
 
-  const container = render(
-    <EventInList
-      title={event.title}
-      description={event.description}
-      start={new Date(event.start)}
-      end={new Date(event.end)}
-    />,
-  );
+  const container = render(<EventInList event={event} />);
 
   await waitFor(() => {
     expect(container.getByText(event.title)).toBeDefined();

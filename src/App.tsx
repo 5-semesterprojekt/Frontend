@@ -1,20 +1,7 @@
-import EventList from './calendar/components/EventList';
-import { useRecoilValue } from 'recoil';
-import { GetEvents } from './calendar/state/event';
-import { Button, Space } from 'antd';
-import showEventModal from './calendar/components/EventModal';
+import CalendarPage from './calendar/CalendarPage';
 
 function App() {
-  const events = useRecoilValue(GetEvents);
-
-  return (
-    <Space direction="vertical" style={{ width: '100%' }}>
-      <Button onClick={showEventModal} type="primary">
-        Add event
-      </Button>
-      <EventList events={events} />
-    </Space>
-  );
+  return <CalendarPage />;
 }
 
 export default App;

@@ -1,16 +1,20 @@
 import { DatePicker, Form, Input, Modal } from 'antd';
 import NiceModal, { antdModalV5, useModal } from '@ebay/nice-modal-react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useForm } from 'antd/es/form/Form';
 import { Event } from '../types/event';
 import { useRecoilRefresher_UNSTABLE } from 'recoil';
 import { GetEvents } from '../state/event';
 import dayjs from 'dayjs';
+import { mainApi } from '../../lib/api';
+import { notifyError, notifySuccess } from '../../services/NotificationService';
 
+// eslint-disable-next-line react-refresh/only-export-components
 const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
   const modal = useModal('EventModal');
   const [form] = useForm();
   const refreshEvents = useRecoilRefresher_UNSTABLE(GetEvents);
+  const [working, setWorking] = useState(false);
 
   const initialValues = {
     title: event?.title,
@@ -20,6 +24,7 @@ const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
 
   const onOk = useCallback(async () => {
     try {
+      setWorking(true);
       await form.validateFields();
       const results = form.getFieldsValue();
 
@@ -35,32 +40,49 @@ const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
       payload.start.setMilliseconds(0);
       payload.end.setMilliseconds(0);
 
-      const url =
-        import.meta.env.VITE_BACKEND_URL +
-        '/events/' +
-        import.meta.env.VITE_ORGANIZATION_ID +
-        (event ? '/' + event.id : '');
+      let response;
 
-      await fetch(url, {
-        method: event ? 'PUT' : 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+      if (event) {
+        response = await mainApi.put(
+          `/events/${import.meta.env.VITE_ORGANIZATION_ID}/${event.id}`,
+          payload,
+        );
+      } else {
+        response = await mainApi.post(
+          `/events/${import.meta.env.VITE_ORGANIZATION_ID}`,
+          payload,
+        );
+      }
 
-      refreshEvents();
-      modal.hide();
-    } catch (error) {
+      if (response && response.ok) {
+        refreshEvents();
+        modal.hide();
+        notifySuccess(
+          'Succes',
+          event ? 'Begivenheden blev ændret' : 'Begivenheden blev tilføjet',
+        );
+      } else {
+        console.log(response);
+        notifyError(
+          'Fejl',
+          event
+            ? 'Kunne ikke ændre begivenheden'
+            : 'Kunne ikke tilføje begivenheden',
+        );
+      }
+    } catch (error: unknown) {
       console.log(error);
+    } finally {
+      setWorking(false);
     }
-  }, []);
+  }, [event, form, modal, refreshEvents]);
 
   return (
     <Modal
       title={event ? 'Ændr begivenhed' : 'Ny begivenhed'}
       {...antdModalV5(modal)}
       onOk={onOk}
+      okButtonProps={{ loading: working }}
       cancelText="Annullér"
     >
       <Form form={form} initialValues={initialValues} layout="vertical">

@@ -13,7 +13,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "composite": true,
+    "incremental": false,
     "noEmit": true,
     "jsx": "react-jsx",
 
