@@ -1,12 +1,20 @@
 import { Space } from 'antd';
 import { Event } from '../types/event';
 import EventInList from './EventInList';
+import { RecoilState, useRecoilState } from 'recoil';
+import { useEffect } from 'react';
 
 export interface EventListProps {
-  events: Event[];
+  recoilSource: RecoilState<Event[]>;
 }
 
-function EventList({ events }: EventListProps) {
+function EventList({ recoilSource }: EventListProps) {
+  const [events, setEvents] = useRecoilState(recoilSource);
+
+  useEffect(() => {
+    setEvents(events);
+  }, [events, setEvents]);
+
   return (
     <Space direction="vertical" style={{ width: '100%' }}>
       {events.map((event) => (

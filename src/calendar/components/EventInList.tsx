@@ -2,6 +2,9 @@ import { Button, Card, Space, Typography } from 'antd';
 import showEventModal from './EventModal';
 import { Event } from '../types/event';
 import dayjs from 'dayjs';
+import LocalizedFormat from 'dayjs/plugin/localizedFormat';
+
+dayjs.extend(LocalizedFormat);
 
 const { Title, Text } = Typography;
 
@@ -22,8 +25,10 @@ function EventInList({ event }: EventProps) {
           {event.title}
         </Title>
         <Text>
-          {dayjs(new Date(event.start)).format('lll')} -{' '}
-          {dayjs(new Date(event.end)).format(endFormat)}
+          <Space>
+            {dayjs(event.start).format('lll').toString()}-
+            {dayjs(event.end).format(endFormat).toString()}
+          </Space>
         </Text>
         <Text>{event.description}</Text>
         <Button onClick={() => showEventModal(event)}>Ændr</Button>
