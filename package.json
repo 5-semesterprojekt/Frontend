@@ -13,10 +13,15 @@
   },
   "dependencies": {
     "@ebay/nice-modal-react": "^1.2.13",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-regular-svg-icons": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "antd": "^5.10.2",
     "apisauce": "^3.0.1",
     "axios": "^1.5.1",
     "dayjs": "^1.11.10",
+    "font-awesome": "^4.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "recoil": "^0.7.7"
