@@ -7,7 +7,7 @@ import { useRecoilRefresher_UNSTABLE } from 'recoil';
 import { GetEvents } from '../state/event';
 import dayjs from 'dayjs';
 import { mainApi } from '../../lib/api';
-import { notifyError, notifySuccess } from '../../services/NotificationService';
+import { notify } from '../../services/NotificationService';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
@@ -57,13 +57,15 @@ const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
       if (response && response.ok) {
         refreshEvents();
         modal.hide();
-        notifySuccess(
+        notify(
+          'success',
           'Succes',
           event ? 'Begivenheden blev ændret' : 'Begivenheden blev tilføjet',
         );
       } else {
         console.log(response);
-        notifyError(
+        notify(
+          'error',
           'Fejl',
           event
             ? 'Kunne ikke ændre begivenheden'

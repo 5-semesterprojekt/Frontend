@@ -1,19 +1,26 @@
 import { notification } from 'antd';
 
-const notifySuccess = (message: string, description: string) => {
-  notification.success({
-    message,
-    description,
-    placement: 'bottomRight',
-  });
+const notify = (
+  type: 'success' | 'error',
+  message: string,
+  description: string,
+) => {
+  switch (type) {
+    case 'success':
+      notification.success({
+        message,
+        description,
+        placement: 'bottomRight',
+      });
+      break;
+    case 'error':
+      notification.error({
+        message,
+        description,
+        placement: 'bottomRight',
+      });
+      break;
+  }
 };
 
-const notifyError = (message: string, description: string) => {
-  notification.error({
-    message,
-    description,
-    placement: 'bottomRight',
-  });
-};
-
-export { notifySuccess, notifyError };
+export { notify };
