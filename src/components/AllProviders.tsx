@@ -1,4 +1,5 @@
 import NiceModal from '@ebay/nice-modal-react';
+import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
 interface AllProvidersProps {
@@ -6,9 +7,11 @@ interface AllProvidersProps {
 }
 
 const AllProviders = (props: AllProvidersProps) => (
-  <RecoilRoot>
-    <NiceModal.Provider>{props.children}</NiceModal.Provider>
-  </RecoilRoot>
+  <BrowserRouter>
+    <RecoilRoot>
+      <NiceModal.Provider>{props.children}</NiceModal.Provider>
+    </RecoilRoot>
+  </BrowserRouter>
 );
 
 export default AllProviders;
