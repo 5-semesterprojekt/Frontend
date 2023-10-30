@@ -1,5 +1,9 @@
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
-import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEllipsisVertical,
+  faFileLines,
+  faHouse,
+} from '@fortawesome/free-solid-svg-icons';
 import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
@@ -13,6 +17,13 @@ export interface IconProps {
 export const Icon = (props: FontAwesomeIconProps) => {
   return <FontAwesomeIcon {...props} className="anticon" />;
 };
+
+export const HouseIcon = (props: IconProps) => (
+  <Icon {...props} icon={faHouse} />
+);
+export const AboutIcon = (props: IconProps) => (
+  <Icon {...props} icon={faFileLines} />
+);
 
 export const EditIcon = (props: IconProps) => (
   <Icon {...props} icon={faPenToSquare} />
