@@ -1,8 +1,10 @@
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import {
+  faCalendarAlt,
   faEllipsisVertical,
   faFileLines,
   faHouse,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   FontAwesomeIcon,
@@ -21,6 +23,9 @@ export const Icon = (props: FontAwesomeIconProps) => {
 export const HouseIcon = (props: IconProps) => (
   <Icon {...props} icon={faHouse} />
 );
+export const CalendarIcon = (props: IconProps) => (
+  <Icon {...props} icon={faCalendarAlt} />
+);
 export const AboutIcon = (props: IconProps) => (
   <Icon {...props} icon={faFileLines} />
 );
@@ -33,4 +38,7 @@ export const DeleteIcon = (props: IconProps) => (
 );
 export const ThreeDotsIcon = (props: IconProps) => (
   <Icon {...props} icon={faEllipsisVertical} />
+);
+export const PlusIcon = (props: IconProps) => (
+  <Icon {...props} icon={faPlus} />
 );

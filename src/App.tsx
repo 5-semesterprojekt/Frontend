@@ -1,8 +1,9 @@
 import { Menu, MenuProps } from 'antd';
 import CalendarPage from './calendar/CalendarPage';
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { AboutIcon, HouseIcon } from './components/Icons';
+import { AboutIcon, CalendarIcon, HouseIcon } from './components/Icons';
 import { ReactNode } from 'react';
+import HomePage from './home/HomePage';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -22,6 +23,12 @@ function App() {
       url: '/home',
       visible: true,
       icon: <HouseIcon />,
+    },
+    {
+      title: 'Kalender',
+      url: '/kalender',
+      visible: true,
+      icon: <CalendarIcon />,
     },
     {
       title: 'About',
@@ -53,7 +60,8 @@ function App() {
       <div style={{ padding: 16 }}>
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/home" element={<CalendarPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/kalender" element={<CalendarPage />} />
           <Route path="/about" element={<div>Odense LMU er en forening</div>} />
           <Route path="*" element={<div>404 - Denne side findes ikke</div>} />
         </Routes>
