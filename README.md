@@ -6,6 +6,17 @@ This project uses yarn rather than npm, so this must be installed:
 
 ```
 npm install -g yarn
+```
+
+Setup the project by cloning it first:
+
+```
+git clone https://github.com/5-semesterprojekt/Frontend.git
+```
+
+Install packages
+```
+cd frontend
 yarn install
 ```
 
