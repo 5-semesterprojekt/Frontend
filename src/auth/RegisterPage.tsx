@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row } from 'antd';
+import { Button, Col, Form, Input, Row, Typography } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 
 function LoginPage() {
@@ -12,6 +12,7 @@ function LoginPage() {
     <Row justify='center'>
       <Col span={16}>
         <Form form={form} onFinish={onFinish} layout="vertical">
+          <Typography.Title level={3}>Opret bruger</Typography.Title>
           <Row justify="space-between" gutter={16}>
             <Col span={12}>
               <Form.Item label="Fornavn" name="firstname" required>
