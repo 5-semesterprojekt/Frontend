@@ -2,10 +2,10 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import MenuBar from './components/MenuBar';
 import { Suspense, lazy } from 'react';
 import { Col, Row, Spin } from 'antd';
-import RegisterPage from './auth/RegisterPage';
 
 const CalendarPage = lazy(() => import('./calendar/CalendarPage'));
 const LoginPage = lazy(() => import('./auth/LoginPage'));
+const RegisterPage = lazy(() => import('./auth/RegisterPage'));
 
 function App() {
   return (
