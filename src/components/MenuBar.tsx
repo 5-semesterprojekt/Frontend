@@ -36,7 +36,7 @@ function MenuBar() {
     },
     {
       title: 'Opret bruger',
-      url: '/register',
+      url: '/registrer',
       visible: true,
       icon: <RegisterIcon />,
     },

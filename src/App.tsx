@@ -22,7 +22,7 @@ function App() {
                 element={<div>Odense LMU er en forening</div>}
               />
               <Route path="/log-ind" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/registrer" element={<RegisterPage />} />
               <Route
                 path="*"
                 element={<div>404 - Denne side findes ikke</div>}
