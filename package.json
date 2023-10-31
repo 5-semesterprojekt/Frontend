@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --open --mode development",
-    "build": "tsc && vite build",
+    "start": "vite --open --mode development",
+    "build": "vite build",
     "lint": "eslint . --fix --cache",
     "test": "vitest",
     "prettier": "prettier . --write **/*.{js,ts,tsx}",
