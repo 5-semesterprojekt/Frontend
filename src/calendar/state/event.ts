@@ -1,6 +1,7 @@
 import { atom, selector } from 'recoil';
 import { Event } from '../types/event';
 import { mainApi } from '../../lib/api';
+import { organizationConfig } from '../../../config/organization';
 
 export const EventCache = atom<Event[]>({ key: 'EventCache', default: [] });
 
@@ -8,9 +9,7 @@ export const GetEvents = selector<Event[]>({
   key: 'GetEvents',
   get: async () => {
     try {
-      const response = await mainApi.get(
-        `/events/${import.meta.env.VITE_ORGANIZATION_ID}`,
-      );
+      const response = await mainApi.get(`/events/${organizationConfig.id}`);
 
       if (response.ok) {
         return response.data as Event[];

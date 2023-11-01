@@ -1,4 +1,8 @@
-import { faAddressCard, faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
+import {
+  faAddressCard,
+  faPenToSquare,
+  faTrashCan,
+} from '@fortawesome/free-regular-svg-icons';
 import {
   faCalendarAlt,
   faEllipsisVertical,
@@ -46,6 +50,4 @@ export const DeleteIcon = (props: IconProps) => (
 export const ThreeDotsIcon = (props: IconProps) => (
   <Icon {...props} icon={faEllipsisVertical} />
 );
-export const PlusIcon = (props: IconProps) => (
-  <Icon {...props} icon={faPlus} />
-);
+export const PlusIcon = (props: IconProps) => <Icon {...props} icon={faPlus} />;

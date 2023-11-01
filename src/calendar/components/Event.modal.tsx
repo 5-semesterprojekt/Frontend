@@ -8,6 +8,7 @@ import { GetEvents } from '../state/event';
 import dayjs from 'dayjs';
 import { mainApi } from '../../lib/api';
 import { notify } from '../../services/NotificationService';
+import { organizationConfig } from '../../../config/organization';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
@@ -44,12 +45,12 @@ const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
 
       if (event) {
         response = await mainApi.put(
-          `/events/${import.meta.env.VITE_ORGANIZATION_ID}/${event.id}`,
+          `/events/${organizationConfig.id}/${event.id}`,
           payload,
         );
       } else {
         response = await mainApi.post(
-          `/events/${import.meta.env.VITE_ORGANIZATION_ID}`,
+          `/events/${organizationConfig.id}`,
           payload,
         );
       }

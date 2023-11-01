@@ -1,30 +1,20 @@
-import { Button, Row, Space, Spin } from 'antd';
-import showEventModal from './components/EventModal';
+import { Space, Spin } from 'antd';
 import { Suspense } from 'react';
-import { PlusIcon } from '../components/Icons';
 import CalendarView from './components/CalendarView';
 import { useRecoilValue } from 'recoil';
 import { GetEvents } from './state/event';
+import Page from '../components/Page';
 
-function CalendarPage() {
+export default function CalendarPage() {
   const events = useRecoilValue(GetEvents);
 
   return (
-    <Space direction="vertical" style={{ width: '100%' }}>
-      <Row justify="end">
-        <Button
-          icon={<PlusIcon />}
-          onClick={() => showEventModal()}
-          type="primary"
-        >
-          Add event
-        </Button>
-      </Row>
-      <Suspense fallback={<Spin />}>
-        <CalendarView events={events} />
-      </Suspense>
-    </Space>
+    <Page title="Kalender">
+      <Space direction="vertical" style={{ width: '100%' }}>
+        <Suspense fallback={<Spin />}>
+          <CalendarView events={events} />
+        </Suspense>
+      </Space>
+    </Page>
   );
 }
-
-export default CalendarPage;

@@ -1,22 +1,20 @@
-import { Badge, Calendar, CalendarProps } from 'antd';
+import { Button, Calendar, CalendarProps, Row, Space } from 'antd';
 import { Dayjs } from 'dayjs';
 import { Event } from '../types/event';
+import { PlusIcon } from '../../components/Icons';
+import showEventModal from './Event.modal';
+import CalendarCell from './CalendarCell';
 
 function CalendarView({ events }: { events: Event[] }) {
-  console.log(events);
-
-  const dateCellRender = (value: Dayjs) => {
-    const listData = events.filter(
-      (event) => new Date(event.start).getDate() === value.toDate().getDate() && new Date(event.start).getFullYear() === value.toDate().getFullYear(),
-    );
-    return (
-      <>
-        {listData.map((item) => (
-          <Badge key={item.id} color="red" text={item.title} />
-        ))}
-      </>
-    );
-  };
+  const dateCellRender = (value: Dayjs) => (
+    <CalendarCell
+      events={events.filter(
+        (event) =>
+          new Date(event.start).toDateString() ===
+          value.toDate().toDateString(),
+      )}
+    />
+  );
 
   const cellRender: CalendarProps<Dayjs>['cellRender'] = (current, info) => {
     if (info.type === 'date') return dateCellRender(current);
@@ -24,7 +22,22 @@ function CalendarView({ events }: { events: Event[] }) {
   };
 
   return (
-    <Calendar mode="month" headerRender={() => <></>} cellRender={cellRender} />
+    <Space direction="vertical" size="middle">
+      <Row justify="end">
+        <Button
+          icon={<PlusIcon />}
+          onClick={() => showEventModal()}
+          type="primary"
+        >
+          Tilføj begivenhed
+        </Button>
+      </Row>
+      <Calendar
+        mode="month"
+        headerRender={() => <></>}
+        cellRender={cellRender}
+      />
+    </Space>
   );
 }
 
