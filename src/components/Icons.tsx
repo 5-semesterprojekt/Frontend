@@ -1,10 +1,11 @@
-import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
+import { faAddressCard, faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import {
   faCalendarAlt,
   faEllipsisVertical,
   faFileLines,
   faHouse,
   faPlus,
+  faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   FontAwesomeIcon,
@@ -28,6 +29,12 @@ export const CalendarIcon = (props: IconProps) => (
 );
 export const AboutIcon = (props: IconProps) => (
   <Icon {...props} icon={faFileLines} />
+);
+export const LoginIcon = (props: IconProps) => (
+  <Icon {...props} icon={faRightFromBracket} />
+);
+export const RegisterIcon = (props: IconProps) => (
+  <Icon {...props} icon={faAddressCard} />
 );
 
 export const EditIcon = (props: IconProps) => (

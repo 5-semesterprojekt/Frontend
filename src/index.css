@@ -1,3 +1,8 @@
+body {
+  background-color: #EEEEEE;
+  margin: 0;
+}
+
 .ant-dropdown-menu-item .anticon + span {
   margin-left: 8px;
 }
