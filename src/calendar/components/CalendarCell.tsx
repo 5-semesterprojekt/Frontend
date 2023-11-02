@@ -1,26 +1,35 @@
-import { Tag } from 'antd';
+import { Space, Tag } from 'antd';
 import { Event } from '../types/event';
 import showEventModal from './Event.modal';
+import dayjs from 'dayjs';
 
-export default function CalendarCell({ events }: { events: Event[] }) {
+export default function CalendarCell({
+  date,
+  events,
+}: {
+  date: Date;
+  events: Event[];
+}) {
   return (
-    <div style={{ width: '100%', height: '100%' }}>
-      {events.map((event) => (
-        <Tag
-          key={event.id}
-          color="red"
-          style={{ margin: 0 }}
-          onClick={() => showEventModal(event)}
-        >
-          <span style={{ whiteSpace: 'normal' }}>
-            {new Date(event.start).toLocaleTimeString([], {
-              hour: '2-digit',
-              minute: '2-digit',
-            })}{' '}
-            - {event.title}
-          </span>
-        </Tag>
-      ))}
-    </div>
+    <td style={{ verticalAlign: 'top', borderTop: '1px solid', height: 64 }}>
+      <Space
+        direction="vertical"
+        style={{ width: '100%', height: '100%', paddingTop: 4 }}
+      >
+        {date.getDate()}
+        {events.map((event) => (
+          <Tag
+            key={event.id}
+            color="red"
+            style={{ margin: 0, width: '100%' }}
+            onClick={() => showEventModal(event)}
+          >
+            <span style={{ whiteSpace: 'normal' }}>
+              {dayjs(event.start).format('HH:mm')} - {event.title}
+            </span>
+          </Tag>
+        ))}
+      </Space>
+    </td>
   );
 }
