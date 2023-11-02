@@ -1,5 +1,5 @@
 import { Button, Card, Dropdown, Space, Typography } from 'antd';
-import showEventModal from './EventModal';
+import showEventModal from './Event.modal';
 import { Event } from '../types/event';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
@@ -10,6 +10,7 @@ import { GetEvents } from '../state/event';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
 import { DeleteIcon, EditIcon, ThreeDotsIcon } from '../../components/Icons';
 import { notify } from '../../services/NotificationService';
+import { organizationConfig } from '../../../config/organization';
 
 dayjs.extend(LocalizedFormat);
 
@@ -36,7 +37,7 @@ function EventInList({ event }: EventProps) {
     setDeleting(true);
     try {
       const response = await mainApi.delete(
-        `/events/${import.meta.env.VITE_ORGANIZATION_ID}/${event.id}`,
+        `/events/${organizationConfig.id}/${event.id}`,
       );
       if (response.ok) {
         refreshEvents();

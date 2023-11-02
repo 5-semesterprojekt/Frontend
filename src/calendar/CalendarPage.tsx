@@ -1,26 +1,20 @@
-import EventList from './components/EventList';
-import { EventCache, GetEvents } from './state/event';
-import { Button, Space, Spin } from 'antd';
-import showEventModal from './components/EventModal';
+import { Space, Spin } from 'antd';
 import { Suspense } from 'react';
+import CalendarView from './components/CalendarView';
+import { useRecoilValue } from 'recoil';
+import { GetEvents } from './state/event';
+import Page from '../components/Page';
 
-function Calendar() {
+export default function CalendarPage() {
+  const events = useRecoilValue(GetEvents);
+
   return (
-    <Space direction="vertical" style={{ width: '100%' }}>
-      <Button onClick={() => showEventModal()} type="primary">
-        Add event
-      </Button>
-      <Suspense
-        fallback={
-          <Spin>
-            <EventList recoilSource={EventCache} />
-          </Spin>
-        }
-      >
-        <EventList recoilSource={GetEvents} />
-      </Suspense>
-    </Space>
+    <Page title="Kalender">
+      <Space direction="vertical" style={{ width: '100%' }}>
+        <Suspense fallback={<Spin />}>
+          <CalendarView events={events} />
+        </Suspense>
+      </Space>
+    </Page>
   );
 }
-
-export default Calendar;

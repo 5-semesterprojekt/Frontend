@@ -1,7 +1,13 @@
-import { MenuProps, Menu } from "antd";
-import { ReactNode } from "react";
-import { useLocation, Link } from "react-router-dom";
-import { HouseIcon, AboutIcon, LoginIcon, RegisterIcon } from "./Icons";
+import { MenuProps, Menu } from 'antd';
+import { ReactNode } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import {
+  HouseIcon,
+  AboutIcon,
+  LoginIcon,
+  RegisterIcon,
+  CalendarIcon,
+} from './Icons';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -21,6 +27,12 @@ function MenuBar() {
       url: '/hjem',
       visible: true,
       icon: <HouseIcon />,
+    },
+    {
+      title: 'Kalender',
+      url: '/kalender',
+      visible: true,
+      icon: <CalendarIcon />,
     },
     {
       title: 'Om os',
@@ -48,13 +60,13 @@ function MenuBar() {
 
   return (
     <Menu
-        items={menuItems}
-        selectedKeys={items
-          .filter((item) => location.pathname.startsWith(item.url))
-          .map((item) => item.url)}
-        mode="horizontal"
-      />
-  )
+      items={menuItems}
+      selectedKeys={items
+        .filter((item) => location.pathname.startsWith(item.url))
+        .map((item) => item.url)}
+      mode="horizontal"
+    />
+  );
 }
 
-export default MenuBar
+export default MenuBar;
