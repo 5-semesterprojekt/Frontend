@@ -2,11 +2,18 @@ import { Button, Col, Form, Input, Row, Space, Typography } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import Page from '../components/Page';
 import { Link } from 'react-router-dom';
+import { organizationConfig } from '../../config/organization';
+import { mainApi } from '../lib/api';
 
 export default function RegisterPage() {
   const [form] = useForm();
 
-  const onFinish = () => {
+  const onFinish = async () => {
+    const results = await form.getFieldsValue();
+    const response = await mainApi.post(`/users/${organizationConfig.id}`, results);
+
+    console.log(response);
+
     form.resetFields();
   };
 
@@ -18,12 +25,12 @@ export default function RegisterPage() {
             <Typography.Title level={3}>Opret bruger</Typography.Title>
             <Row justify="space-between" gutter={16}>
               <Col span={12}>
-                <Form.Item label="Fornavn" name="firstname" required>
+                <Form.Item label="Fornavn" name="firstName" required>
                   <Input />
                 </Form.Item>
               </Col>
               <Col span={12}>
-                <Form.Item label="Efternavn" name="lastname" required>
+                <Form.Item label="Efternavn" name="lastName" required>
                   <Input />
                 </Form.Item>
               </Col>
