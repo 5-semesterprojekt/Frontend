@@ -2,18 +2,15 @@ import { Button, Col, Form, Input, Row, Space, Typography } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import Page from '../components/Page';
 import { Link } from 'react-router-dom';
-import { mainApi } from '../lib/api';
-import { organizationConfig } from '../../config/organization';
+import { useAuth } from './hooks/use-auth';
 
 export default function LoginPage() {
   const [form] = useForm();
+  const { signInUser } = useAuth();
 
   const onFinish = async () => {
-    const results = await form.getFieldsValue();
-    const response = await mainApi.post(`/users/${organizationConfig.id}/login`, results);
-
-    console.log(response);
-
+    const credentials = await form.getFieldsValue();
+    signInUser(credentials);
     form.resetFields();
   };
 
