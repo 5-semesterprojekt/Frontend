@@ -1,16 +1,18 @@
 import { Button, Card, Dropdown, Space, Typography } from 'antd';
-import showEventModal from './Event.modal';
-import { Event } from '../types/event';
 import dayjs from 'dayjs';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
-import { mainApi } from '../../lib/api';
 import { useState } from 'react';
 import { useRecoilRefresher_UNSTABLE } from 'recoil';
-import { GetEvents } from '../state/event';
 import { ItemType } from 'antd/es/menu/hooks/useItems';
+
+import { GetEvents } from '../state/event';
+import { mainApi } from '../../lib/api';
+import { Event } from '../types/event';
 import { DeleteIcon, EditIcon, ThreeDotsIcon } from '../../components/Icons';
 import { notify } from '../../services/NotificationService';
 import { organizationConfig } from '../../../config/organization';
+
+import showEventModal from './Event.modal';
 
 dayjs.extend(LocalizedFormat);
 
@@ -45,6 +47,7 @@ function EventInList({ event }: EventProps) {
         throw response;
       }
     } catch (error) {
+      // eslint-disable-next-line
       console.log(error);
       notify('error', 'Fejl', 'Kunne ikke slette begivenheden');
     }

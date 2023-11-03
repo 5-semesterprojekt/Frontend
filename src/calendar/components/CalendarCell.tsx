@@ -1,7 +1,9 @@
 import { Space, Tag } from 'antd';
-import { Event } from '../types/event';
-import showEventModal from './Event.modal';
 import dayjs from 'dayjs';
+
+import { Event } from '../types/event';
+
+import showEventModal from './Event.modal';
 
 export default function CalendarCell({
   date,

@@ -1,4 +1,5 @@
 import { atom, selector } from 'recoil';
+
 import { Event } from '../types/event';
 import { mainApi } from '../../lib/api';
 import { organizationConfig } from '../../../config/organization';
@@ -17,6 +18,7 @@ export const GetEvents = selector<Event[]>({
         throw response;
       }
     } catch (error) {
+      // eslint-disable-next-line
       console.log(error);
       return [];
     }

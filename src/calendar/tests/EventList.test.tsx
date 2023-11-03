@@ -1,7 +1,9 @@
 import { render, waitFor } from '@testing-library/react';
-import { eventsAtom } from './Event.fixtures';
-import EventList from '../components/EventList';
 import { RecoilRoot } from 'recoil';
+
+import EventList from '../components/EventList';
+
+import { eventsAtom } from './Event.fixtures';
 
 test('it can render the list', async () => {
   const container = render(

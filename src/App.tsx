@@ -1,7 +1,8 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
-import MenuBar from './components/MenuBar';
 import { Suspense, lazy } from 'react';
 import { Col, Row } from 'antd';
+
+import MenuBar from './components/MenuBar';
 import FullPageSpin from './components/FullPageSpin';
 import AboutPage from './about/AboutPage';
 

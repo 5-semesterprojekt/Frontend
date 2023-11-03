@@ -1,6 +1,8 @@
 import { render, waitFor } from '@testing-library/react';
-import { events } from './Event.fixtures';
+
 import EventInList from '../components/EventInList';
+
+import { events } from './Event.fixtures';
 
 test('it can render an event', async () => {
   const event = events[0];

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 import Page from '../components/Page';
 
 export default function AboutPage() {

@@ -1,5 +1,6 @@
 import { act, screen, render, waitFor } from '@testing-library/react';
 import NiceModal from '@ebay/nice-modal-react';
+
 import showEventModal from '../components/Event.modal';
 
 beforeAll(() => {

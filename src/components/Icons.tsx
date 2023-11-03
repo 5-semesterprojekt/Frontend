@@ -21,9 +21,9 @@ export interface IconProps {
   style?: CSSProperties;
 }
 
-export const Icon = (props: FontAwesomeIconProps) => {
-  return <FontAwesomeIcon {...props} className="anticon" />;
-};
+export const Icon = (props: FontAwesomeIconProps) => (
+  <FontAwesomeIcon {...props} className="anticon" />
+);
 
 export const HouseIcon = (props: IconProps) => (
   <Icon {...props} icon={faHouse} />
