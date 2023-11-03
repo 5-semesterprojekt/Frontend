@@ -33,8 +33,6 @@ function CalendarView({ events }: { events: Event[] }) {
     return { weeks };
   }, [month]);
 
-  console.log('firstDayOfCalendar', weeks);
-
   return (
     <Space direction="vertical" size="middle">
       <Row justify="end">
