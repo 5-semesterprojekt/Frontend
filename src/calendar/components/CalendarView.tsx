@@ -1,10 +1,12 @@
 import { Button, Row, Space } from 'antd';
-import { Event } from '../types/event';
-import { PlusIcon } from '../../components/Icons';
-import showEventModal from './Event.modal';
-import CalendarCell from './CalendarCell';
 import dayjs, { Dayjs } from 'dayjs';
 import { useMemo, useState } from 'react';
+
+import { Event } from '../types/event';
+import { PlusIcon } from '../../components/Icons';
+
+import showEventModal from './Event.modal';
+import CalendarCell from './CalendarCell';
 
 function CalendarView({ events }: { events: Event[] }) {
   const [month] = useState(dayjs().month());

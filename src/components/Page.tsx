@@ -1,4 +1,5 @@
 import { ReactNode, useEffect } from 'react';
+
 import { organizationConfig } from '../../config/organization';
 
 export default function Page({

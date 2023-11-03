@@ -1,8 +1,10 @@
 import { Space } from 'antd';
-import { Event } from '../types/event';
-import EventInList from './EventInList';
 import { RecoilState, useRecoilState } from 'recoil';
 import { useEffect } from 'react';
+
+import { Event } from '../types/event';
+
+import EventInList from './EventInList';
 
 export interface EventListProps {
   recoilSource: RecoilState<Event[]>;

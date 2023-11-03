@@ -2,10 +2,11 @@ import { DatePicker, Form, Input, Modal } from 'antd';
 import NiceModal, { antdModalV5, useModal } from '@ebay/nice-modal-react';
 import { useCallback, useState } from 'react';
 import { useForm } from 'antd/es/form/Form';
-import { Event } from '../types/event';
 import { useRecoilRefresher_UNSTABLE } from 'recoil';
-import { GetEvents } from '../state/event';
 import dayjs from 'dayjs';
+
+import { Event } from '../types/event';
+import { GetEvents } from '../state/event';
 import { mainApi } from '../../lib/api';
 import { notify } from '../../services/NotificationService';
 import { organizationConfig } from '../../../config/organization';
@@ -64,6 +65,7 @@ const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
           event ? 'Begivenheden blev ændret' : 'Begivenheden blev tilføjet',
         );
       } else {
+        // eslint-disable-next-line
         console.log(response);
         notify(
           'error',
@@ -74,6 +76,7 @@ const EventModal = NiceModal.create(({ event }: { event?: Event }) => {
         );
       }
     } catch (error: unknown) {
+      // eslint-disable-next-line
       console.log(error);
     } finally {
       setWorking(false);
