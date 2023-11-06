@@ -1,4 +1,4 @@
-import { MenuProps, Menu } from 'antd';
+import { MenuProps, Menu, Button } from 'antd';
 import { ReactNode } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
@@ -9,11 +9,13 @@ import {
   RegisterIcon,
   CalendarIcon,
 } from './Icons';
+import { useAuth } from '../auth/hooks/use-auth';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
 function MenuBar() {
   const location = useLocation();
+  const { user, signOutUser } = useAuth();
 
   const getItem = (label: string, to: string, icon?: ReactNode): MenuItem =>
     ({
@@ -44,13 +46,13 @@ function MenuBar() {
     {
       title: 'Log ind',
       url: '/log-ind',
-      visible: true,
+      visible: !user,
       icon: <LoginIcon />,
     },
     {
       title: 'Opret bruger',
       url: '/registrer',
-      visible: true,
+      visible: !user,
       icon: <RegisterIcon />,
     },
   ];
@@ -60,13 +62,16 @@ function MenuBar() {
     .map((item) => getItem(item.title, item.url, item.icon));
 
   return (
-    <Menu
-      items={menuItems}
-      selectedKeys={items
-        .filter((item) => location.pathname.startsWith(item.url))
-        .map((item) => item.url)}
-      mode="horizontal"
-    />
+    <>
+      <Menu
+        items={menuItems}
+        selectedKeys={items
+          .filter((item) => location.pathname.startsWith(item.url))
+          .map((item) => item.url)}
+        mode="horizontal"
+      /><br />
+      {user && <Button onClick={signOutUser}>Log af</Button>}
+    </>
   );
 }
 

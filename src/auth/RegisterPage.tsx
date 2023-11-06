@@ -1,13 +1,17 @@
 import { Button, Col, Form, Input, Row, Space, Typography } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { Link } from 'react-router-dom';
+import { useAuth } from './hooks/use-auth';
 
 import Page from '../components/Page';
 
 export default function RegisterPage() {
   const [form] = useForm();
+  const { registerUser } = useAuth();
 
-  const onFinish = () => {
+  const onFinish = async () => {
+    const newUser = await form.getFieldsValue();
+    registerUser(newUser);
     form.resetFields();
   };
 
@@ -19,12 +23,12 @@ export default function RegisterPage() {
             <Typography.Title level={3}>Opret bruger</Typography.Title>
             <Row justify="space-between" gutter={16}>
               <Col span={12}>
-                <Form.Item label="Fornavn" name="firstname" required>
+                <Form.Item label="Fornavn" name="firstName" required>
                   <Input />
                 </Form.Item>
               </Col>
               <Col span={12}>
-                <Form.Item label="Efternavn" name="lastname" required>
+                <Form.Item label="Efternavn" name="lastName" required>
                   <Input />
                 </Form.Item>
               </Col>
