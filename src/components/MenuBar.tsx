@@ -2,6 +2,8 @@ import { MenuProps, Menu, Button } from 'antd';
 import { ReactNode } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
+import { useAuth } from '../auth/hooks/use-auth';
+
 import {
   HouseIcon,
   AboutIcon,
@@ -9,7 +11,6 @@ import {
   RegisterIcon,
   CalendarIcon,
 } from './Icons';
-import { useAuth } from '../auth/hooks/use-auth';
 
 type MenuItem = Required<MenuProps>['items'][number];
 

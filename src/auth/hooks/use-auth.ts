@@ -1,8 +1,9 @@
+import { useRecoilState } from 'recoil';
+
 import { deleteAccessToken, setAccessToken } from '../service/tokens';
 import { organizationConfig } from '../../../config/organization';
 import { mainApi } from '../../lib/api';
 import { User } from '../types/user';
-import { useRecoilState } from 'recoil';
 import { CurrentUser } from '../state/user';
 
 export function useAuth() {
