@@ -1,9 +1,8 @@
-import { Space, Tag } from 'antd';
-import dayjs from 'dayjs';
+import { Space } from 'antd';
 
 import { Event } from '../types/event';
 
-import showEventModal from './Event.modal';
+import CalendarEvent from './CalendarEvent';
 
 export default function CalendarCell({
   date,
@@ -20,16 +19,7 @@ export default function CalendarCell({
       >
         {date.getDate()}
         {events.map((event) => (
-          <Tag
-            key={event.id}
-            color="red"
-            style={{ margin: 0, width: '100%' }}
-            onClick={() => showEventModal(event)}
-          >
-            <span style={{ whiteSpace: 'normal' }}>
-              {dayjs(event.start).format('HH:mm')} - {event.title}
-            </span>
-          </Tag>
+          <CalendarEvent key={event.id} event={event} />
         ))}
       </Space>
     </td>

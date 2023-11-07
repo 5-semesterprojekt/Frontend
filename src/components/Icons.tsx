@@ -15,14 +15,23 @@ import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome';
+import { Typography } from 'antd';
+import { BaseType } from 'antd/es/typography/Base';
 import { CSSProperties } from 'react';
+
+interface InternalIconProps
+  extends Omit<FontAwesomeIconProps, 'type'>,
+    IconProps {}
 
 export interface IconProps {
   style?: CSSProperties;
+  type?: BaseType;
 }
 
-export const Icon = (props: FontAwesomeIconProps) => (
-  <FontAwesomeIcon {...props} className="anticon" />
+export const Icon = ({ type, ...rest }: InternalIconProps) => (
+  <Typography.Text type={type} className="anticon">
+    <FontAwesomeIcon {...rest} />
+  </Typography.Text>
 );
 
 export const HouseIcon = (props: IconProps) => (
