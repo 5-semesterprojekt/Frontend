@@ -16,19 +16,26 @@ import showEventModal from './Event.modal';
 
 dayjs.extend(LocalizedFormat);
 
-export default function CalendarEvent({ event }: { event: Event }) {
+export default function CalendarEvent({ event }: { event?: Event }) {
   const [deleting, setDeleting] = useState(false);
   const refreshEvents = useRecoilRefresher_UNSTABLE(GetEvents);
 
+  const title = event?.title || 'Ny begivenhed';
+
   const endFormat =
-    new Date(event.start).getDate() === new Date(event.end).getDate()
+    new Date(event?.start || new Date()).getDate() ===
+    new Date(event?.end || new Date()).getDate()
       ? 'LT'
       : 'lll';
 
-  const startDate = dayjs(event.start).format('lll').toString();
-  const endDate = dayjs(event.end).format(endFormat).toString();
+  const startDate = dayjs(event?.start)
+    .format('lll')
+    .toString();
+  const endDate = dayjs(event?.end)
+    .format(endFormat)
+    .toString();
 
-  const editEvent = () => showEventModal(event);
+  const editEvent = () => showEventModal({ event });
   const deleteEvent = async () => {
     setDeleting(true);
 
@@ -40,7 +47,7 @@ export default function CalendarEvent({ event }: { event: Event }) {
       onOk: async () => {
         try {
           const response = await mainApi.delete(
-            `/events/${organizationConfig.id}/${event.id}`,
+            `/events/${organizationConfig.id}/${event?.id}`,
           );
           if (response.ok) {
             refreshEvents();
@@ -60,38 +67,44 @@ export default function CalendarEvent({ event }: { event: Event }) {
 
   return (
     <Popover
-      key={event.id}
+      key={event?.id || "temp"}
       content={
-        <Space direction="vertical">
-          <b>{event.title}</b>
-          <span>
-            {startDate} - {endDate}
-          </span>
-          <span
-            style={{ maxWidth: 400, display: 'block', whiteSpace: 'normal' }}
-          >
-            {event.description}
-          </span>
-          <Space>
-            <Button icon={<EditIcon />} onClick={editEvent}>
-              Ændr
-            </Button>
-            <Button
-              disabled={deleting}
-              icon={<DeleteIcon />}
-              danger
-              onClick={deleteEvent}
+        event && (
+          <Space direction="vertical">
+            <b>{title}</b>
+            <span>
+              {startDate} - {endDate}
+            </span>
+            <span
+              style={{ maxWidth: 400, display: 'block', whiteSpace: 'normal' }}
             >
-              Slet
-            </Button>
+              {event?.description}
+            </span>
+            <Space>
+              <Button icon={<EditIcon />} onClick={editEvent}>
+                Ændr
+              </Button>
+              <Button
+                disabled={deleting}
+                icon={<DeleteIcon />}
+                danger
+                onClick={deleteEvent}
+              >
+                Slet
+              </Button>
+            </Space>
           </Space>
-        </Space>
+        )
       }
       trigger="click"
     >
-      <Tag key={event.id} color="red" style={{ margin: 0, width: '100%' }}>
+      <Tag
+        key={event?.id}
+        color={event ? 'red' : undefined}
+        style={{ margin: 0, width: '100%' }}
+      >
         <span style={{ whiteSpace: 'normal' }}>
-          {dayjs(event.start).format('HH:mm')} - {event.title}
+          {dayjs(event?.start).format('HH:mm')} - {title}
         </span>
       </Tag>
     </Popover>
