@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import dayjs from 'dayjs';
 
 import { Event } from '../types/event';
 
@@ -8,23 +9,30 @@ const events: Event[] = [
     title: 'Brætspilsaften',
     description:
       'I aften står den på hygge med brætspil, kaffe og kage. Kom glad og tag gerne nogle af dine brætspil med!',
-    start: new Date('2023-10-23T19:00'),
-    end: new Date('2023-10-23T22:00'),
+    start: dayjs().add(2, 'hour').toDate(),
+    end: dayjs().add(3, 'hour').toDate(),
   },
   {
     id: '1',
     title: 'Undervisning',
     description:
       'Hvad er svaret på det ultimate spørgsmål om livet, universet og alting? Kom til en spændende aften hvor vi spørger ChatGPT om svarene!',
-    start: new Date('2023-10-24T09:00'),
-    end: new Date('2023-10-24T15:00'),
+    start: dayjs().add(4, 'hour').toDate(),
+    end: dayjs().add(5, 'hour').toDate(),
   },
   {
     id: '2',
     title: 'Rust',
     description: 'Grup grup grup grup grup grup grup',
-    start: new Date('2023-10-25T01:00'),
-    end: new Date('2023-10-25T23:00'),
+    start: dayjs().add(6, 'hour').toDate(),
+    end: dayjs().add(7, 'hour').toDate(),
+  },
+  {
+    id: '3',
+    title: 'Event before now',
+    description: 'What even is now?',
+    start: dayjs().subtract(2, 'hour').toDate(),
+    end: dayjs().subtract(1, 'hour').toDate(),
   },
 ];
 

@@ -67,7 +67,7 @@ function CalendarView({ events }: { events: Event[] }) {
                   date={day.toDate()}
                   events={events.filter(
                     (event) =>
-                      new Date(event.start).toDateString() ===
+                      event.start.toDateString() ===
                       day.toDate().toDateString(),
                   )}
                 />
