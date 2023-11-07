@@ -19,7 +19,7 @@ export default function CalendarCell({
       >
         {date.getDate()}
         {events.map((event) => (
-          <CalendarEvent event={event} />
+          <CalendarEvent key={event.id} event={event} />
         ))}
       </Space>
     </td>
