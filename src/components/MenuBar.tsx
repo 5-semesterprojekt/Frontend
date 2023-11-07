@@ -70,7 +70,8 @@ function MenuBar() {
           .filter((item) => location.pathname.startsWith(item.url))
           .map((item) => item.url)}
         mode="horizontal"
-      /><br />
+      />
+      <br />
       {user && <Button onClick={signOutUser}>Log af</Button>}
     </>
   );

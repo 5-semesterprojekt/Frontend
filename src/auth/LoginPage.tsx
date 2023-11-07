@@ -6,7 +6,6 @@ import Page from '../components/Page';
 
 import { useAuth } from './hooks/use-auth';
 
-
 export default function LoginPage() {
   const [form] = useForm();
   const { signInUser } = useAuth();

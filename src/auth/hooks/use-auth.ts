@@ -9,7 +9,10 @@ import { CurrentUser } from '../state/user';
 export function useAuth() {
   const [user, setUser] = useRecoilState<User | undefined>(CurrentUser);
 
-  const signInUser = async (credentials: { email: string; password: string }) => {
+  const signInUser = async (credentials: {
+    email: string;
+    password: string;
+  }) => {
     const response = await mainApi.post(
       `/users/${organizationConfig.id}/login`,
       credentials,
