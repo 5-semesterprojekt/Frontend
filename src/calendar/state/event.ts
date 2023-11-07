@@ -13,7 +13,14 @@ export const GetEvents = selector<Event[]>({
       const response = await mainApi.get(`/events/${organizationConfig.id}`);
 
       if (response.ok) {
-        return response.data as Event[];
+        const events = response.data as Event[];
+
+        events.forEach((event) => {
+          event.start = new Date(event.start);
+          event.end = new Date(event.end);
+        });
+
+        return events as Event[];
       } else {
         throw response;
       }
