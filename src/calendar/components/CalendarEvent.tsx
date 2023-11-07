@@ -10,6 +10,7 @@ import { organizationConfig } from '../../../config/organization';
 import { mainApi } from '../../lib/api';
 import { GetEvents } from '../state/event';
 import { notify } from '../../services/NotificationService';
+import showConfirmModal from '../../components/Confirm.modal';
 
 import showEventModal from './Event.modal';
 
@@ -30,20 +31,30 @@ export default function CalendarEvent({ event }: { event: Event }) {
   const editEvent = () => showEventModal(event);
   const deleteEvent = async () => {
     setDeleting(true);
-    try {
-      const response = await mainApi.delete(
-        `/events/${organizationConfig.id}/${event.id}`,
-      );
-      if (response.ok) {
-        refreshEvents();
-      } else {
-        throw response;
-      }
-    } catch (error) {
-      // eslint-disable-next-line
-      console.log(error);
-      notify('error', 'Fejl', 'Kunne ikke slette begivenheden');
-    }
+
+    showConfirmModal({
+      title: 'Slet begivenhed',
+      message: 'Er du sikker på at du vil slette begivenheden?',
+      okText: 'Slet',
+      okButtonProps: { danger: true },
+      onOk: async () => {
+        try {
+          const response = await mainApi.delete(
+            `/events/${organizationConfig.id}/${event.id}`,
+          );
+          if (response.ok) {
+            refreshEvents();
+          } else {
+            throw response;
+          }
+        } catch (error) {
+          // eslint-disable-next-line
+          console.log(error);
+          notify('error', 'Fejl', 'Kunne ikke slette begivenheden');
+        }
+      },
+    });
+
     setDeleting(false);
   };
 
@@ -68,6 +79,7 @@ export default function CalendarEvent({ event }: { event: Event }) {
             <Button
               disabled={deleting}
               icon={<DeleteIcon />}
+              danger
               onClick={deleteEvent}
             >
               Slet
