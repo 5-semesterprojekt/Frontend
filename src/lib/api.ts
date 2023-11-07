@@ -1,5 +1,6 @@
 import { create } from 'apisauce';
 import { AxiosRequestConfig } from 'axios';
+
 import { getAccessToken } from '../auth/service/tokens';
 
 const backendUrl: string = import.meta.env.VITE_BACKEND_URL as string | '';

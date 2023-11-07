@@ -27,9 +27,7 @@ function EventInList({ event }: EventProps) {
   const refreshEvents = useRecoilRefresher_UNSTABLE(GetEvents);
 
   const endFormat =
-    new Date(event.start).getDate() === new Date(event.end).getDate()
-      ? 'LT'
-      : 'lll';
+    event.start.getDate() === event.end.getDate() ? 'LT' : 'lll';
 
   const startDate = dayjs(event.start).format('lll').toString();
   const endDate = dayjs(event.end).format(endFormat).toString();
