@@ -40,7 +40,15 @@ function CalendarView({ events }: { events: Event[] }) {
       <Row justify="end">
         <Button
           icon={<PlusIcon />}
-          onClick={() => showEventModal()}
+          onClick={() =>
+            showEventModal({
+              event: {
+                title: 'Ny begivenhed',
+                start: new Date(),
+                end: new Date(),
+              },
+            })
+          }
           type="primary"
         >
           Tilføj begivenhed

@@ -11,7 +11,13 @@ beforeAll(() => {
 
 test('it can render the modal', async () => {
   act(() => {
-    showEventModal();
+    showEventModal({
+      event: {
+        title: 'Ny begivenhed',
+        start: new Date(),
+        end: new Date(),
+      },
+    });
   });
 
   await waitFor(() => {
