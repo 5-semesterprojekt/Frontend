@@ -22,6 +22,11 @@ const AllProviders = (props: AllProvidersProps) => (
           colorPrimary: organizationConfig.primaryColor,
           fontFamily: 'Arvo',
         },
+        components: {
+          Result: {
+            titleFontSize: 16,
+          },
+        },
       }}
       locale={daDK}
     >
