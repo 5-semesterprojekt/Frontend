@@ -96,7 +96,7 @@ export default function CalendarEvent({ event }: { event: Event }) {
     >
       <Tag
         key={event.id}
-        color={event ? 'red' : undefined}
+        color="red"
         style={{ margin: 0, width: '100%' }}
         onClick={(e) => e.stopPropagation()}
       >
