@@ -22,10 +22,18 @@ export default function LoginPage() {
         <Col span={16}>
           <Form form={form} onFinish={onFinish} layout="vertical">
             <Typography.Title level={3}>Log ind</Typography.Title>
-            <Form.Item label="E-mail" name="email" required>
+            <Form.Item
+              label="E-mail"
+              name="email"
+              rules={[{ required: true, message: 'E-mail er påkrævet' }]}
+            >
               <Input />
             </Form.Item>
-            <Form.Item label="Password" name="password" required>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[{ required: true, message: 'Adgangskode er påkrævet' }]}
+            >
               <Input.Password />
             </Form.Item>
             <Form.Item>
