@@ -14,7 +14,7 @@ export default function CalendarPage() {
     <Page title="Kalender">
       <Space direction="vertical" style={{ width: '100%' }}>
         <Suspense fallback={<Spin />}>
-          <CalendarView events={events} />
+          <CalendarView events={events || []} />
         </Suspense>
       </Space>
     </Page>

@@ -1,5 +1,6 @@
 import {
   faAddressCard,
+  faCircleQuestion,
   faPenToSquare,
   faTrashCan,
 } from '@fortawesome/free-regular-svg-icons';
@@ -50,6 +51,9 @@ export const RegisterIcon = (props: IconProps) => (
   <Icon {...props} icon={faAddressCard} />
 );
 
+export const QuestionIcon = (props: IconProps) => (
+  <Icon {...props} icon={faCircleQuestion} />
+);
 export const EditIcon = (props: IconProps) => (
   <Icon {...props} icon={faPenToSquare} />
 );

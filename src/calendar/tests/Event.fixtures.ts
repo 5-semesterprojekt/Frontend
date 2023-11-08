@@ -36,6 +36,6 @@ const events: Event[] = [
   },
 ];
 
-const eventsAtom = atom<Event[]>({ key: 'mockedEvents', default: events });
+const eventsAtom = atom<Event[] | undefined>({ key: 'mockedEvents', default: events });
 
 export { events, eventsAtom };
