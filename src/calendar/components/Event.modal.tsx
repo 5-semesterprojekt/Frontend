@@ -13,7 +13,15 @@ import { organizationConfig } from '../../../config/organization';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const EventModal = NiceModal.create(
-  ({ event, date }: { event?: Event; date?: Date }) => {
+  ({
+    event,
+    date,
+    newEvent,
+  }: {
+    event?: Event;
+    date?: Date;
+    newEvent?: boolean;
+  }) => {
     const modal = useModal('EventModal');
     const [form] = useForm();
     const refreshEvents = useRecoilRefresher_UNSTABLE(GetEvents);
@@ -45,11 +53,13 @@ const EventModal = NiceModal.create(
 
         let response;
 
-        if (event) {
-          response = await mainApi.put(
-            `/events/${organizationConfig.id}/${event.id}`,
-            payload,
-          );
+        if (!newEvent) {
+          if (event?.id) {
+            response = await mainApi.put(
+              `/events/${organizationConfig.id}/${event.id}`,
+              payload,
+            );
+          } else throw new Error('Event must have ID');
         } else {
           response = await mainApi.post(
             `/events/${organizationConfig.id}`,
@@ -83,11 +93,11 @@ const EventModal = NiceModal.create(
       } finally {
         setWorking(false);
       }
-    }, [event, form, modal, refreshEvents]);
+    }, [event, form, modal, newEvent, refreshEvents]);
 
     return (
       <Modal
-        title={event ? 'Ændr begivenhed' : 'Ny begivenhed'}
+        title={newEvent ? 'Ny begivenhed' : 'Ændr begivenhed'}
         {...antdModalV5(modal)}
         onOk={onOk}
         onCancel={async () => {
@@ -134,9 +144,11 @@ NiceModal.register('EventModal', EventModal);
 export default function showEventModal({
   event,
   date,
+  newEvent = true,
 }: {
-  event?: Event;
+  event: Event;
   date?: Date;
+  newEvent?: boolean;
 }) {
-  return NiceModal.show('EventModal', { event, date });
+  return NiceModal.show('EventModal', { event, date, newEvent });
 }

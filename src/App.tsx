@@ -14,7 +14,11 @@ const RegisterPage = lazy(() => import('./auth/RegisterPage'));
 function App() {
   return (
     <Row justify="center">
-      <Col span={14} style={{ minHeight: '100vh', backgroundColor: 'white' }}>
+      <Col
+        lg={20}
+        xl={14}
+        style={{ minHeight: '100vh', backgroundColor: 'white' }}
+      >
         <Row style={{ padding: '32px 64px' }}>
           <Col span={4}>
             <Link to="/">

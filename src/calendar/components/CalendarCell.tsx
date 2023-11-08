@@ -14,12 +14,17 @@ export default function CalendarCell({
   date: Date;
   events: Event[];
 }) {
+  const [temporaryEvent] = useState<Event>({
+    title: 'Ny begivenhed',
+    start: new Date(),
+    end: new Date(),
+  });
   const [showTemporaryEvent, setShowTemporaryEvent] = useState(false);
 
   const addEvent = async () => {
     try {
       setShowTemporaryEvent(true);
-      await showEventModal({ date });
+      await showEventModal({ event: temporaryEvent, date });
     } catch (error) {
       if (error) {
         notify('error', 'Kunne ikke tilføje begivenhed', error.toString());
@@ -43,7 +48,7 @@ export default function CalendarCell({
           <CalendarEvent key={event.id} event={event} />
         ))}
         {showTemporaryEvent && (
-          <CalendarEvent key={date.toISOString()} event={undefined} />
+          <CalendarEvent key={date.toISOString()} event={temporaryEvent} />
         )}
       </Space>
     </td>

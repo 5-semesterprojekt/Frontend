@@ -16,26 +16,22 @@ import showEventModal from './Event.modal';
 
 dayjs.extend(LocalizedFormat);
 
-export default function CalendarEvent({ event }: { event?: Event }) {
+export default function CalendarEvent({ event }: { event: Event }) {
   const [deleting, setDeleting] = useState(false);
   const refreshEvents = useRecoilRefresher_UNSTABLE(GetEvents);
 
-  const title = event?.title || 'Ny begivenhed';
+  const title = event.title;
 
   const endFormat =
-    new Date(event?.start || new Date()).getDate() ===
-    new Date(event?.end || new Date()).getDate()
+    new Date(event.start || new Date()).getDate() ===
+    new Date(event.end || new Date()).getDate()
       ? 'LT'
       : 'lll';
 
-  const startDate = dayjs(event?.start)
-    .format('lll')
-    .toString();
-  const endDate = dayjs(event?.end)
-    .format(endFormat)
-    .toString();
+  const startDate = dayjs(event.start).format('lll').toString();
+  const endDate = dayjs(event.end).format(endFormat).toString();
 
-  const editEvent = () => showEventModal({ event });
+  const editEvent = () => showEventModal({ event, newEvent: false });
   const deleteEvent = async () => {
     setDeleting(true);
 
@@ -47,7 +43,7 @@ export default function CalendarEvent({ event }: { event?: Event }) {
       onOk: async () => {
         try {
           const response = await mainApi.delete(
-            `/events/${organizationConfig.id}/${event?.id}`,
+            `/events/${organizationConfig.id}/${event.id}`,
           );
           if (response.ok) {
             refreshEvents();
@@ -67,7 +63,7 @@ export default function CalendarEvent({ event }: { event?: Event }) {
 
   return (
     <Popover
-      key={event?.id || "temp"}
+      key={event.id || 'temp'}
       content={
         event && (
           <Space direction="vertical">
@@ -78,7 +74,7 @@ export default function CalendarEvent({ event }: { event?: Event }) {
             <span
               style={{ maxWidth: 400, display: 'block', whiteSpace: 'normal' }}
             >
-              {event?.description}
+              {event.description}
             </span>
             <Space>
               <Button icon={<EditIcon />} onClick={editEvent}>
@@ -99,12 +95,13 @@ export default function CalendarEvent({ event }: { event?: Event }) {
       trigger="click"
     >
       <Tag
-        key={event?.id}
+        key={event.id}
         color={event ? 'red' : undefined}
         style={{ margin: 0, width: '100%' }}
+        onClick={(e) => e.stopPropagation()}
       >
         <span style={{ whiteSpace: 'normal' }}>
-          {dayjs(event?.start).format('HH:mm')} - {title}
+          {dayjs(event.start).format('HH:mm')} - {title}
         </span>
       </Tag>
     </Popover>
