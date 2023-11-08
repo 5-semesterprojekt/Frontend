@@ -15,7 +15,7 @@ test('it can render an event', async () => {
       expect(container.getByText(event.description)).toBeDefined();
     }
     expect(
-      container.getByText(new RegExp(event.start.getFullYear().toString())),
+      container.getAllByText(new RegExp(event.start.getFullYear().toString())),
     ).toBeDefined();
   });
 });

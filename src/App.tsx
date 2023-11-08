@@ -1,10 +1,11 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
-import { Col, Row } from 'antd';
+import { Col, Result, Row } from 'antd';
 
 import MenuBar from './components/MenuBar';
 import FullPageSpin from './components/FullPageSpin';
 import AboutPage from './about/AboutPage';
+import { QuestionIcon } from './components/Icons';
 
 const HomePage = lazy(() => import('./home/HomePage'));
 const CalendarPage = lazy(() => import('./calendar/CalendarPage'));
@@ -31,7 +32,15 @@ function App() {
             <Route path="/om-os" element={<AboutPage />} />
             <Route path="/log-ind" element={<LoginPage />} />
             <Route path="/registrer" element={<RegisterPage />} />
-            <Route path="*" element={<div>404 - Denne side findes ikke</div>} />
+            <Route
+              path="*"
+              element={
+                <Result
+                  icon={<QuestionIcon />}
+                  title="Denne side findes ikke"
+                />
+              }
+            />
           </Routes>
         </Suspense>
       </Col>

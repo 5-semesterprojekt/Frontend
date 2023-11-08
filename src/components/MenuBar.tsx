@@ -71,7 +71,6 @@ function MenuBar() {
           .map((item) => item.url)}
         mode="horizontal"
       />
-      <br />
       {user && <Button onClick={signOutUser}>Log af</Button>}
     </>
   );
