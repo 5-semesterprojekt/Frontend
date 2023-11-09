@@ -10,7 +10,12 @@ const mainApi = create({ baseURL: backendUrl });
 const transformRequest = (request: AxiosRequestConfig): void => {
   request.params = request.params || {};
   request.headers = request.headers || {};
-  request.headers['Authorization'] = getAccessToken();
+
+  const token = getAccessToken();
+
+  if (token) {
+    request.headers['Authorization'] = token;
+  }
 };
 
 mainApi.addRequestTransform(transformRequest);
