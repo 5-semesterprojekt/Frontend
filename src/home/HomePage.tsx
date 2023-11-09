@@ -1,9 +1,11 @@
-import { Space, Spin, Typography } from 'antd';
+import { Result, Space, Spin, Typography } from 'antd';
 import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import EventList from '../calendar/components/EventList';
 import { EventCache, GetEvents } from '../calendar/state/event';
 import Page from '../components/Page';
+import { QuestionIcon } from '../components/Icons';
 
 const { Title } = Typography;
 
@@ -14,15 +16,25 @@ export default function Home() {
         <Title level={4} style={{ marginTop: 0 }}>
           Kommende begivenheder
         </Title>
-        <Suspense
+        <ErrorBoundary
           fallback={
-            <Spin>
-              <EventList recoilSource={EventCache} />
-            </Spin>
+            <Result
+              status="warning"
+              icon={<QuestionIcon />}
+              title="Begivenheder kunne ikke hentes"
+            />
           }
         >
-          <EventList recoilSource={GetEvents} />
-        </Suspense>
+          <Suspense
+            fallback={
+              <Spin>
+                <EventList recoilSource={EventCache} />
+              </Spin>
+            }
+          >
+            <EventList recoilSource={GetEvents} />
+          </Suspense>
+        </ErrorBoundary>
       </Space>
     </Page>
   );
