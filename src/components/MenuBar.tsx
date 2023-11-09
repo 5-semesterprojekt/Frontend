@@ -1,16 +1,10 @@
-import { MenuProps, Menu, Button } from 'antd';
+import { MenuProps, Menu, Button, Row, Col } from 'antd';
 import { ReactNode } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
 import { useAuth } from '../auth/hooks/use-auth';
 
-import {
-  HouseIcon,
-  AboutIcon,
-  LoginIcon,
-  RegisterIcon,
-  CalendarIcon,
-} from './Icons';
+import { HouseIcon, AboutIcon, LoginIcon, CalendarIcon } from './Icons';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -50,12 +44,6 @@ function MenuBar() {
       visible: !user,
       icon: <LoginIcon />,
     },
-    {
-      title: 'Opret bruger',
-      url: '/registrer',
-      visible: !user,
-      icon: <RegisterIcon />,
-    },
   ];
 
   const menuItems: MenuProps['items'] = items
@@ -63,16 +51,19 @@ function MenuBar() {
     .map((item) => getItem(item.title, item.url, item.icon));
 
   return (
-    <>
-      <Menu
-        items={menuItems}
-        selectedKeys={items
-          .filter((item) => location.pathname.startsWith(item.url))
-          .map((item) => item.url)}
-        mode="horizontal"
-      />
-      {user && <Button onClick={signOutUser}>Log af</Button>}
-    </>
+    <Row>
+      <Col span={20}>
+        <Menu
+          items={menuItems}
+          selectedKeys={items
+            .filter((item) => location.pathname.startsWith(item.url))
+            .map((item) => item.url)}
+          mode="horizontal"
+          style={{ borderBottom: 0 }}
+        />
+      </Col>
+      <Col>{user && <Button onClick={signOutUser}>Log af</Button>}</Col>
+    </Row>
   );
 }
 
