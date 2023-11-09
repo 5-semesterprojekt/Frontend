@@ -4,12 +4,12 @@ import { Event } from '../types/event';
 import { mainApi } from '../../lib/api';
 import { organizationConfig } from '../../../config/organization';
 
-export const EventCache = atom<Event[] | undefined>({
+export const EventCache = atom<Event[]>({
   key: 'EventCache',
   default: [],
 });
 
-export const GetEvents = selector<Event[] | undefined>({
+export const GetEvents = selector<Event[]>({
   key: 'GetEvents',
   get: async () => {
     try {
@@ -30,7 +30,7 @@ export const GetEvents = selector<Event[] | undefined>({
     } catch (error) {
       // eslint-disable-next-line
       console.log(error);
-      return undefined;
+      throw error;
     }
   },
   set: ({ set }, value) => {
