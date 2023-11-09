@@ -1,4 +1,9 @@
 import {
+  faFacebook,
+  faTwitter,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
+import {
   faAddressCard,
   faCircleQuestion,
   faPenToSquare,
@@ -64,3 +69,13 @@ export const ThreeDotsIcon = (props: IconProps) => (
   <Icon {...props} icon={faEllipsisVertical} />
 );
 export const PlusIcon = (props: IconProps) => <Icon {...props} icon={faPlus} />;
+
+export const FacebookIcon = (props: IconProps) => (
+  <Icon {...props} icon={faFacebook} />
+);
+export const TwitterIcon = (props: IconProps) => (
+  <Icon {...props} icon={faTwitter} />
+);
+export const YouTubeIcon = (props: IconProps) => (
+  <Icon {...props} icon={faYoutube} />
+);
