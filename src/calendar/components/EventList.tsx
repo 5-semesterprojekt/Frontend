@@ -1,14 +1,13 @@
-import { Empty, Result, Space } from 'antd';
+import { Empty, Space } from 'antd';
 import { RecoilState, useRecoilState } from 'recoil';
 import { useEffect } from 'react';
 
 import { Event } from '../types/event';
-import { QuestionIcon } from '../../components/Icons';
 
 import EventInList from './EventInList';
 
 export interface EventListProps {
-  recoilSource: RecoilState<Event[] | undefined>;
+  recoilSource: RecoilState<Event[]>;
 }
 
 function EventList({ recoilSource }: EventListProps) {
@@ -25,22 +24,14 @@ function EventList({ recoilSource }: EventListProps) {
 
   return (
     <Space direction="vertical" style={{ width: '100%' }}>
-      {sortedEvents ? (
-        sortedEvents.length > 0 ? (
-          sortedEvents.map((event) => (
-            <EventInList key={`event-${event.id}`} event={event} />
-          ))
-        ) : (
-          <Empty
-            image={Empty.PRESENTED_IMAGE_SIMPLE}
-            description="Der er ingen kommende begivenheder"
-          />
-        )
+      {sortedEvents.length > 0 ? (
+        sortedEvents.map((event) => (
+          <EventInList key={`event-${event.id}`} event={event} />
+        ))
       ) : (
-        <Result
-          status="warning"
-          icon={<QuestionIcon />}
-          title="Begivenheder kunne ikke hentes"
+        <Empty
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="Der er ingen kommende begivenheder"
         />
       )}
     </Space>
