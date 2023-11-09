@@ -10,9 +10,11 @@ import showEventModal from './Event.modal';
 export default function CalendarCell({
   date,
   events,
+  inMonth,
 }: {
   date: Date;
   events: Event[];
+  inMonth: boolean;
 }) {
   const [temporaryEvent] = useState<Event>({
     title: 'Ny begivenhed',
@@ -36,7 +38,12 @@ export default function CalendarCell({
 
   return (
     <td
-      style={{ verticalAlign: 'top', borderTop: '1px solid', height: 64 }}
+      style={{
+        verticalAlign: 'top',
+        borderTop: '1px solid',
+        height: 64,
+        backgroundColor: inMonth ? 'initial' : 'lightgray',
+      }}
       onClick={addEvent}
     >
       <Space

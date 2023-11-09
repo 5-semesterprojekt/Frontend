@@ -9,7 +9,7 @@ import showEventModal from './Event.modal';
 import CalendarCell from './CalendarCell';
 
 function CalendarView({ events }: { events: Event[] }) {
-  const [month] = useState(dayjs().month());
+  const [month, setMonth] = useState(dayjs().month());
 
   const { weeks } = useMemo(() => {
     const firstDayOfCalendar = dayjs()
@@ -38,21 +38,33 @@ function CalendarView({ events }: { events: Event[] }) {
   return (
     <Space direction="vertical" size="middle">
       <Row justify="end">
-        <Button
-          icon={<PlusIcon />}
-          onClick={() =>
-            showEventModal({
-              event: {
-                title: 'Ny begivenhed',
-                start: new Date(),
-                end: new Date(),
-              },
-            })
-          }
-          type="primary"
-        >
-          Tilføj begivenhed
-        </Button>
+        <Space size="middle">
+          <Space>
+            <Button onClick={() => setMonth((current) => current - 1)}>
+              -
+            </Button>
+            {dayjs().month(month).format('MMMM')} -{' '}
+            {dayjs().month(month).get('year')}
+            <Button onClick={() => setMonth((current) => current + 1)}>
+              +
+            </Button>
+          </Space>
+          <Button
+            icon={<PlusIcon />}
+            onClick={() =>
+              showEventModal({
+                event: {
+                  title: 'Ny begivenhed',
+                  start: new Date(),
+                  end: new Date(),
+                },
+              })
+            }
+            type="primary"
+          >
+            Tilføj begivenhed
+          </Button>
+        </Space>
       </Row>
       <table style={{ tableLayout: 'fixed', width: '100%', borderSpacing: 8 }}>
         <thead>
@@ -73,6 +85,7 @@ function CalendarView({ events }: { events: Event[] }) {
                 <CalendarCell
                   key={day.toDate().toDateString()}
                   date={day.toDate()}
+                  inMonth={day.month() === month}
                   events={events.filter(
                     (event) =>
                       event.start.toDateString() ===

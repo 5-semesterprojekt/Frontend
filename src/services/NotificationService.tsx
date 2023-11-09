@@ -3,7 +3,7 @@ import { notification } from 'antd';
 const notify = (
   type: 'success' | 'error',
   message: string,
-  description: string,
+  description?: string,
 ) => {
   switch (type) {
     case 'success':
