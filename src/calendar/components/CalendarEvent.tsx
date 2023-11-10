@@ -17,6 +17,7 @@ import showEventModal from './Event.modal';
 dayjs.extend(LocalizedFormat);
 
 export default function CalendarEvent({ event }: { event: Event }) {
+  const [openPopover, setOpenPopover] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const refreshEvents = useRecoilRefresher_UNSTABLE(GetEvents);
 
@@ -66,7 +67,7 @@ export default function CalendarEvent({ event }: { event: Event }) {
       key={event.id || 'temp'}
       content={
         event && (
-          <Space direction="vertical">
+          <Space direction="vertical" onClick={(e) => e.stopPropagation()}>
             <b>{title}</b>
             <span>
               {startDate} - {endDate}
@@ -77,14 +78,25 @@ export default function CalendarEvent({ event }: { event: Event }) {
               {event.description}
             </span>
             <Space>
-              <Button icon={<EditIcon />} onClick={editEvent}>
+              <Button
+                icon={<EditIcon />}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenPopover(false);
+                  return editEvent();
+                }}
+              >
                 Ændr
               </Button>
               <Button
                 disabled={deleting}
                 icon={<DeleteIcon />}
                 danger
-                onClick={deleteEvent}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenPopover(false);
+                  return deleteEvent();
+                }}
               >
                 Slet
               </Button>
@@ -92,13 +104,16 @@ export default function CalendarEvent({ event }: { event: Event }) {
           </Space>
         )
       }
-      trigger="click"
+      open={openPopover}
     >
       <Tag
         key={event.id}
         color="red"
         style={{ margin: 0, width: '100%' }}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpenPopover((current) => !current);
+        }}
       >
         <span style={{ whiteSpace: 'normal' }}>
           {dayjs(event.start).format('HH:mm')} - {title}
