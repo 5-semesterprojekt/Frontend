@@ -2,10 +2,10 @@ import { Space, Spin } from 'antd';
 import { Suspense } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import Page from '../components/Page';
-
 import CalendarView from './components/CalendarView';
 import { GetEvents } from './state/event';
+
+import Page from '@/components/Page';
 
 export default function CalendarPage() {
   const events = useRecoilValue(GetEvents);
