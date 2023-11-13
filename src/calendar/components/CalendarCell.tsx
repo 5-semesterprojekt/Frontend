@@ -18,8 +18,8 @@ export default function CalendarCell({
 }) {
   const [temporaryEvent] = useState<Event>({
     title: 'Ny begivenhed',
-    start: new Date(),
-    end: new Date(),
+    start: date,
+    end: date,
   });
   const [showTemporaryEvent, setShowTemporaryEvent] = useState(false);
 
