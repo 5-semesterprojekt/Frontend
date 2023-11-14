@@ -1,0 +1,24 @@
+{
+  "Functional Component": {
+    "prefix": "fc",
+    "body": [
+      "export default function $TM_FILENAME_BASE () {",
+      "  return <div>$1</div>;",
+      "}",
+      ""
+    ],
+    "description": "A simple functional component"
+  },
+  "Page Component": {
+    "prefix": "page",
+    "body": [
+      "import Page from '@/components/Page';",
+      "",
+      "export default function $TM_FILENAME_BASE () {",
+      "  return <Page title=\"$1\">$2</Page>;",
+      "}",
+      ""
+    ],
+    "description": "A page for the website"
+  },
+}
