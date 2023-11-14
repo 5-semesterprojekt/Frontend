@@ -28,4 +28,4 @@ How to start up the project.
 yarn start
 ```
 
-Go to: [http://127.0.0.1:3000/](http://127.0.0.1:3000/)
+Go to: [http://127.0.0.1:3010/](http://127.0.0.1:3010/)
