@@ -14,14 +14,15 @@ import {
   faEllipsisVertical,
   faFileLines,
   faHouse,
+  faKey,
   faPlus,
   faRightFromBracket,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   FontAwesomeIcon,
   FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome';
-import { Typography } from 'antd';
 import { BaseType } from 'antd/es/typography/Base';
 import { CSSProperties } from 'react';
 
@@ -35,9 +36,7 @@ export interface IconProps {
 }
 
 export const Icon = ({ type, ...rest }: InternalIconProps) => (
-  <Typography.Text type={type} className="anticon">
-    <FontAwesomeIcon {...rest} />
-  </Typography.Text>
+  <FontAwesomeIcon {...rest} className="anticon" />
 );
 
 export const HouseIcon = (props: IconProps) => (
@@ -51,6 +50,9 @@ export const AboutIcon = (props: IconProps) => (
 );
 export const LoginIcon = (props: IconProps) => (
   <Icon {...props} icon={faRightFromBracket} />
+);
+export const AccountIcon = (props: IconProps) => (
+  <Icon {...props} icon={faUser} />
 );
 export const RegisterIcon = (props: IconProps) => (
   <Icon {...props} icon={faAddressCard} />
@@ -68,6 +70,7 @@ export const DeleteIcon = (props: IconProps) => (
 export const ThreeDotsIcon = (props: IconProps) => (
   <Icon {...props} icon={faEllipsisVertical} />
 );
+export const KeyIcon = (props: IconProps) => <Icon {...props} icon={faKey} />;
 export const PlusIcon = (props: IconProps) => <Icon {...props} icon={faPlus} />;
 
 export const FacebookIcon = (props: IconProps) => (

@@ -5,15 +5,32 @@ import { Link } from 'react-router-dom';
 import { useAuth } from './hooks/use-auth';
 
 import Page from '@/components/Page';
+import { notify } from '@/services/NotificationService';
 
 export default function LoginPage() {
   const [form] = useForm();
   const { signInUser } = useAuth();
 
   const onFinish = async () => {
-    const credentials = await form.getFieldsValue();
-    signInUser(credentials);
-    form.resetFields();
+    try {
+      const credentials = await form.getFieldsValue();
+      await signInUser(credentials);
+      form.resetFields();
+    } catch (error: any) {
+      if (error.problem && error.problem === 'NETWORK_ERROR') {
+        notify(
+          'error',
+          'Kunne ikke logge ind',
+          'Der kunne ikke skabes forbindelse til serveren.',
+        );
+      } else {
+        notify(
+          'error',
+          'Kunne ikke logge ind',
+          'Tjek om dine loginoplysninger er skrevet korrekt.',
+        );
+      }
+    }
   };
 
   return (

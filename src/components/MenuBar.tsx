@@ -4,7 +4,13 @@ import { useLocation, Link } from 'react-router-dom';
 
 import { useAuth } from '../auth/hooks/use-auth';
 
-import { HouseIcon, AboutIcon, LoginIcon, CalendarIcon } from './Icons';
+import {
+  HouseIcon,
+  AboutIcon,
+  LoginIcon,
+  CalendarIcon,
+  AccountIcon,
+} from './Icons';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -43,6 +49,12 @@ function MenuBar() {
       url: '/log-ind',
       visible: !user,
       icon: <LoginIcon />,
+    },
+    {
+      title: 'Konto',
+      url: '/konto',
+      visible: user,
+      icon: <AccountIcon />,
     },
   ];
 
