@@ -21,4 +21,15 @@
     ],
     "description": "A page for the website"
   },
+  "Recoil atom": {
+    "prefix": "ratom",
+    "body": [
+      "export const $1 = atom<$2>({",
+      "  key: '$1',",
+      "  default: undefined",
+      "});",
+      ""
+    ],
+    "description": "A recoil atom"
+  },
 }
