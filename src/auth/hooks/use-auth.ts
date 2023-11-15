@@ -1,4 +1,4 @@
-import { useRecoilState } from 'recoil';
+import { useRecoilRefresher_UNSTABLE, useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 
 import { deleteAccessToken, setAccessToken } from '../service/tokens';
@@ -10,17 +10,8 @@ import { notify } from '../../services/NotificationService';
 
 export function useAuth() {
   const [user, setUser] = useRecoilState<User | undefined>(CurrentUser);
+  const refreshUser = useRecoilRefresher_UNSTABLE(CurrentUser);
   const navigate = useNavigate();
-
-  const meRequest = async () => {
-    const response = await mainApi.get(`/users/${organizationConfig.id}/me`);
-
-    if (response.ok) {
-      const { token, user } = response.data as { token: string; user: User };
-      setUser(user);
-      setAccessToken(token);
-    }
-  };
 
   const signInUser = async (credentials: {
     email: string;
@@ -38,19 +29,22 @@ export function useAuth() {
       notify('success', 'Logget ind');
       navigate('/');
     } else {
-      if (response.problem === 'NETWORK_ERROR') {
-        notify(
-          'error',
-          'Kunne ikke logge ind',
-          'Der kunne ikke skabes forbindelse til serveren.',
-        );
-      } else {
-        notify(
-          'error',
-          'Kunne ikke logge ind',
-          'Tjek om dine loginoplysninger er skrevet korrekt.',
-        );
-      }
+      throw response;
+    }
+  };
+
+  const updateAccount = async (updatedUser: User) => {
+    const response = await mainApi.put(
+      `/users/${organizationConfig.id}/${user?.id}`,
+      updatedUser,
+    );
+
+    if (response.ok) {
+      const { user } = response.data as { user: User };
+      setUser(user);
+      if (user.token) setAccessToken(user.token);
+    } else {
+      throw response;
     }
   };
 
@@ -91,6 +85,29 @@ export function useAuth() {
   const signOutUser = () => {
     deleteAccessToken();
     setUser(undefined);
+    refreshUser();
+    navigate('/');
+  };
+
+  const deleteAccount = async () => {
+    const response = await mainApi.delete(
+      `/users/${organizationConfig.id}/${user?.id}`,
+    );
+
+    if (response.ok) {
+      notify('success', 'Konto slettet');
+      signOutUser();
+    } else {
+      if (response.problem === 'NETWORK_ERROR') {
+        notify(
+          'error',
+          'Kunne ikke slette konto',
+          'Der kunne ikke skabes forbindelse til serveren.',
+        );
+      } else {
+        notify('error', 'Kunne ikke slette konto');
+      }
+    }
   };
 
   return {
@@ -98,6 +115,7 @@ export function useAuth() {
     signInUser,
     signOutUser,
     registerUser,
-    meRequest,
+    updateAccount,
+    deleteAccount,
   };
 }

@@ -2,9 +2,9 @@ import { Button, Col, Form, Input, Row, Space, Typography } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import { Link } from 'react-router-dom';
 
-import Page from '../components/Page';
-
 import { useAuth } from './hooks/use-auth';
+
+import Page from '@/components/Page';
 
 export default function RegisterPage() {
   const [form] = useForm();

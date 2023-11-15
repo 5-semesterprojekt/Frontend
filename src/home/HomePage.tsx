@@ -4,8 +4,9 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import EventList from '../calendar/components/EventList';
 import { EventCache, GetEvents } from '../calendar/state/event';
-import Page from '../components/Page';
-import { QuestionIcon } from '../components/Icons';
+
+import Page from '@/components/Page';
+import { QuestionIcon } from '@/components/Icons';
 
 const { Title } = Typography;
 

@@ -16,6 +16,7 @@ const HomePage = lazy(() => import('./home/HomePage'));
 const CalendarPage = lazy(() => import('./calendar/CalendarPage'));
 const LoginPage = lazy(() => import('./auth/LoginPage'));
 const RegisterPage = lazy(() => import('./auth/RegisterPage'));
+const AccountPage = lazy(() => import('./auth/AccountPage'));
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
               <Route path="/om-os" element={<AboutPage />} />
               <Route path="/log-ind" element={<LoginPage />} />
               <Route path="/registrer" element={<RegisterPage />} />
+              <Route path="/konto" element={<AccountPage />} />
               <Route
                 path="*"
                 element={
