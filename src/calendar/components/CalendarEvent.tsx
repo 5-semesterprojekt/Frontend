@@ -14,9 +14,12 @@ import showConfirmModal from '../../components/Confirm.modal';
 
 import showEventModal from './Event.modal';
 
+import { useAuth } from '@/auth/hooks/use-auth';
+
 dayjs.extend(LocalizedFormat);
 
 export default function CalendarEvent({ event }: { event: Event }) {
+  const { user } = useAuth();
   const [openPopover, setOpenPopover] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const refreshEvents = useRecoilRefresher_UNSTABLE(GetEvents);
@@ -77,30 +80,33 @@ export default function CalendarEvent({ event }: { event: Event }) {
             >
               {event.description}
             </span>
-            <Space>
-              <Button
-                icon={<EditIcon />}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setOpenPopover(false);
-                  return editEvent();
-                }}
-              >
-                Ændr
-              </Button>
-              <Button
-                disabled={deleting}
-                icon={<DeleteIcon />}
-                danger
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setOpenPopover(false);
-                  return deleteEvent();
-                }}
-              >
-                Slet
-              </Button>
-            </Space>
+            {user && (
+              <Space>
+                <Button
+                  icon={<EditIcon />}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpenPopover(false);
+                    return editEvent();
+                  }}
+                >
+                  Ændr
+                </Button>
+
+                <Button
+                  disabled={deleting}
+                  icon={<DeleteIcon />}
+                  danger
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpenPopover(false);
+                    return deleteEvent();
+                  }}
+                >
+                  Slet
+                </Button>
+              </Space>
+            )}
           </Space>
         )
       }

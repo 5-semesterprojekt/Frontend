@@ -9,11 +9,14 @@ import { PlusIcon } from '../../components/Icons';
 import showEventModal from './Event.modal';
 import CalendarCell from './CalendarCell';
 
+import { useAuth } from '@/auth/hooks/use-auth';
+
 function CalendarView({
   recoilSource,
 }: {
   recoilSource: RecoilState<Event[]>;
 }) {
+  const { user } = useAuth();
   const events = useRecoilValue(recoilSource);
   const [month, setMonth] = useState(dayjs().month());
 
@@ -49,27 +52,29 @@ function CalendarView({
             <Button onClick={() => setMonth((current) => current - 1)}>
               -
             </Button>
-            {dayjs().month(month).format('MMMM')} -{' '}
+            {dayjs().month(month).format('MMMM')}-
             {dayjs().month(month).get('year')}
             <Button onClick={() => setMonth((current) => current + 1)}>
               +
             </Button>
           </Space>
-          <Button
-            icon={<PlusIcon />}
-            onClick={() =>
-              showEventModal({
-                event: {
-                  title: 'Ny begivenhed',
-                  start: new Date(),
-                  end: new Date(),
-                },
-              })
-            }
-            type="primary"
-          >
-            Tilføj begivenhed
-          </Button>
+          {user && (
+            <Button
+              icon={<PlusIcon />}
+              onClick={() =>
+                showEventModal({
+                  event: {
+                    title: 'Ny begivenhed',
+                    start: new Date(),
+                    end: new Date(),
+                  },
+                })
+              }
+              type="primary"
+            >
+              Tilføj begivenhed
+            </Button>
+          )}
         </Space>
       </Row>
       <table style={{ tableLayout: 'fixed', width: '100%', borderSpacing: 8 }}>
