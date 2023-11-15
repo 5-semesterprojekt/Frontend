@@ -4,7 +4,7 @@ export default function FullPageSpin() {
   return (
     <div
       style={{
-        padding: 16,
+        padding: 32,
         textAlign: 'center',
         width: '100%',
         boxSizing: 'border-box',
