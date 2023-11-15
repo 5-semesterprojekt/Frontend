@@ -15,9 +15,10 @@ export default function LoginPage() {
     try {
       const credentials = await form.getFieldsValue();
       await signInUser(credentials);
+      notify('success', 'Logget ind');
       form.resetFields();
     } catch (error: any) {
-      if (error.problem && error.problem === 'NETWORK_ERROR') {
+      if (error.problem === 'NETWORK_ERROR') {
         notify(
           'error',
           'Kunne ikke logge ind',

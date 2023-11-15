@@ -5,15 +5,33 @@ import { Link } from 'react-router-dom';
 import { useAuth } from './hooks/use-auth';
 
 import Page from '@/components/Page';
+import { notify } from '@/services/NotificationService';
 
 export default function RegisterPage() {
   const [form] = useForm();
   const { registerUser } = useAuth();
 
   const onFinish = async () => {
-    const newUser = await form.getFieldsValue();
-    registerUser(newUser);
-    form.resetFields();
+    try {
+      const newUser = await form.getFieldsValue();
+      await registerUser(newUser);
+      notify('success', 'Registreret!');
+      form.resetFields();
+    } catch (error: any) {
+      if (error.problem === 'NETWORK_ERROR') {
+        notify(
+          'error',
+          'Kunne ikke logge ind',
+          'Der kunne ikke skabes forbindelse til serveren.',
+        );
+      } else {
+        notify(
+          'error',
+          'Kunne ikke registreres',
+          'Denne e-mail er allerede i brug.',
+        );
+      }
+    }
   };
 
   const validateEmail = (email: string) =>

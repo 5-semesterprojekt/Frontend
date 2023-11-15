@@ -6,7 +6,6 @@ import { organizationConfig } from '../../../config/organization';
 import { mainApi } from '../../lib/api';
 import { User } from '../types/user';
 import { CurrentUser } from '../state/user';
-import { notify } from '../../services/NotificationService';
 
 export function useAuth() {
   const [user, setUser] = useRecoilState<User | undefined>(CurrentUser);
@@ -26,7 +25,6 @@ export function useAuth() {
       const { user } = response.data as { user: User };
       setUser(user);
       if (user.token) setAccessToken(user.token);
-      notify('success', 'Logget ind');
       navigate('/');
     } else {
       throw response;
@@ -63,22 +61,9 @@ export function useAuth() {
       const { user } = response.data as { user: User };
       setUser(user);
       if (user.token) setAccessToken(user.token);
-      notify('success', 'Registreret!');
       navigate('/');
     } else {
-      if (response.problem === 'NETWORK_ERROR') {
-        notify(
-          'error',
-          'Kunne ikke logge ind',
-          'Der kunne ikke skabes forbindelse til serveren.',
-        );
-      } else {
-        notify(
-          'error',
-          'Kunne ikke registreres',
-          'Denne e-mail er allerede i brug.',
-        );
-      }
+      throw response;
     }
   };
 
@@ -95,18 +80,9 @@ export function useAuth() {
     );
 
     if (response.ok) {
-      notify('success', 'Konto slettet');
       signOutUser();
     } else {
-      if (response.problem === 'NETWORK_ERROR') {
-        notify(
-          'error',
-          'Kunne ikke slette konto',
-          'Der kunne ikke skabes forbindelse til serveren.',
-        );
-      } else {
-        notify('error', 'Kunne ikke slette konto');
-      }
+      throw response;
     }
   };
 
