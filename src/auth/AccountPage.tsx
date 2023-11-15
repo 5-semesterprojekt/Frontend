@@ -54,7 +54,22 @@ export default function AccountPage() {
       message: 'Er du sikker på at du vil slette kontoen?',
       okText: 'Slet',
       okButtonProps: { danger: true },
-      onOk: deleteAccount,
+      onOk: async () => {
+        try {
+          await deleteAccount();
+          notify('success', 'Konto slettet');
+        } catch (error: any) {
+          if (error.problem === 'NETWORK_ERROR') {
+            notify(
+              'error',
+              'Kunne ikke slette konto',
+              'Der kunne ikke skabes forbindelse til serveren.',
+            );
+          } else {
+            notify('error', 'Kunne ikke slette konto');
+          }
+        }
+      },
     });
 
     setWorking(false);
