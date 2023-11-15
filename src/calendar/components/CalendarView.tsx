@@ -1,6 +1,7 @@
 import { Button, Row, Space } from 'antd';
 import dayjs, { Dayjs } from 'dayjs';
 import { useMemo, useState } from 'react';
+import { RecoilState, useRecoilValue } from 'recoil';
 
 import { Event } from '../types/event';
 import { PlusIcon } from '../../components/Icons';
@@ -10,8 +11,13 @@ import CalendarCell from './CalendarCell';
 
 import { useAuth } from '@/auth/hooks/use-auth';
 
-function CalendarView({ events }: { events: Event[] }) {
+function CalendarView({
+  recoilSource,
+}: {
+  recoilSource: RecoilState<Event[]>;
+}) {
   const { user } = useAuth();
+  const events = useRecoilValue(recoilSource);
   const [month, setMonth] = useState(dayjs().month());
 
   const { weeks } = useMemo(() => {
