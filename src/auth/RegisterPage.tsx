@@ -6,6 +6,18 @@ import { useAuth } from './hooks/use-auth';
 
 import Page from '@/components/Page';
 import { notify } from '@/services/NotificationService';
+import { emailFormat } from '@/lib/validation/email';
+import {
+  passwordCommonNotAllowed,
+  passwordLength,
+} from '@/lib/validation/password';
+import { required } from '@/lib/validation/common';
+import {
+  nameCharset,
+  nameDontWrapWithSpace,
+  nameLength,
+  nameStartWithUppercase,
+} from '@/lib/validation/name';
 
 export default function RegisterPage() {
   const [form] = useForm();
@@ -34,15 +46,6 @@ export default function RegisterPage() {
     }
   };
 
-  const validateEmail = (email: string) =>
-    // https://emailregex.com/
-    // eslint-disable-next-line
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      email,
-    )
-      ? true
-      : false;
-
   return (
     <Page title="Opret bruger">
       <Row justify="center">
@@ -55,21 +58,11 @@ export default function RegisterPage() {
                   label="Fornavn"
                   name="firstName"
                   rules={[
-                    { required: true, message: 'Fornavn er påkrævet' },
-                    {
-                      validator: (_, value: string) =>
-                        /[^a-zæøåA-ZÆØÅ\-\s]+/.test(value)
-                          ? Promise.reject(
-                              new Error('Kun bogstaver er tilladte'),
-                            )
-                          : Promise.resolve(),
-                    },
-                    {
-                      validator: (_, value: string) =>
-                        value?.length > 32
-                          ? Promise.reject(new Error('Maks. 32 tegn'))
-                          : Promise.resolve(),
-                    },
+                    required,
+                    nameCharset,
+                    nameLength,
+                    nameStartWithUppercase,
+                    nameDontWrapWithSpace,
                   ]}
                 >
                   <Input />
@@ -80,21 +73,11 @@ export default function RegisterPage() {
                   label="Efternavn"
                   name="lastName"
                   rules={[
-                    { required: true, message: 'Efternavn er påkrævet' },
-                    {
-                      validator: (_, value: string) =>
-                        /[^a-zæøåA-ZÆØÅ\-\s]+/.test(value)
-                          ? Promise.reject(
-                              new Error('Kun bogstaver er tilladte'),
-                            )
-                          : Promise.resolve(),
-                    },
-                    {
-                      validator: (_, value: string) =>
-                        value?.length > 32
-                          ? Promise.reject(new Error('Maks. 32 tegn'))
-                          : Promise.resolve(),
-                    },
+                    required,
+                    nameCharset,
+                    nameLength,
+                    nameStartWithUppercase,
+                    nameDontWrapWithSpace,
                   ]}
                 >
                   <Input />
@@ -104,34 +87,14 @@ export default function RegisterPage() {
             <Form.Item
               label="E-mail"
               name="email"
-              rules={[
-                { required: true, message: 'E-mail er påkrævet' },
-                {
-                  validator: (_, value: string) =>
-                    !validateEmail(value) && value?.length > 0
-                      ? Promise.reject(
-                          new Error('E-mailen er ikke i korrekt format'),
-                        )
-                      : Promise.resolve(),
-                },
-              ]}
+              rules={[required, emailFormat]}
             >
               <Input />
             </Form.Item>
             <Form.Item
               label="Adgangskode"
               name="password"
-              rules={[
-                { required: true, message: 'Adgangskode er påkrævet' },
-                {
-                  validator: (_, value: string) =>
-                    value?.length < 10 && value?.length > 0
-                      ? Promise.reject(
-                          new Error('Adgangskoden skal min. være 10 tegn'),
-                        )
-                      : Promise.resolve(),
-                },
-              ]}
+              rules={[required, passwordLength, passwordCommonNotAllowed]}
             >
               <Input.Password />
             </Form.Item>

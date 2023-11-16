@@ -6,6 +6,7 @@ import { useAuth } from './hooks/use-auth';
 
 import Page from '@/components/Page';
 import { notify } from '@/services/NotificationService';
+import { required } from '@/lib/validation/common';
 
 export default function LoginPage() {
   const [form] = useForm();
@@ -40,18 +41,10 @@ export default function LoginPage() {
         <Col span={16}>
           <Form form={form} onFinish={onFinish} layout="vertical">
             <Typography.Title level={3}>Log ind</Typography.Title>
-            <Form.Item
-              label="E-mail"
-              name="email"
-              rules={[{ required: true, message: 'E-mail er påkrævet' }]}
-            >
+            <Form.Item label="E-mail" name="email" rules={[required]}>
               <Input />
             </Form.Item>
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[{ required: true, message: 'Adgangskode er påkrævet' }]}
-            >
+            <Form.Item label="Password" name="password" rules={[required]}>
               <Input.Password />
             </Form.Item>
             <Form.Item>
