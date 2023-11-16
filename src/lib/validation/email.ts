@@ -1,4 +1,4 @@
-import { Rule } from 'antd/es/form';
+import { RuleObject } from 'antd/es/form';
 
 import { asyncHandler } from './asyncHandler';
 
@@ -8,7 +8,7 @@ const emailRegex = new RegExp(
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 );
 
-export const emailFormat: Rule = {
+export const emailFormat: RuleObject = {
   validator: (_, value: string) =>
     asyncHandler((email) => {
       if (!emailRegex.test(email)) {

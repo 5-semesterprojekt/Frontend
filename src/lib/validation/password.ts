@@ -1,8 +1,8 @@
-import { Rule } from 'antd/es/form';
+import { RuleObject } from 'antd/es/form';
 
 import { asyncHandler } from './asyncHandler';
 
-export const passwordCommonNotAllowed: Rule = {
+export const passwordCommonNotAllowed: RuleObject = {
   validator: (_, value: string) =>
     asyncHandler((password) => {
       if (commonPasswords100.includes(password)) {
@@ -12,7 +12,7 @@ export const passwordCommonNotAllowed: Rule = {
     }, value || ''),
 };
 
-export const passwordLength: Rule = {
+export const passwordLength: RuleObject = {
   validator: (_, value: string) =>
     asyncHandler((password) => {
       if (password.length < 8) {

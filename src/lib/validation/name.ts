@@ -1,8 +1,8 @@
-import { Rule } from 'antd/es/form';
+import { RuleObject } from 'antd/es/form';
 
 import { asyncHandler } from './asyncHandler';
 
-export const nameCharset: Rule = {
+export const nameCharset: RuleObject = {
   validator: (_, value: string) =>
     asyncHandler((name) => {
       if (!/^[a-zæøåA-ZÆØÅ\\-\s]+$/.test(name)) {
@@ -12,7 +12,7 @@ export const nameCharset: Rule = {
     }, value || ''),
 };
 
-export const nameStartWithUppercase: Rule = {
+export const nameStartWithUppercase: RuleObject = {
   validator: (_, value: string) =>
     asyncHandler((name) => {
       if (name.length > 0 && name[0] !== name[0].toUpperCase()) {
@@ -22,7 +22,7 @@ export const nameStartWithUppercase: Rule = {
     }, value || ''),
 };
 
-export const nameDontWrapWithSpace: Rule = {
+export const nameDontWrapWithSpace: RuleObject = {
   validator: (_, value: string) =>
     asyncHandler((name) => {
       if (name.trim().length !== name.length) {
@@ -32,7 +32,7 @@ export const nameDontWrapWithSpace: Rule = {
     }, value || ''),
 };
 
-export const nameLength: Rule = {
+export const nameLength: RuleObject = {
   validator: (_, value: string) =>
     asyncHandler((name) => {
       if (name?.length < 2) {

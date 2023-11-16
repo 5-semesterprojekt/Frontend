@@ -1,0 +1,22 @@
+{
+  "Describe section": {
+    "prefix": "desc",
+    "body": [
+      "describe('$1', () => {",
+      "  $2",
+      "});",
+      ""
+    ],
+    "description": "A describe section for a test file"
+  },
+  "Test section": {
+    "prefix": "test",
+    "body": [
+      "test ('$1', () => {",
+      "  $2",
+      "});",
+      ""
+    ],
+    "description": "A test section for a test file"
+  },
+}
