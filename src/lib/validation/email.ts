@@ -1,6 +1,6 @@
-import { Rule } from "antd/es/form";
+import { Rule } from 'antd/es/form';
 
-import { asyncHandler } from "./asyncHandler";
+import { asyncHandler } from './asyncHandler';
 
 // https://emailregex.com/
 const emailRegex = new RegExp(
@@ -15,5 +15,5 @@ export const emailFormat: Rule = {
         throw Error('E-mailen er ikke i korrekt format');
       }
       return true;
-    }, value),
+    }, value || ''),
 };

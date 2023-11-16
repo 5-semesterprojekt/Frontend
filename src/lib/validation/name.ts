@@ -5,21 +5,41 @@ import { asyncHandler } from './asyncHandler';
 export const nameCharset: Rule = {
   validator: (_, value: string) =>
     asyncHandler((name) => {
-      if (/[^a-zæøåA-ZÆØÅ\-\s]+/.test(name)) {
+      if (!/^[a-zæøåA-ZÆØÅ\\-\s]+$/.test(name)) {
         throw Error('Indeholder tegn som ikke er tilladte');
       }
       return true;
-    }, value),
+    }, value || ''),
+};
+
+export const nameStartWithUppercase: Rule = {
+  validator: (_, value: string) =>
+    asyncHandler((name) => {
+      if (name.length > 0 && name[0] !== name[0].toUpperCase()) {
+        throw Error('Skal starte med stort');
+      }
+      return true;
+    }, value || ''),
+};
+
+export const nameDontWrapWithSpace: Rule = {
+  validator: (_, value: string) =>
+    asyncHandler((name) => {
+      if (name.trim().length !== name.length) {
+        throw Error('Ingen mellemrum i starten eller slutningen');
+      }
+      return true;
+    }, value || ''),
 };
 
 export const nameLength: Rule = {
   validator: (_, value: string) =>
     asyncHandler((name) => {
-      if (name.length < 2) {
+      if (name?.length < 2) {
         throw Error('Må ikke være kortere end 2 tegn');
-      }else if (name.length > 64) {
+      } else if (name?.length > 64) {
         throw Error('Må ikke være længere end 64 tegn');
       }
       return true;
-    }, value),
+    }, value || ''),
 };

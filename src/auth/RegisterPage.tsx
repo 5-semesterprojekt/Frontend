@@ -12,7 +12,12 @@ import {
   passwordLength,
 } from '@/lib/validation/password';
 import { required } from '@/lib/validation/common';
-import { nameCharset, nameLength } from '@/lib/validation/name';
+import {
+  nameCharset,
+  nameDontWrapWithSpace,
+  nameLength,
+  nameStartWithUppercase,
+} from '@/lib/validation/name';
 
 export default function RegisterPage() {
   const [form] = useForm();
@@ -56,6 +61,8 @@ export default function RegisterPage() {
                     required,
                     nameCharset,
                     nameLength,
+                    nameStartWithUppercase,
+                    nameDontWrapWithSpace,
                   ]}
                 >
                   <Input />
@@ -69,6 +76,8 @@ export default function RegisterPage() {
                     required,
                     nameCharset,
                     nameLength,
+                    nameStartWithUppercase,
+                    nameDontWrapWithSpace,
                   ]}
                 >
                   <Input />
@@ -78,21 +87,14 @@ export default function RegisterPage() {
             <Form.Item
               label="E-mail"
               name="email"
-              rules={[  
-                required,
-                emailFormat,
-              ]}
+              rules={[required, emailFormat]}
             >
-              <Input/>
+              <Input />
             </Form.Item>
             <Form.Item
               label="Adgangskode"
               name="password"
-              rules={[
-                required,
-                passwordLength,
-                passwordCommonNotAllowed,
-              ]}
+              rules={[required, passwordLength, passwordCommonNotAllowed]}
             >
               <Input.Password />
             </Form.Item>

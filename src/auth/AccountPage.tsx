@@ -20,7 +20,12 @@ import { AccountIcon, DeleteIcon, KeyIcon } from '@/components/Icons';
 import showConfirmModal from '@/components/Confirm.modal';
 import { notify } from '@/services/NotificationService';
 import { required } from '@/lib/validation/common';
-import { nameCharset, nameLength } from '@/lib/validation/name';
+import {
+  nameCharset,
+  nameDontWrapWithSpace,
+  nameLength,
+  nameStartWithUppercase,
+} from '@/lib/validation/name';
 
 export default function AccountPage() {
   const [working, setWorking] = useState(false);
@@ -96,10 +101,30 @@ export default function AccountPage() {
             labelAlign="left"
             colon={false}
           >
-            <Form.Item name="firstName" label="Fornavn" rules={[required, nameCharset, nameLength]}>
+            <Form.Item
+              name="firstName"
+              label="Fornavn"
+              rules={[
+                required,
+                nameCharset,
+                nameLength,
+                nameStartWithUppercase,
+                nameDontWrapWithSpace,
+              ]}
+            >
               <Input value={user?.firstName} />
             </Form.Item>
-            <Form.Item name="lastName" label="Efternavn" rules={[required, nameCharset, nameLength]}>
+            <Form.Item
+              name="lastName"
+              label="Efternavn"
+              rules={[
+                required,
+                nameCharset,
+                nameLength,
+                nameStartWithUppercase,
+                nameDontWrapWithSpace,
+              ]}
+            >
               <Input value={user?.lastName} />
             </Form.Item>
             <Button onClick={updateAccountCallback} disabled={working}>

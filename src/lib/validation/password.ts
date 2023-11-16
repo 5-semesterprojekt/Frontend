@@ -9,7 +9,7 @@ export const passwordCommonNotAllowed: Rule = {
         throw Error('Denne adgangskode er blandt de 100 mest anvendte');
       }
       return true;
-    }, value),
+    }, value || ''),
 };
 
 export const passwordLength: Rule = {
@@ -21,7 +21,7 @@ export const passwordLength: Rule = {
         throw Error('Må ikke være længere end 64 tegn');
       }
       return true;
-    }, value),
+    }, value || ''),
 };
 
 const commonPasswords100 = [
