@@ -1,3 +1,5 @@
+import { describe, test, expect } from 'vitest';
+
 import { emailFormat } from './email';
 
 describe('E-mail validation', () => {
