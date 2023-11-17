@@ -14,6 +14,7 @@ import { useForm } from 'antd/es/form/Form';
 
 import { useAuth } from './hooks/use-auth';
 import { User } from './types/user';
+import showChangePasswordModal from './components/ChangePasswordModal';
 
 import Page from '@/components/Page';
 import { AccountIcon, DeleteIcon, KeyIcon } from '@/components/Icons';
@@ -29,8 +30,33 @@ import {
 
 export default function AccountPage() {
   const [working, setWorking] = useState(false);
-  const { user, updateAccount, deleteAccount } = useAuth();
+  const { user, updateAccount, signOutUser, deleteAccount } = useAuth();
   const [informationForm] = useForm();
+
+  const changePasswordCallback = async () => {
+    setWorking(true);
+
+    try {
+      const password: string = await showChangePasswordModal();
+      await updateAccount({ password });
+      signOutUser('/log-ind');
+      notify('success', 'Adgangskode ændret');
+    } catch (error: any) {
+      if (error) {
+        if (error.problem && error.problem === 'NETWORK_ERROR') {
+          notify(
+            'error',
+            'Kunne ikke ændre adgangskode',
+            'Der kunne ikke skabes forbindelse til serveren.',
+          );
+        } else {
+          notify('error', 'Kunne ikke ændre adgangskode');
+        }
+      }
+    }
+
+    setWorking(false);
+  };
 
   const updateAccountCallback = async () => {
     setWorking(true);
@@ -38,6 +64,7 @@ export default function AccountPage() {
     try {
       const user: User = await informationForm.getFieldsValue();
       await updateAccount(user);
+      notify('success', 'Konto opdateret');
     } catch (error: any) {
       if (error.problem && error.problem === 'NETWORK_ERROR') {
         notify(
@@ -138,7 +165,12 @@ export default function AccountPage() {
               <Input value={user?.email} disabled />
             </Form.Item>
             <Space>
-              <Button disabled={working} icon={<KeyIcon />} danger>
+              <Button
+                onClick={changePasswordCallback}
+                disabled={working}
+                icon={<KeyIcon />}
+                danger
+              >
                 Ændr adgangskode
               </Button>
               <Button

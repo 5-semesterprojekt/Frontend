@@ -74,7 +74,7 @@ function MenuBar() {
           style={{ borderBottom: 0 }}
         />
       </Col>
-      <Col>{user && <Button onClick={signOutUser}>Log af</Button>}</Col>
+      <Col>{user && <Button onClick={() => signOutUser()}>Log af</Button>}</Col>
     </Row>
   );
 }
