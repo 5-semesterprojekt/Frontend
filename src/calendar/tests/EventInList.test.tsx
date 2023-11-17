@@ -1,4 +1,5 @@
 import { render, waitFor } from '@testing-library/react';
+import { expect, test } from 'vitest';
 
 import EventInList from '../components/EventInList';
 
