@@ -11,7 +11,7 @@ import {
   passwordCommonNotAllowed,
   passwordLength,
 } from '@/lib/validation/password';
-import { required } from '@/lib/validation/common';
+import { mustEqual, required } from '@/lib/validation/common';
 import {
   nameCharset,
   nameDontWrapWithSpace,
@@ -97,6 +97,23 @@ export default function RegisterPage() {
               rules={[required, passwordLength, passwordCommonNotAllowed]}
             >
               <Input.Password />
+            </Form.Item>
+            <Form.Item
+              shouldUpdate={(prevValues, currentValues) =>
+                prevValues?.password !== currentValues?.password
+              }
+              noStyle
+            >
+              {({ getFieldValue }) => (
+                <Form.Item
+                  label="Gentag Adgangskode"
+                  name="repeatPassword"
+                  dependencies={['password']}
+                  rules={[required, mustEqual(getFieldValue('password'))]}
+                >
+                  <Input.Password />
+                </Form.Item>
+              )}
             </Form.Item>
             <Form.Item>
               <Space align="start">
