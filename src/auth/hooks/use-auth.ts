@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { deleteAccessToken, setAccessToken } from '../service/tokens';
 import { organizationConfig } from '../../../config/organization';
 import { mainApi } from '../../lib/api';
-import { User } from '../types/user';
+import { User, UserUpdate } from '../types/user';
 import { CurrentUser } from '../state/user';
 
 export function useAuth() {
@@ -31,16 +31,15 @@ export function useAuth() {
     }
   };
 
-  const updateAccount = async (updatedUser: User) => {
+  const updateAccount = async (updatedUser: UserUpdate) => {
     const response = await mainApi.put(
       `/users/${organizationConfig.id}/${user?.id}`,
       updatedUser,
     );
 
     if (response.ok) {
-      const { user } = response.data as { user: User };
+      const user = response.data as User;
       setUser(user);
-      if (user.token) setAccessToken(user.token);
     } else {
       throw response;
     }
@@ -67,11 +66,11 @@ export function useAuth() {
     }
   };
 
-  const signOutUser = () => {
+  const signOutUser = (fallbackUrl?: string) => {
     deleteAccessToken();
     setUser(undefined);
     refreshUser();
-    navigate('/');
+    navigate(fallbackUrl || '/');
   };
 
   const deleteAccount = async () => {

@@ -5,3 +5,10 @@ export interface User {
   email: string;
   token?: string;
 }
+
+export interface UserUpdate {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+}
