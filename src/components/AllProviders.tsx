@@ -11,7 +11,7 @@ import 'dayjs/locale/da';
 dayjs.locale('da');
 
 interface AllProvidersProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const AllProviders = (props: AllProvidersProps) => (

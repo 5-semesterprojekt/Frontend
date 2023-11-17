@@ -1,3 +1,5 @@
+import { describe, test, expect } from 'vitest';
+
 import { passwordCommonNotAllowed, passwordLength } from './password';
 
 describe('Password validation', () => {

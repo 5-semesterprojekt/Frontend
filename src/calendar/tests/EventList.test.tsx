@@ -1,5 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
 import { RecoilRoot } from 'recoil';
+import { expect, test } from 'vitest';
 
 import EventList from '../components/EventList';
 

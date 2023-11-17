@@ -13,5 +13,9 @@ export default function Page({
     document.title = `${title} | ${organizationConfig.name}`;
   }, [title]);
 
-  return <div style={{ padding: 32 }}>{children}</div>;
+  return (
+    <div style={{ padding: 32 }} data-testid={title}>
+      {children}
+    </div>
+  );
 }
