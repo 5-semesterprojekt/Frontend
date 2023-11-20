@@ -3,7 +3,7 @@ import { emailFormat } from './email';
 describe('E-mail validation', () => {
   describe('Length', () => {
     const validator = async (value: string) =>
-      await emailFormat.validator!({}, value, () => undefined);
+      await emailFormat.validator!({}, value);
 
     test('Allow martin@mail.dk', async () => {
       await expect(validator('martin@mail.dk')).resolves.toBeUndefined();

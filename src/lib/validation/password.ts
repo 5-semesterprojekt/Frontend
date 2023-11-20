@@ -1,26 +1,18 @@
-import { RuleObject } from 'antd/es/form';
+import { validator } from './validator';
 
-import { asyncHandler } from './asyncHandler';
+export const passwordCommonNotAllowed = validator((password) => {
+  if (commonPasswords100.includes(password)) {
+    throw Error('Denne adgangskode er blandt de 100 mest anvendte');
+  }
+});
 
-export const passwordCommonNotAllowed: RuleObject = {
-  validator: (_, value: string) =>
-    asyncHandler((password) => {
-      if (commonPasswords100.includes(password)) {
-        throw Error('Denne adgangskode er blandt de 100 mest anvendte');
-      }
-    }, value || ''),
-};
-
-export const passwordLength: RuleObject = {
-  validator: (_, value: string) =>
-    asyncHandler((password) => {
-      if (password.length < 8) {
-        throw Error('Må ikke være kortere end 8 tegn');
-      } else if (password.length > 64) {
-        throw Error('Må ikke være længere end 64 tegn');
-      }
-    }, value || ''),
-};
+export const passwordLength = validator((password) => {
+  if (password.length < 8) {
+    throw Error('Må ikke være kortere end 8 tegn');
+  } else if (password.length > 64) {
+    throw Error('Må ikke være længere end 64 tegn');
+  }
+});
 
 const commonPasswords100 = [
   '123456',

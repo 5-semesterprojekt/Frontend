@@ -3,7 +3,7 @@ import { passwordCommonNotAllowed, passwordLength } from './password';
 describe('Password validation', () => {
   describe('Length', () => {
     const validator = async (value: string) =>
-      await passwordLength.validator!({}, value, () => undefined);
+      await passwordLength.validator!({}, value);
 
     test('Allows length between 8 and 64', async () => {
       await expect(validator('Password')).resolves.toBeUndefined();
@@ -24,7 +24,7 @@ describe('Password validation', () => {
 
   describe('Check for common', () => {
     const validator = async (value: string) =>
-      await passwordCommonNotAllowed.validator!({}, value, () => undefined);
+      await passwordCommonNotAllowed.validator!({}, value);
 
     test("Disallow 'password' as a password", async () => {
       await expect(validator('password')).rejects.toBeDefined();

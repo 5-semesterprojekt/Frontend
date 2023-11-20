@@ -1,6 +1,4 @@
-import { RuleObject } from 'antd/es/form';
-
-import { asyncHandler } from './asyncHandler';
+import { validator } from './validator';
 
 // https://emailregex.com/
 const emailRegex = new RegExp(
@@ -8,11 +6,8 @@ const emailRegex = new RegExp(
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 );
 
-export const emailFormat: RuleObject = {
-  validator: (_, value: string) =>
-    asyncHandler((email) => {
-      if (!emailRegex.test(email)) {
-        throw Error('E-mailen er ikke i korrekt format');
-      }
-    }, value || ''),
-};
+export const emailFormat = validator((email) => {
+  if (!emailRegex.test(email)) {
+    throw Error('E-mailen er ikke i korrekt format');
+  }
+});

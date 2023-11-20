@@ -7,7 +7,7 @@ const reference = 'Test';
 describe('Common validation', () => {
   describe('Must equal', () => {
     const validator = async (value: string) =>
-      await mustEqual(reference).validator!({}, value, () => undefined);
+      await mustEqual(reference).validator!({}, value);
 
     test('Allow the reference value', async () => {
       await expect(validator(reference)).resolves.toBeUndefined();
