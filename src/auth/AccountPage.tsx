@@ -11,6 +11,7 @@ import {
 } from 'antd';
 import { useState } from 'react';
 import { useForm } from 'antd/es/form/Form';
+import { Navigate } from 'react-router-dom';
 
 import { useAuth } from './hooks/use-auth';
 import { User } from './types/user';
@@ -113,6 +114,7 @@ export default function AccountPage() {
 
   return (
     <Page title="Konto">
+      {!user && <Navigate to="/log-ind" />}
       <Row gutter={16}>
         <Col span={4} style={{ textAlign: 'center' }}>
           <Avatar size={128} icon={<AccountIcon />} />
