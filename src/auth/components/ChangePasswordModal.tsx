@@ -26,7 +26,7 @@ const ChangePasswordModal = NiceModal.create(() => {
     } finally {
       setWorking(false);
     }
-  }, []);
+  }, [form, modal]);
 
   return (
     <Modal
