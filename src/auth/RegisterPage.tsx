@@ -1,8 +1,9 @@
 import { Button, Col, Form, Input, Row, Space, Typography } from 'antd';
-import { useForm } from 'antd/es/form/Form';
+import { useForm, useWatch } from 'antd/es/form/Form';
 import { Link } from 'react-router-dom';
 
 import { useAuth } from './hooks/use-auth';
+import PasswordStrengthBar from './components/PasswordStrengthBar';
 
 import Page from '@/components/Page';
 import { notify } from '@/services/NotificationService';
@@ -22,6 +23,7 @@ import {
 export default function RegisterPage() {
   const [form] = useForm();
   const { registerUser } = useAuth();
+  const password = useWatch('password', form);
 
   const onFinish = async () => {
     try {
@@ -91,29 +93,25 @@ export default function RegisterPage() {
             >
               <Input />
             </Form.Item>
-            <Form.Item
-              label="Adgangskode"
-              name="password"
-              rules={[required, passwordLength, passwordCommonNotAllowed]}
-            >
-              <Input.Password />
+            <Form.Item label="Adgangskode">
+              <Form.Item
+                name="password"
+                rules={[required, passwordLength, passwordCommonNotAllowed]}
+                noStyle
+              >
+                <Input.Password />
+              </Form.Item>
+              {password?.length > 0 && (
+                <PasswordStrengthBar password={password} />
+              )}
             </Form.Item>
             <Form.Item
-              shouldUpdate={(prevValues, currentValues) =>
-                prevValues?.password !== currentValues?.password
-              }
-              noStyle
+              label="Gentag Adgangskode"
+              name="repeatPassword"
+              dependencies={['password']}
+              rules={[required, mustEqual(password)]}
             >
-              {({ getFieldValue }) => (
-                <Form.Item
-                  label="Gentag Adgangskode"
-                  name="repeatPassword"
-                  dependencies={['password']}
-                  rules={[required, mustEqual(getFieldValue('password'))]}
-                >
-                  <Input.Password />
-                </Form.Item>
-              )}
+              <Input.Password />
             </Form.Item>
             <Form.Item>
               <Space align="start">
