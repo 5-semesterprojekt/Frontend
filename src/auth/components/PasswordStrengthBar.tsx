@@ -25,21 +25,22 @@ export default function PasswordStrengthBar({
         <Popover
           content={
             <Space direction="vertical">
+              <b>Forslag til en bedre adgangskode</b>
               <Condition
                 checked={ContainsLowerCase(password)}
-                text="Indeholder små bogstaver"
+                text="Små bogstaver"
               />
               <Condition
                 checked={ContainsUpperCase(password)}
-                text="Indeholder store bogstaver"
+                text="Min. et stort bogstaver"
               />
               <Condition
                 checked={ContainsNumbers(password)}
-                text="Indeholder tal"
+                text="Min. et tal"
               />
               <Condition
                 checked={ContainsSymbols(password)}
-                text="Indeholder symboler"
+                text="Min. et symbol"
               />
             </Space>
           }
