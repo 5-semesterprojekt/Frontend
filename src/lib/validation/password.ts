@@ -8,7 +8,6 @@ export const passwordCommonNotAllowed: RuleObject = {
       if (commonPasswords100.includes(password)) {
         throw Error('Denne adgangskode er blandt de 100 mest anvendte');
       }
-      return true;
     }, value || ''),
 };
 
@@ -20,7 +19,6 @@ export const passwordLength: RuleObject = {
       } else if (password.length > 64) {
         throw Error('Må ikke være længere end 64 tegn');
       }
-      return true;
     }, value || ''),
 };
 

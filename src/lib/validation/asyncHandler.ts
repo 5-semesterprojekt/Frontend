@@ -1,5 +1,5 @@
 export async function asyncHandler(
-  validator: (value: string) => boolean,
+  validator: (value: string) => void,
   value: string,
 ) {
   try {

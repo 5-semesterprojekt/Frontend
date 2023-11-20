@@ -14,7 +14,6 @@ export function mustEqual(requirement: string): RuleObject {
         if (text !== requirement) {
           throw Error('Stemmer ikke overens');
         }
-        return true;
       }, value || ''),
   };
 }

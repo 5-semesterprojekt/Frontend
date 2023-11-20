@@ -14,6 +14,5 @@ export const emailFormat: RuleObject = {
       if (!emailRegex.test(email)) {
         throw Error('E-mailen er ikke i korrekt format');
       }
-      return true;
     }, value || ''),
 };

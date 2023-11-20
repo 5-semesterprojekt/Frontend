@@ -8,7 +8,6 @@ export const nameCharset: RuleObject = {
       if (!/^[a-zæøåA-ZÆØÅ\\-\s]+$/.test(name)) {
         throw Error('Indeholder tegn som ikke er tilladte');
       }
-      return true;
     }, value || ''),
 };
 
@@ -18,7 +17,6 @@ export const nameStartWithUppercase: RuleObject = {
       if (name.length > 0 && name[0] !== name[0].toUpperCase()) {
         throw Error('Skal starte med stort');
       }
-      return true;
     }, value || ''),
 };
 
@@ -28,7 +26,6 @@ export const nameDontWrapWithSpace: RuleObject = {
       if (name.trim().length !== name.length) {
         throw Error('Ingen mellemrum i starten eller slutningen');
       }
-      return true;
     }, value || ''),
 };
 
@@ -40,6 +37,5 @@ export const nameLength: RuleObject = {
       } else if (name?.length > 64) {
         throw Error('Må ikke være længere end 64 tegn');
       }
-      return true;
     }, value || ''),
 };
