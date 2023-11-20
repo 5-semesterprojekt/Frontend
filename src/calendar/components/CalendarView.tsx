@@ -77,7 +77,14 @@ function CalendarView({
           )}
         </Space>
       </Row>
-      <table style={{ tableLayout: 'fixed', width: '100%', borderSpacing: 8 }}>
+      <table
+        style={{
+          tableLayout: 'fixed',
+          width: '100%',
+          borderSpacing: 0,
+          borderCollapse: 'collapse',
+        }}
+      >
         <thead>
           <tr>
             <td>ma.</td>

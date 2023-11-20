@@ -39,25 +39,34 @@ export default function CalendarCell({
   return (
     <td
       style={{
-        verticalAlign: 'top',
-        borderTop: '1px solid',
-        height: 64,
+        borderTop: '1px solid black',
+        borderRight: '1px solid lightgray',
+        borderLeft: '1px solid lightgray',
         backgroundColor: inMonth ? 'initial' : 'lightgray',
+        verticalAlign: 'top',
+        padding: 4,
       }}
       onClick={addEvent}
     >
-      <Space
-        direction="vertical"
-        style={{ width: '100%', height: '100%', paddingTop: 4 }}
+      <div
+        style={{
+          verticalAlign: 'top',
+          minHeight: 64
+        }}
       >
-        {date.getDate()}
-        {events.map((event) => (
-          <CalendarEvent key={event.id} event={event} />
-        ))}
-        {showTemporaryEvent && (
-          <CalendarEvent key={date.toISOString()} event={temporaryEvent} />
-        )}
-      </Space>
+        <Space
+          direction="vertical"
+          style={{ width: '100%', height: '100%', paddingTop: 4 }}
+        >
+          {date.getDate()}
+          {events.map((event) => (
+            <CalendarEvent key={event.id} event={event} />
+          ))}
+          {showTemporaryEvent && (
+            <CalendarEvent key={date.toISOString()} event={temporaryEvent} />
+          )}
+        </Space>
+      </div>
     </td>
   );
 }
