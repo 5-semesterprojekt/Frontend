@@ -7,8 +7,9 @@ import {
 
 describe('Name validation', () => {
   describe('Capitalization', () => {
-    const validator = async (value: string) =>
-      await nameStartWithUppercase.validator!({}, value);
+    const validator = async (
+      value: string, // @ts-ignore
+    ) => await nameStartWithUppercase.validator({}, value);
 
     test('Succeeds with beginning capital letter', async () => {
       await expect(validator('Martin')).resolves.toBeUndefined();
@@ -24,8 +25,9 @@ describe('Name validation', () => {
   });
 
   describe('Charset', () => {
-    const validator = async (value: string) =>
-      await nameCharset.validator!({}, value);
+    const validator = async (
+      value: string, // @ts-ignore
+    ) => await nameCharset.validator({}, value);
 
     test('Allows Danish letters', async () => {
       await expect(
@@ -43,8 +45,9 @@ describe('Name validation', () => {
   });
 
   describe('Length', () => {
-    const validator = async (value: string) =>
-      await nameLength.validator!({}, value);
+    const validator = async (
+      value: string, // @ts-ignore
+    ) => await nameLength.validator({}, value);
 
     test('Allows length between 2 and 64', async () => {
       await expect(validator('Martin')).resolves.toBeUndefined();
@@ -64,8 +67,9 @@ describe('Name validation', () => {
   });
 
   describe('Spacing', () => {
-    const validator = async (value: string) =>
-      await nameDontWrapWithSpace.validator!({}, value);
+    const validator = async (
+      value: string, // @ts-ignore
+    ) => await nameDontWrapWithSpace.validator({}, value);
 
     test('Allows name without spaces', async () => {
       await expect(validator('Martin')).resolves.toBeUndefined();

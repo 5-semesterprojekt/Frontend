@@ -1,6 +1,8 @@
-import { RuleObject } from 'antd/es/form';
+import { Rule, RuleObject } from 'antd/es/form';
 
-export const validator = (validationFunction: (value: string) => void) => ({
+export const validationRule = (
+  validationFunction: (value: string) => void,
+): Rule => ({
   validator: async (_: RuleObject, value: string) => {
     try {
       const reference = value || '';

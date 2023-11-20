@@ -1,6 +1,6 @@
 import { Rule } from 'antd/es/form';
 
-import { validator } from './validator';
+import { validationRule } from './validationRule';
 
 export const required: Rule = {
   required: true,
@@ -8,7 +8,7 @@ export const required: Rule = {
 };
 
 export const mustEqual = (requirement: string) =>
-  validator((text) => {
+  validationRule((text) => {
     if (text !== requirement) {
       throw Error('Stemmer ikke overens');
     }

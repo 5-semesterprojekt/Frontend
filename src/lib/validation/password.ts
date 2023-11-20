@@ -1,12 +1,12 @@
-import { validator } from './validator';
+import { validationRule } from './validationRule';
 
-export const passwordCommonNotAllowed = validator((password) => {
+export const passwordCommonNotAllowed = validationRule((password) => {
   if (commonPasswords100.includes(password)) {
     throw Error('Denne adgangskode er blandt de 100 mest anvendte');
   }
 });
 
-export const passwordLength = validator((password) => {
+export const passwordLength = validationRule((password) => {
   if (password.length < 8) {
     throw Error('Må ikke være kortere end 8 tegn');
   } else if (password.length > 64) {

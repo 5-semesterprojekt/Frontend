@@ -2,12 +2,12 @@ import { describe, test, expect } from 'vitest';
 
 import { mustEqual } from './common';
 
-const reference = 'Test';
-
 describe('Common validation', () => {
   describe('Must equal', () => {
-    const validator = async (value: string) =>
-      await mustEqual(reference).validator!({}, value);
+    const reference = 'Test';
+    const validator = async (
+      value: string, // @ts-ignore
+    ) => await mustEqual(reference).validator({}, value);
 
     test('Allow the reference value', async () => {
       await expect(validator(reference)).resolves.toBeUndefined();
