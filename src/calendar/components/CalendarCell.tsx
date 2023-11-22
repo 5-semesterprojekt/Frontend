@@ -6,6 +6,7 @@ import { notify } from '../../services/NotificationService';
 
 import CalendarEvent from './CalendarEvent';
 import showEventModal from './Event.modal';
+import styles from './CalendarCell.module.css';
 
 import { useAuth } from '@/auth/hooks/use-auth';
 
@@ -43,34 +44,29 @@ export default function CalendarCell({
 
   return (
     <td
-      style={{
-        borderTop: '1px solid black',
-        borderRight: '1px solid lightgray',
-        borderLeft: '1px solid lightgray',
-        backgroundColor: inMonth ? 'initial' : 'lightgray',
-        verticalAlign: 'top',
-        padding: 4,
-      }}
+      className={`${styles.cell} ${inMonth ? '' : styles.outOfMonth} ${user ? styles.addable : ''}`}
       onClick={addEvent}
     >
-      <div
-        style={{
-          verticalAlign: 'top',
-          minHeight: 64
-        }}
-      >
-        <Space
-          direction="vertical"
-          style={{ width: '100%', height: '100%', paddingTop: 4 }}
+      <div style={{ padding: 4 }}>
+        <div
+          style={{
+            verticalAlign: 'top',
+            minHeight: 64,
+          }}
         >
-          {date.getDate()}
-          {events.map((event) => (
-            <CalendarEvent key={event.id} event={event} />
-          ))}
-          {showTemporaryEvent && (
-            <CalendarEvent key={date.toISOString()} event={temporaryEvent} />
-          )}
-        </Space>
+          <Space
+            direction="vertical"
+            style={{ width: '100%', height: '100%', paddingTop: 4 }}
+          >
+            {date.getDate()}
+            {events.map((event) => (
+              <CalendarEvent key={event.id} event={event} />
+            ))}
+            {showTemporaryEvent && (
+              <CalendarEvent key={date.toISOString()} event={temporaryEvent} />
+            )}
+          </Space>
+        </div>
       </div>
     </td>
   );

@@ -11,5 +11,6 @@
 }
 
 .addable:hover {
-  background-color: red;
+  transition: 200ms;
+  background-color: #f0f0f0;
 }
