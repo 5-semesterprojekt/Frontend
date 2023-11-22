@@ -53,6 +53,7 @@ export default function CalendarCell({
         style={{
           verticalAlign: 'top',
           minHeight: 64,
+          padding: 4,
         }}
       >
         <Space
