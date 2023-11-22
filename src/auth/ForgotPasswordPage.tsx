@@ -47,6 +47,7 @@ export default function ForgotPasswordPage() {
     }
   };
 
+  // TODO - Will be implemented later
   const onNewPasswordSubmit = () => {};
 
   return (
