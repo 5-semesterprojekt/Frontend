@@ -1,0 +1,15 @@
+.cell {
+  vertical-align: top;
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgray;
+}
+
+.outOfMonth {
+  background-color: lightgray;
+}
+
+.addable:hover {
+  transition: 200ms;
+  background-color: #f0f0f0;
+}
