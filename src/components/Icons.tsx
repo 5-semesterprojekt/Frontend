@@ -11,6 +11,9 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import {
   faCalendarAlt,
+  faCircleCheck,
+  faCircleInfo,
+  faCircleXmark,
   faEllipsisVertical,
   faFileLines,
   faHouse,
@@ -72,6 +75,9 @@ export const ThreeDotsIcon = (props: IconProps) => (
 );
 export const KeyIcon = (props: IconProps) => <Icon {...props} icon={faKey} />;
 export const PlusIcon = (props: IconProps) => <Icon {...props} icon={faPlus} />;
+export const InformationIcon = (props: IconProps) => (
+  <Icon {...props} icon={faCircleInfo} />
+);
 
 export const FacebookIcon = (props: IconProps) => (
   <Icon {...props} icon={faFacebook} />
@@ -81,4 +87,11 @@ export const TwitterIcon = (props: IconProps) => (
 );
 export const YouTubeIcon = (props: IconProps) => (
   <Icon {...props} icon={faYoutube} />
+);
+
+export const CheckCircleIcon = (props: IconProps) => (
+  <Icon {...props} icon={faCircleCheck} />
+);
+export const XMarkCircleIcon = (props: IconProps) => (
+  <Icon {...props} icon={faCircleXmark} />
 );

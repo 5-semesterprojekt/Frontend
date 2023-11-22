@@ -6,7 +6,7 @@ export const validationRule = (
   validator: async (_: RuleObject, value: string) => {
     try {
       const reference = value || '';
-      if (reference.length > 0) {
+      if (reference?.length > 0) {
         validationFunction(reference);
       }
       return Promise.resolve();

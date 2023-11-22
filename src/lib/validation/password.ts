@@ -1,5 +1,8 @@
 import { validationRule } from './validationRule';
 
+export const minPasswordLength = 8;
+export const maxPasswordLength = 64;
+
 export const passwordCommonNotAllowed = validationRule((password) => {
   if (commonPasswords100.includes(password)) {
     throw Error('Denne adgangskode er blandt de 100 mest anvendte');
@@ -7,9 +10,9 @@ export const passwordCommonNotAllowed = validationRule((password) => {
 });
 
 export const passwordLength = validationRule((password) => {
-  if (password.length < 8) {
+  if (password.length < minPasswordLength) {
     throw Error('Må ikke være kortere end 8 tegn');
-  } else if (password.length > 64) {
+  } else if (password.length > maxPasswordLength) {
     throw Error('Må ikke være længere end 64 tegn');
   }
 });

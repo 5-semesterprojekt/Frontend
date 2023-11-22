@@ -82,9 +82,9 @@ const EventModal = NiceModal.create(
           notify(
             'error',
             'Fejl',
-            event
-              ? 'Kunne ikke ændre begivenheden'
-              : 'Kunne ikke tilføje begivenheden',
+            newEvent
+              ? 'Kunne ikke tilføje begivenheden'
+              : 'Kunne ikke ændre begivenheden',
           );
         }
       } catch (error: unknown) {

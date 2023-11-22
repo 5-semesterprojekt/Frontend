@@ -1,6 +1,6 @@
-import { Empty, Space } from 'antd';
+import { Button, Empty, Row, Space } from 'antd';
 import { RecoilState, useRecoilState } from 'recoil';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Event } from '../types/event';
 
@@ -12,6 +12,7 @@ export interface EventListProps {
 
 function EventList({ recoilSource }: EventListProps) {
   const [events, setEvents] = useRecoilState(recoilSource);
+  const [max, setMax] = useState(5);
 
   useEffect(() => {
     setEvents(events);
@@ -20,14 +21,21 @@ function EventList({ recoilSource }: EventListProps) {
   const sortedEvents = events
     ?.filter((event) => event.start >= new Date())
     .sort((a, b) => a.start.getTime() - b.start.getTime())
-    .slice(0, 5);
+    .slice(0, max);
 
   return (
     <Space direction="vertical" style={{ width: '100%' }}>
       {sortedEvents.length > 0 ? (
-        sortedEvents.map((event) => (
-          <EventInList key={`event-${event.id}`} event={event} />
-        ))
+        <>
+          {sortedEvents.map((event) => (
+            <EventInList key={`event-${event.id}`} event={event} />
+          ))}
+          <Row justify="center">
+            <Button onClick={() => setMax((value) => value + 5)}>
+              Se flere
+            </Button>
+          </Row>
+        </>
       ) : (
         <Empty
           image={Empty.PRESENTED_IMAGE_SIMPLE}

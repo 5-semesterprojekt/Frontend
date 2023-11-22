@@ -7,6 +7,8 @@ import { notify } from '../../services/NotificationService';
 import CalendarEvent from './CalendarEvent';
 import showEventModal from './Event.modal';
 
+import { useAuth } from '@/auth/hooks/use-auth';
+
 export default function CalendarCell({
   date,
   events,
@@ -16,6 +18,7 @@ export default function CalendarCell({
   events: Event[];
   inMonth: boolean;
 }) {
+  const { user } = useAuth();
   const [temporaryEvent] = useState<Event>({
     title: 'Ny begivenhed',
     start: date,
@@ -24,15 +27,17 @@ export default function CalendarCell({
   const [showTemporaryEvent, setShowTemporaryEvent] = useState(false);
 
   const addEvent = async () => {
-    try {
-      setShowTemporaryEvent(true);
-      await showEventModal({ event: temporaryEvent, date });
-    } catch (error) {
-      if (error) {
-        notify('error', 'Kunne ikke tilføje begivenhed', error.toString());
+    if (user) {
+      try {
+        setShowTemporaryEvent(true);
+        await showEventModal({ event: temporaryEvent, date });
+      } catch (error) {
+        if (error) {
+          notify('error', 'Kunne ikke tilføje begivenhed', error.toString());
+        }
+      } finally {
+        setShowTemporaryEvent(false);
       }
-    } finally {
-      setShowTemporaryEvent(false);
     }
   };
 
