@@ -103,7 +103,7 @@ function CalendarView({
                 <CalendarCell
                   key={day.toDate().toDateString()}
                   date={day.toDate()}
-                  inMonth={day.month() === month}
+                  inMonth={day.month() === month % 12}
                   events={events.filter(
                     (event) =>
                       event.start.toDateString() ===
