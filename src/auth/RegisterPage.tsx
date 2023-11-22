@@ -106,7 +106,7 @@ export default function RegisterPage() {
               )}
             </Form.Item>
             <Form.Item
-              label="Gentag Adgangskode"
+              label="Gentag adgangskode"
               name="repeatPassword"
               dependencies={['password']}
               rules={[required, mustEqual(password)]}

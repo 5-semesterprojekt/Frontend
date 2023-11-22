@@ -55,7 +55,7 @@ export default function LoginPage() {
                 <span>
                   <Link to="/registrer">Opret bruger</Link>
                   <br />
-                  <Link to="/">Glemt adgangskode</Link>
+                  <Link to="/glemt-adgangskode">Glemt adgangskode</Link>
                 </span>
               </Space>
             </Form.Item>
