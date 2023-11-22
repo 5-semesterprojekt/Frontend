@@ -15,6 +15,7 @@ import showConfirmModal from '../../components/Confirm.modal';
 import showEventModal from './Event.modal';
 
 import { useAuth } from '@/auth/hooks/use-auth';
+import useOutsideClick from '@/hooks/useClickOutside';
 
 dayjs.extend(LocalizedFormat);
 
@@ -23,6 +24,7 @@ export default function CalendarEvent({ event }: { event: Event }) {
   const [openPopover, setOpenPopover] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const refreshEvents = useRecoilRefresher_UNSTABLE(GetEvents);
+  const ref = useOutsideClick(() => setOpenPopover(false));
 
   const title = event.title;
 
@@ -70,7 +72,11 @@ export default function CalendarEvent({ event }: { event: Event }) {
       key={event.id || 'temp'}
       content={
         event && (
-          <Space direction="vertical" onClick={(e) => e.stopPropagation()}>
+          <Space
+            ref={ref}
+            direction="vertical"
+            onClick={(e) => e.stopPropagation()}
+          >
             <b>{title}</b>
             <span>
               {startDate} - {endDate}
