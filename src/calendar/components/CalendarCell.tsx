@@ -44,29 +44,29 @@ export default function CalendarCell({
 
   return (
     <td
-      className={`${styles.cell} ${inMonth ? '' : styles.outOfMonth} ${user ? styles.addable : ''}`}
+      className={`${styles.cell} ${inMonth ? '' : styles.outOfMonth} ${
+        user ? styles.addable : ''
+      }`}
       onClick={addEvent}
     >
-      <div style={{ padding: 4 }}>
-        <div
-          style={{
-            verticalAlign: 'top',
-            minHeight: 64,
-          }}
+      <div
+        style={{
+          verticalAlign: 'top',
+          minHeight: 64,
+        }}
+      >
+        <Space
+          direction="vertical"
+          style={{ width: '100%', height: '100%', paddingTop: 4 }}
         >
-          <Space
-            direction="vertical"
-            style={{ width: '100%', height: '100%', paddingTop: 4 }}
-          >
-            {date.getDate()}
-            {events.map((event) => (
-              <CalendarEvent key={event.id} event={event} />
-            ))}
-            {showTemporaryEvent && (
-              <CalendarEvent key={date.toISOString()} event={temporaryEvent} />
-            )}
-          </Space>
-        </div>
+          {date.getDate()}
+          {events.map((event) => (
+            <CalendarEvent key={event.id} event={event} />
+          ))}
+          {showTemporaryEvent && (
+            <CalendarEvent key={date.toISOString()} event={temporaryEvent} />
+          )}
+        </Space>
       </div>
     </td>
   );
