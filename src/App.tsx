@@ -11,6 +11,7 @@ import {
   TwitterIcon,
   YouTubeIcon,
 } from './components/Icons';
+import ForgotPasswordPage from './auth/ForgotPasswordPage';
 
 const HomePage = lazy(() => import('./home/HomePage'));
 const CalendarPage = lazy(() => import('./calendar/CalendarPage'));
@@ -51,6 +52,10 @@ function App() {
               <Route path="/log-ind" element={<LoginPage />} />
               <Route path="/registrer" element={<RegisterPage />} />
               <Route path="/konto" element={<AccountPage />} />
+              <Route
+                path="/glemt-adgangskode"
+                element={<ForgotPasswordPage />}
+              />
               <Route
                 path="*"
                 element={

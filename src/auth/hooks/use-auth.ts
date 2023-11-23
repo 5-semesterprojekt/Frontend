@@ -45,6 +45,17 @@ export function useAuth() {
     }
   };
 
+  const forgotPassword = async (forgottenUser: { email: string }) => {
+    const response = await mainApi.post(
+      `/users/${organizationConfig.id}/forgot-password`,
+      forgottenUser,
+    );
+
+    if (!response.ok) {
+      throw response;
+    }
+  };
+
   const registerUser = async (newUser: {
     firstName: string;
     lastName: string;
@@ -89,6 +100,7 @@ export function useAuth() {
     user,
     signInUser,
     signOutUser,
+    forgotPassword,
     registerUser,
     updateAccount,
     deleteAccount,
