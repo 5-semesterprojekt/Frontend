@@ -5,8 +5,6 @@
 ![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-<br>
-
 # :wrench: Installation
 
 Using [nvm](https://github.com/coreybutler/nvm-windows) is advised.
