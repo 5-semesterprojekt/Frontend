@@ -1,4 +1,4 @@
-## :wrench: Installation
+# :wrench: Installation
 
 Using [nvm](https://github.com/coreybutler/nvm-windows) is advised.
 
@@ -22,7 +22,7 @@ yarn install
 
 Setting up the [backend](https://github.com/5-semesterprojekt/Backend) is also highly advisable.
 
-## :rocket: Start
+# :rocket: Start
 
 The frontend can be started by running the start script:
 
@@ -33,9 +33,29 @@ yarn start
 It should open by itself, otherwise it is available here: [https://localhost:3010/](https://localhost:3010/)
 <br>While the frontend can show the website by itself, there is practically no functionality or data without the corresponding [backend](https://github.com/5-semesterprojekt/Backend).
 
-## :clipboard: Conventions
+# :gem: Scripts
 
-### Naming
+### `yarn start`
+Starts the frontend in on local development server, which opens to [https://localhost:3010/](https://localhost:3010/).
+
+### `yarn build`
+Builds the project into the `/dist` directory.
+
+### `yarn test`
+Runs all tests (see [vitest](https://vitest.dev/) for more).
+
+# :building_construction: Contribution
+
+1. Make a branch from `main` using the suggested branch name in [Shortcut](https://app.shortcut.com/5-semester/stories/space/19/everything?team_scope_id=v2%3At%3A6536343c-3b19-48f3-96bd-e44481a7aefc%3A6536343c-ab85-4346-9338-ad967260f782). (i.e. feature/sc-{story number}/{feature-name})
+2. Commit until the feature is "complete"
+3. Make pull request to `main` and request for review
+4. <ins>**Squash and merge**</ins> when all requirements are met
+
+It is HIGHLY advisable not to branch off secondary branches. Only branch off `main`.
+
+# :clipboard: Conventions
+
+## Naming
 
 - Variables are camelCased. Functional Components are PascalCased, but normal functions are camelCased. (ie. UI-related => PascalCasing)
 - .ts files must be camelCased
@@ -65,9 +85,9 @@ Examples:
 
 ```
 
-### Structure
+## Structure
 
-#### Root
+### Root
 
 ```
 // Reusable components for the entire app
