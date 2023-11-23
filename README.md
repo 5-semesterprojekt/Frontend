@@ -61,7 +61,7 @@ It is HIGHLY advisable not to branch off secondary branches. Only branch off `ma
 - .ts files must be camelCased
 - .tsx files must be PascalCased<br>
 - If a .tsx file contains a modal or page, it must be named accordingly
-- All folders are camelCased
+- All folders are lower case and words are separated with dashes (fx. "sub-pages")
 - Avoid abbreviations
 
 Examples:
@@ -87,7 +87,7 @@ Examples:
 
 ## Structure
 
-### Root
+### src
 
 ```
 // Reusable components for the entire app
