@@ -14,7 +14,7 @@ beforeEach(async () => {
 });
 
 test('it can render the page', async () => {
-  await waitFor(() => screen.getByTestId('Konto'));
+  await waitFor(() => expect(screen.getByTestId('Konto')).toBeDefined());
 });
 
 test('it can fill the input fields with the users information', async () => {

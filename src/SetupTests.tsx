@@ -20,6 +20,9 @@ global.matchMedia =
     };
   };
 
+const { getComputedStyle } = window;
+window.getComputedStyle = (elt) => getComputedStyle(elt);
+
 export const testUser: User = {
   firstName: 'Martin',
   lastName: 'Jensen',
