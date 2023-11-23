@@ -1,9 +1,10 @@
 import NiceModal from '@ebay/nice-modal-react';
 import { ConfigProvider } from 'antd';
 import daDK from 'antd/locale/da_DK';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import dayjs from 'dayjs';
+import { Suspense } from 'react';
 
 import { organizationConfig } from '../../config/organization';
 
@@ -14,8 +15,10 @@ interface AllProvidersProps {
   children?: React.ReactNode;
 }
 
+const Router = import.meta.env.MODE === 'test' ? MemoryRouter : BrowserRouter;
+
 const AllProviders = (props: AllProvidersProps) => (
-  <BrowserRouter>
+  <Router>
     <ConfigProvider
       theme={{
         token: {
@@ -31,10 +34,12 @@ const AllProviders = (props: AllProvidersProps) => (
       locale={daDK}
     >
       <RecoilRoot>
-        <NiceModal.Provider>{props.children}</NiceModal.Provider>
+        <NiceModal.Provider>
+          <Suspense>{props.children}</Suspense>
+        </NiceModal.Provider>
       </RecoilRoot>
     </ConfigProvider>
-  </BrowserRouter>
+  </Router>
 );
 
 export default AllProviders;

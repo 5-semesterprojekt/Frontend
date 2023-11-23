@@ -3,11 +3,11 @@ import NiceModal, { antdModalV5, useModal } from '@ebay/nice-modal-react';
 import { useCallback, useState } from 'react';
 import { useForm } from 'antd/es/form/Form';
 
-import { required } from '@/lib/validation/common';
+import { required } from '@/lib/validation/forms/common';
 import {
   passwordLength,
   passwordCommonNotAllowed,
-} from '@/lib/validation/password';
+} from '@/lib/validation/forms/password';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const ChangePasswordModal = NiceModal.create(() => {
