@@ -13,13 +13,13 @@ import { useState } from 'react';
 import { useForm } from 'antd/es/form/Form';
 import { Navigate } from 'react-router-dom';
 
-import { useAuth } from './hooks/use-auth';
+import { useAuth } from './hooks/useAuth';
 import { User } from './types/user';
 import showChangePasswordModal from './components/ChangePasswordModal';
 
 import Page from '@/components/Page';
 import { AccountIcon, DeleteIcon, KeyIcon } from '@/components/Icons';
-import showConfirmModal from '@/components/Confirm.modal';
+import showConfirmModal from '@/components/ConfirmModal';
 import { notify } from '@/services/NotificationService';
 import { required } from '@/lib/validation/common';
 import {

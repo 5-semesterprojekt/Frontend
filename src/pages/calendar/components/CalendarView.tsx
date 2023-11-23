@@ -4,12 +4,12 @@ import { useMemo, useState } from 'react';
 import { RecoilState, useRecoilValue } from 'recoil';
 
 import { Event } from '../types/event';
-import { PlusIcon } from '../../components/Icons';
+import { PlusIcon } from '../../../components/Icons';
 
 import showEventModal from './Event.modal';
 import CalendarCell from './CalendarCell';
 
-import { useAuth } from '@/auth/hooks/use-auth';
+import { useAuth } from '@/auth/hooks/useAuth';
 
 function CalendarView({
   recoilSource,

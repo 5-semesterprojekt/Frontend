@@ -2,7 +2,7 @@ import { MenuProps, Menu, Button, Row, Col } from 'antd';
 import { ReactNode } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
-import { useAuth } from '../auth/hooks/use-auth';
+import { useAuth } from '../auth/hooks/useAuth';
 
 import {
   HouseIcon,

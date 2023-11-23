@@ -1,8 +1,8 @@
 import { atom, selector } from 'recoil';
 
 import { Event } from '../types/event';
-import { mainApi } from '../../lib/api';
-import { organizationConfig } from '../../../config/organization';
+import { mainApi } from '../../../lib/api';
+import { organizationConfig } from '../../../../config/organization';
 
 export const EventCache = atom<Event[]>({
   key: 'EventCache',

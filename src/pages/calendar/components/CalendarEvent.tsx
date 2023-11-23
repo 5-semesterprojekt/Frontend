@@ -5,16 +5,16 @@ import { useRecoilRefresher_UNSTABLE } from 'recoil';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 
 import { Event } from '../types/event';
-import { DeleteIcon, EditIcon } from '../../components/Icons';
-import { organizationConfig } from '../../../config/organization';
-import { mainApi } from '../../lib/api';
+import { DeleteIcon, EditIcon } from '../../../components/Icons';
+import { organizationConfig } from '../../../../config/organization';
+import { mainApi } from '../../../lib/api';
 import { GetEvents } from '../state/event';
-import { notify } from '../../services/NotificationService';
-import showConfirmModal from '../../components/Confirm.modal';
+import { notify } from '../../../services/NotificationService';
+import showConfirmModal from '../../../components/ConfirmModal';
 
 import showEventModal from './Event.modal';
 
-import { useAuth } from '@/auth/hooks/use-auth';
+import { useAuth } from '@/auth/hooks/useAuth';
 import useOutsideClick from '@/hooks/useClickOutside';
 
 dayjs.extend(LocalizedFormat);

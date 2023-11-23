@@ -4,7 +4,6 @@ import { Button, Col, Result, Row, Space } from 'antd';
 
 import MenuBar from './components/MenuBar';
 import FullPageSpin from './components/FullPageSpin';
-import AboutPage from './about/AboutPage';
 import {
   FacebookIcon,
   QuestionIcon,
@@ -13,8 +12,9 @@ import {
 } from './components/Icons';
 import ForgotPasswordPage from './auth/ForgotPasswordPage';
 
-const HomePage = lazy(() => import('./home/HomePage'));
-const CalendarPage = lazy(() => import('./calendar/CalendarPage'));
+const HomePage = lazy(() => import('@/pages/home/HomePage'));
+const AboutPage = lazy(() => import('@/pages/about/AboutPage'));
+const CalendarPage = lazy(() => import('@/pages/calendar/CalendarPage'));
 const LoginPage = lazy(() => import('./auth/LoginPage'));
 const RegisterPage = lazy(() => import('./auth/RegisterPage'));
 const AccountPage = lazy(() => import('./auth/AccountPage'));

@@ -2,7 +2,7 @@ import { Row, Col, Typography, Input, Space, Button, Form } from 'antd';
 import { useForm, useWatch } from 'antd/es/form/Form';
 import { useSearchParams } from 'react-router-dom';
 
-import { useAuth } from './hooks/use-auth';
+import { useAuth } from './hooks/useAuth';
 import PasswordStrengthBar from './components/PasswordStrengthBar';
 
 import Page from '@/components/Page';

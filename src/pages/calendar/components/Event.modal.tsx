@@ -7,9 +7,9 @@ import dayjs from 'dayjs';
 
 import { Event } from '../types/event';
 import { GetEvents } from '../state/event';
-import { mainApi } from '../../lib/api';
-import { notify } from '../../services/NotificationService';
-import { organizationConfig } from '../../../config/organization';
+import { mainApi } from '../../../lib/api';
+import { notify } from '../../../services/NotificationService';
+import { organizationConfig } from '../../../../config/organization';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const EventModal = NiceModal.create(

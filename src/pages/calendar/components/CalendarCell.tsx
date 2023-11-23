@@ -2,13 +2,13 @@ import { Space } from 'antd';
 import { useState } from 'react';
 
 import { Event } from '../types/event';
-import { notify } from '../../services/NotificationService';
+import { notify } from '../../../services/NotificationService';
 
 import CalendarEvent from './CalendarEvent';
 import showEventModal from './Event.modal';
 import styles from './CalendarCell.module.css';
 
-import { useAuth } from '@/auth/hooks/use-auth';
+import { useAuth } from '@/auth/hooks/useAuth';
 
 export default function CalendarCell({
   date,

@@ -2,11 +2,10 @@ import { screen, render, waitFor } from '@testing-library/react';
 import nock from 'nock';
 import { beforeEach, test, expect } from 'vitest';
 
-import { organizationConfig } from '../../config/organization';
-
-import AccountPage from './AccountPage';
-import { User } from './types/user';
-import { setAccessToken } from './service/tokens';
+import { organizationConfig } from '../../../config/organization';
+import AccountPage from '../AccountPage';
+import { User } from '../types/user';
+import { setAccessToken } from '../service/tokens';
 
 import AllProviders from '@/components/AllProviders';
 import { getById } from '@/lib/testing/getById';
