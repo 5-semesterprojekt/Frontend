@@ -5,7 +5,7 @@
 ![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-# :wrench: Installation
+# 🛠️ Installation
 
 Using [nvm](https://github.com/coreybutler/nvm-windows) is advised.
 
@@ -47,10 +47,10 @@ It should open by itself, otherwise it is available here: [https://localhost:301
 # :gem: Scripts
 
 ### `yarn start`
-Starts the frontend in on local development server, which opens to [https://localhost:3010/](https://localhost:3010/).
+Starts the frontend on a local development server, which can be visited on [https://localhost:3010/](https://localhost:3010/).
 
 ### `yarn build`
-Builds the project into the `/dist` directory.
+Builds the project into the `/dist` directory in root.
 
 ### `yarn test`
 Runs all tests (see [vitest](https://vitest.dev/) for more).
@@ -61,8 +61,9 @@ Runs all tests (see [vitest](https://vitest.dev/) for more).
 
 1. Make a branch from `main` using the suggested branch name in [Shortcut](https://app.shortcut.com/5-semester/stories/space/19/everything?team_scope_id=v2%3At%3A6536343c-3b19-48f3-96bd-e44481a7aefc%3A6536343c-ab85-4346-9338-ad967260f782). (i.e. feature/sc-{story number}/{feature-name})
 2. Commit until the feature is "complete"
-3. Make pull request to `main` and request for review
-4. <ins>**Squash and merge**</ins> when all requirements are met
+3. Run `yarn prettier` so code is formatted correctly
+4. Make pull request to `main` and request for review
+5. <ins>**Squash and merge**</ins> when all requirements are met
 
 It is HIGHLY advisable not to branch off secondary branches. Only branch off `main`.
 
@@ -73,30 +74,31 @@ It is HIGHLY advisable not to branch off secondary branches. Only branch off `ma
 ## Naming
 
 - Variables are camelCased. Functional Components are PascalCased, but normal functions are camelCased. (ie. UI-related => PascalCasing)
-- .ts files must be camelCased
-- .tsx files must be PascalCased<br>
-- If a .tsx file contains a modal or page, it must be named accordingly
+- `.ts` files must be camelCased
+- `.tsx` files must be PascalCased<br>
+- If a `.tsx` file contains a modal or page, it must be named accordingly (fx. HomePage.tsx or EventModal.tsx)
 - All folders are lower case and words are separated with dashes (fx. "sub-pages")
 - Avoid abbreviations
+- `.js` file are **NOT** allowed in `src`
 
 Examples:
 ```
 // Modal
 ✔️ EventModal.tsx
-✔️ Event.Modal.tsx
-❌ Event.tsx           // Missing 'Modal'
-❌ eventModal.tsx      // Not PascalCasing
+❌ Event.tsx               // Missing 'Modal'
+❌ eventModal.tsx          // Not PascalCasing
+❌ Event.Modal.tsx         // Don't dot separate
 
 // Page
 ✔️ CalendarPage.tsx
-✔️ Calendar.Page.tsx
-❌ Calendar.tsx        // Missing 'Page'
-❌ calendarpage.tsx    // Not PascalCasing
+❌ Calendar.tsx            // Missing 'Page'
+❌ calendarpage.tsx        // Not PascalCasing
+❌ Calendar.Page.tsx       // Don't dot separate
 
 // Helper functions
 ✔️ eventValidation.ts
-❌ EventValidation.tsx // Not a UI component
-❌ EventValidation.ts  // Not camelCasing
+❌ EventValidation.tsx     // Not a UI component
+❌ EventValidation.ts      // Not camelCasing
 
 ```
 
