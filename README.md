@@ -5,24 +5,24 @@
 ![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-# 🛠️ Installation
+# 🛠️ Setup
 
 Using [nvm](https://github.com/coreybutler/nvm-windows) is advised.
 
 Using [yarn](https://yarnpkg.com/) is **required**. Install it with npm like this:
 
-```
+```console
 npm install -g yarn
 ```
 
 Clone the project:
 
-```
+```console
 git clone https://github.com/5-semesterprojekt/Frontend.git
 ```
 
 Install packages:
-```
+```console
 cd frontend
 yarn install
 ```
@@ -35,7 +35,7 @@ Setting up the [backend](https://github.com/5-semesterprojekt/Backend) is also h
 
 The frontend can be started by running the start script:
 
-```
+```console
 yarn start
 ```
 
@@ -44,7 +44,7 @@ It should open by itself, otherwise it is available here: [https://localhost:301
 
 <br>
 
-# :gem: Scripts
+# 📜 Scripts
 
 ### `yarn start`
 Starts the frontend on a local development server, which can be visited on [https://localhost:3010/](https://localhost:3010/).
@@ -55,6 +55,9 @@ Builds the project into the `/dist` directory in root.
 ### `yarn test`
 Runs all tests (see [vitest](https://vitest.dev/) for more).
 
+### `yarn prettier`
+Formats the code according to the [.prettierrc](https://github.com/5-semesterprojekt/Frontend/blob/main/.prettierrc).
+
 <br>
 
 # :building_construction: Contribution
@@ -62,10 +65,10 @@ Runs all tests (see [vitest](https://vitest.dev/) for more).
 1. Make a branch from `main` using the suggested branch name in [Shortcut](https://app.shortcut.com/5-semester/stories/space/19/everything?team_scope_id=v2%3At%3A6536343c-3b19-48f3-96bd-e44481a7aefc%3A6536343c-ab85-4346-9338-ad967260f782). (i.e. feature/sc-{story number}/{feature-name})
 2. Commit until the feature is "complete"
 3. Run `yarn prettier` so code is formatted correctly
-4. Make pull request to `main` and request for review
+4. Make pull request to `main` and request a review
 5. <ins>**Squash and merge**</ins> when all requirements are met
 
-It is HIGHLY advisable not to branch off secondary branches. Only branch off `main`.
+It is HIGHLY advisable, that you don't branch off secondary branches. Only branch off `main`.
 
 <br>
 
@@ -73,16 +76,16 @@ It is HIGHLY advisable not to branch off secondary branches. Only branch off `ma
 
 ## Naming
 
-- Variables are camelCased. Functional Components are PascalCased, but normal functions are camelCased. (ie. UI-related => PascalCasing)
+- Variables and functions are camelCased. However functional components are PascalCased. (i.e. UI-related => PascalCasing)
 - `.ts` files must be camelCased
-- `.tsx` files must be PascalCased<br>
+- `.tsx` files must be PascalCased
 - If a `.tsx` file contains a modal or page, it must be named accordingly (fx. HomePage.tsx or EventModal.tsx)
 - All folders are lower case and words are separated with dashes (fx. "sub-pages")
 - Avoid abbreviations
 - `.js` file are **NOT** allowed in `src`
 
 Examples:
-```
+```cs
 // Modal
 ✔️ EventModal.tsx
 ❌ Event.tsx               // Missing 'Modal'
@@ -101,12 +104,19 @@ Examples:
 ❌ EventValidation.ts      // Not camelCasing
 
 ```
+```ts
+✔️ let organizationId = 0;
+❌ let orgId = 0;              // Abbreviation
 
-## Structure
+✔️ function showEvent (event: CalendarEvent)
+❌ function ShowEvent (event: CalendarEvent)
+```
+
+## Directories
 
 ### src
 
-```
+```cs
 // Reusable components for the entire app
 📁 components
 // Library for more general purpose functions
@@ -125,28 +135,44 @@ Examples:
         📁 tests
         // Type definitions
         📁 types
-            📄 event.ts
+            📄 calendarEvent.ts
             📄 calendar.ts
         // Main page file
         📄 CalendarPage.tsx
-        
-// Without comments
-📁 components
-📁 pages
-    📁 home
-        📁 components
-        📁 state
-        📁 tests
-        📁 types
-        📄 HomePage.tsx
-    📁 calendar
-        📁 components
-            📄 Event.tsx
-            📄 EventModal.tsx
-        📁 state
-        📁 tests
-        📁 types
-            📄 event.ts
-            📄 calendar.ts
-        📄 CalendarPage.tsx
+```
+
+## Component structure
+
+```tsx
+// import statements
+import { useState } from 'react';
+
+// interface with component properties defiend
+interface ComponentProps {
+    initial: number;
+}
+
+export default function Component (props: ComponentProps) {
+    // hooks
+    const [number, setNumber] = useState(props.initial);
+
+    // logic
+    const addOneToNumber = () => {
+        setNumber((value) => value + 1);
+    }
+
+    return (
+        <div>
+            {/* Only JSX code here */}
+            <span>Is this an odd number: {isOdd(number)}</span>
+            {/* Avoid declaring inline functions */}
+            <button onClick={addOneToNumber}>Add</button>
+        </div>
+    );
+}
+
+// helper functions
+function isOdd (n: number) {
+    return n%2 === 1;
+}
 ```
