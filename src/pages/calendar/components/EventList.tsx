@@ -20,20 +20,22 @@ function EventList({ recoilSource }: EventListProps) {
 
   const sortedEvents = events
     ?.filter((event) => event.start >= new Date())
-    .sort((a, b) => a.start.getTime() - b.start.getTime())
-    .slice(0, max);
+    .sort((a, b) => a.start.getTime() - b.start.getTime());
+  const slicedList = sortedEvents.slice(0, max);
 
   return (
     <Space direction="vertical" style={{ width: '100%' }}>
-      {sortedEvents.length > 0 ? (
+      {slicedList.length > 0 ? (
         <>
-          {sortedEvents.map((event) => (
+          {slicedList.map((event) => (
             <EventInList key={`event-${event.id}`} event={event} />
           ))}
           <Row justify="center">
-            <Button onClick={() => setMax((value) => value + 5)}>
-              Se flere
-            </Button>
+            {sortedEvents.length > max && (
+              <Button onClick={() => setMax((value) => value + 5)}>
+                Se flere
+              </Button>
+            )}
           </Row>
         </>
       ) : (
