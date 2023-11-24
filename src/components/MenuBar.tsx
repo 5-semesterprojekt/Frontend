@@ -81,7 +81,7 @@ function MenuBar() {
       </Col>
       <Col style={{ marginRight: 16 }}>
         {user && (
-          <Button type='text'>
+          <Button type="text">
             <Popover
               content={
                 <Space direction="vertical">
