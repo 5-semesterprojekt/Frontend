@@ -62,13 +62,13 @@ Formats the code according to the [.prettierrc](https://github.com/5-semesterpro
 
 # :building_construction: Contribution
 
-1. Make a branch from `main` using the suggested branch name in [Shortcut](https://app.shortcut.com/5-semester/stories/space/19/everything?team_scope_id=v2%3At%3A6536343c-3b19-48f3-96bd-e44481a7aefc%3A6536343c-ab85-4346-9338-ad967260f782). (i.e. feature/sc-{story number}/{feature-name})
+1. Make a branch from `main` using the suggested branch name from [Shortcut](https://app.shortcut.com/5-semester/stories/space/19/everything?team_scope_id=v2%3At%3A6536343c-3b19-48f3-96bd-e44481a7aefc%3A6536343c-ab85-4346-9338-ad967260f782). (i.e. feature/sc-{story number}/{feature-name})
 2. Commit until the feature is "complete"
 3. Run `yarn prettier` so code is formatted correctly
 4. Make pull request to `main` and request a review
 5. <ins>**Squash and merge**</ins> when all requirements are met
 
-It is HIGHLY advisable, that you don't branch off secondary branches. Only branch off `main`.
+It is **HIGHLY** advisable, that you don't branch off secondary branches. Only branch off `main`.
 
 <br>
 
@@ -82,7 +82,7 @@ It is HIGHLY advisable, that you don't branch off secondary branches. Only branc
 - If a `.tsx` file contains a modal or page, it must be named accordingly (fx. HomePage.tsx or EventModal.tsx)
 - All folders are lower case and words are separated with dashes (fx. "sub-pages")
 - Avoid abbreviations
-- `.js` file are **NOT** allowed in `src`
+- `.js` files are **NOT** allowed in `src`
 
 Examples:
 ```cs
@@ -166,7 +166,8 @@ export default function Component (props: ComponentProps) {
             {/* Only JSX code here */}
             <span>Is this an odd number: {isOdd(number)}</span>
             {/* Avoid declaring inline functions */}
-            <button onClick={addOneToNumber}>Add</button>
+            ✔️ <button onClick={addOneToNumber}>Add</button>
+            ❌ <button onClick={() => setNumber((value) => value + 1)}>Add</button>
         </div>
     );
 }
