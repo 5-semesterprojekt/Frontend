@@ -1,9 +1,11 @@
 import { Form, Input, Modal } from 'antd';
 import NiceModal, { antdModalV5, useModal } from '@ebay/nice-modal-react';
 import { useCallback, useState } from 'react';
-import { useForm } from 'antd/es/form/Form';
+import { useForm, useWatch } from 'antd/es/form/Form';
 
-import { required } from '@/lib/validation/common';
+import PasswordInput from './PasswordInput';
+
+import { mustEqual, required } from '@/lib/validation/common';
 import {
   passwordLength,
   passwordCommonNotAllowed,
@@ -14,6 +16,7 @@ const ChangePasswordModal = NiceModal.create(() => {
   const modal = useModal('ChangePasswordModal');
   const [working, setWorking] = useState(false);
   const [form] = useForm();
+  const password = useWatch('password', form);
 
   const onOk = useCallback(async () => {
     try {
@@ -40,11 +43,19 @@ const ChangePasswordModal = NiceModal.create(() => {
       okButtonProps={{ loading: working }}
       cancelText="Annullér"
     >
-      <Form form={form} colon={false}>
+      <Form form={form} colon={false} layout="vertical">
         <Form.Item
           label="Ny adgangskode"
           name="password"
           rules={[required, passwordLength, passwordCommonNotAllowed]}
+        >
+          <PasswordInput />
+        </Form.Item>
+        <Form.Item
+          label="Gentag adgangskode"
+          name="repeatPassword"
+          dependencies={['password']}
+          rules={[required, mustEqual(password)]}
         >
           <Input.Password />
         </Form.Item>

@@ -3,7 +3,7 @@ import { useForm, useWatch } from 'antd/es/form/Form';
 import { useSearchParams } from 'react-router-dom';
 
 import { useAuth } from './hooks/useAuth';
-import PasswordStrengthBar from './components/PasswordStrengthBar';
+import PasswordInput from './components/PasswordInput';
 
 import Page from '@/components/Page';
 import { mustEqual, required } from '@/lib/validation/common';
@@ -57,17 +57,12 @@ export default function ForgotPasswordPage() {
           {searchParams.get('token') ? (
             <Form form={form} onFinish={onNewPasswordSubmit} layout="vertical">
               <Typography.Title level={3}>Ny adgangskode</Typography.Title>
-              <Form.Item label="Adgangskode">
-                <Form.Item
-                  name="password"
-                  rules={[required, passwordLength, passwordCommonNotAllowed]}
-                  noStyle
-                >
-                  <Input.Password />
-                </Form.Item>
-                {password?.length > 0 && (
-                  <PasswordStrengthBar password={password} />
-                )}
+              <Form.Item
+                label="Adgangskode"
+                name="password"
+                rules={[required, passwordLength, passwordCommonNotAllowed]}
+              >
+                <PasswordInput />
               </Form.Item>
               <Form.Item
                 label="Gentag adgangskode"
@@ -75,7 +70,7 @@ export default function ForgotPasswordPage() {
                 dependencies={['password']}
                 rules={[required, mustEqual(password)]}
               >
-                <Input.Password />
+                <PasswordInput showStrength={false} />
               </Form.Item>
               <Form.Item>
                 <Space size="middle" align="start">

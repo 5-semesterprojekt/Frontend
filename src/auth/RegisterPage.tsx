@@ -3,7 +3,7 @@ import { useForm, useWatch } from 'antd/es/form/Form';
 import { Link } from 'react-router-dom';
 
 import { useAuth } from './hooks/useAuth';
-import PasswordStrengthBar from './components/PasswordStrengthBar';
+import PasswordInput from './components/PasswordInput';
 
 import Page from '@/components/Page';
 import { notify } from '@/services/NotificationService';
@@ -93,17 +93,12 @@ export default function RegisterPage() {
             >
               <Input />
             </Form.Item>
-            <Form.Item label="Adgangskode">
-              <Form.Item
-                name="password"
-                rules={[required, passwordLength, passwordCommonNotAllowed]}
-                noStyle
-              >
-                <Input.Password />
-              </Form.Item>
-              {password?.length > 0 && (
-                <PasswordStrengthBar password={password} />
-              )}
+            <Form.Item
+              label="Adgangskode"
+              name="password"
+              rules={[required, passwordLength, passwordCommonNotAllowed]}
+            >
+              <PasswordInput />
             </Form.Item>
             <Form.Item
               label="Gentag adgangskode"
@@ -111,7 +106,7 @@ export default function RegisterPage() {
               dependencies={['password']}
               rules={[required, mustEqual(password)]}
             >
-              <Input.Password />
+              <PasswordInput showStrength={false} />
             </Form.Item>
             <Form.Item>
               <Space align="start">
