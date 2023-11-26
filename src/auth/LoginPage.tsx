@@ -6,7 +6,7 @@ import { useAuth } from './hooks/useAuth';
 
 import Page from '@/components/Page';
 import { notify } from '@/services/NotificationService';
-import { required } from '@/lib/validation/common';
+import { required } from '@/lib/validation/forms/common';
 
 export default function LoginPage() {
   const [form] = useForm();

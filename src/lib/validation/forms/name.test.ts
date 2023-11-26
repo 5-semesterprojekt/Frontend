@@ -13,15 +13,15 @@ describe('Name validation', () => {
       value: string, // @ts-ignore
     ) => await nameStartWithUppercase.validator({}, value);
 
-    test('Succeeds with beginning capital letter', async () => {
+    test('Allow name that with beginning capital letter', async () => {
       await expect(validator('Martin')).resolves.toBeUndefined();
     });
 
-    test('Fails with no capital letters', async () => {
+    test('Disallow name with no capital letter', async () => {
       await expect(validator('martin')).rejects.toBeDefined();
     });
 
-    test('Fails when letter other than first is capital', async () => {
+    test('Disallow name with a capital letter in the middle', async () => {
       await expect(validator('mArtin')).rejects.toBeDefined();
     });
   });
@@ -31,17 +31,20 @@ describe('Name validation', () => {
       value: string, // @ts-ignore
     ) => await nameCharset.validator({}, value);
 
-    test('Allows Danish letters', async () => {
+    test('Allow Danish letters', async () => {
       await expect(
         validator('abcdefghijklmnopqrstuvwxyzæøå'),
       ).resolves.toBeUndefined();
+      await expect(
+        validator('ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ'),
+      ).resolves.toBeUndefined();
     });
 
-    test('Allows dash', async () => {
+    test('Allow dash in a name', async () => {
       await expect(validator('Hansen-Jensen')).resolves.toBeUndefined();
     });
 
-    test('Disallows symbols', async () => {
+    test("Disallow symbol (') in a name", async () => {
       await expect(validator("Martin's navn")).rejects.toBeDefined();
     });
   });
@@ -51,15 +54,15 @@ describe('Name validation', () => {
       value: string, // @ts-ignore
     ) => await nameLength.validator({}, value);
 
-    test('Allows length between 2 and 64', async () => {
+    test('Allow name with a length between 2 and 64', async () => {
       await expect(validator('Martin')).resolves.toBeUndefined();
     });
 
-    test('Disallows shorter than 2', async () => {
+    test('Disallow name shorter than 2', async () => {
       await expect(validator('X')).rejects.toBeDefined();
     });
 
-    test('Disallows longer than 64', async () => {
+    test('Disallow name longer than 64', async () => {
       await expect(
         validator(
           'TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestX',
@@ -73,19 +76,19 @@ describe('Name validation', () => {
       value: string, // @ts-ignore
     ) => await nameDontWrapWithSpace.validator({}, value);
 
-    test('Allows name without spaces', async () => {
-      await expect(validator('Martin')).resolves.toBeUndefined();
+    test('Allow name without spaces', async () => {
+      await expect(validator('Hans')).resolves.toBeUndefined();
     });
 
-    test('Allows names with spacing', async () => {
-      await expect(validator('Martin Jensen')).resolves.toBeUndefined();
+    test('Allow names with spacing', async () => {
+      await expect(validator('Hans Erik')).resolves.toBeUndefined();
     });
 
-    test('Disallows space before name', async () => {
+    test('Disallow space before name', async () => {
       await expect(validator(' Martin')).rejects.toBeDefined();
     });
 
-    test('Disallows space after name', async () => {
+    test('Disallow space after name', async () => {
       await expect(validator('Martin ')).rejects.toBeDefined();
     });
   });

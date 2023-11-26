@@ -1,16 +1,15 @@
-import { act, screen, render, waitFor } from '@testing-library/react';
-import NiceModal from '@ebay/nice-modal-react';
-import { beforeAll, beforeEach, test, expect } from 'vitest';
+import { act, screen, waitFor } from '@testing-library/react';
+import { beforeEach, test, expect } from 'vitest';
 
 import showEventModal from '../components/Event.modal';
 
-beforeAll(() => {
-  beforeEach(() => {
-    render(<NiceModal.Provider />);
-  });
+import renderElement from '@/lib/testing/renderElement';
+
+beforeEach(() => {
+  renderElement(<></>);
 });
 
-test('it can render the modal', async () => {
+test('it can render the add event modal', async () => {
   act(() => {
     showEventModal({
       event: {
@@ -23,5 +22,22 @@ test('it can render the modal', async () => {
 
   await waitFor(() => {
     expect(screen.getByText('Ny begivenhed')).toBeDefined();
+  });
+});
+
+test('it can render the edit event modal', async () => {
+  act(() => {
+    showEventModal({
+      event: {
+        title: 'Ny begivenhed',
+        start: new Date(),
+        end: new Date(),
+      },
+      newEvent: false,
+    });
+  });
+
+  await waitFor(() => {
+    expect(screen.getByText('Ændr begivenhed')).toBeDefined();
   });
 });

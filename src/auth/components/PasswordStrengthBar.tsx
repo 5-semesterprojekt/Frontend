@@ -3,7 +3,7 @@ import { Popover, Progress, Row, Space } from 'antd';
 
 import Condition from '@/components/Condition';
 import { InformationIcon } from '@/components/Icons';
-import { maxPasswordLength } from '@/lib/validation/password';
+import { maxPasswordLength } from '@/lib/validation/forms/password';
 
 export default function PasswordStrengthBar({
   password,

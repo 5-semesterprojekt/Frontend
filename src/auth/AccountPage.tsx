@@ -21,13 +21,13 @@ import Page from '@/components/Page';
 import { AccountIcon, DeleteIcon, KeyIcon } from '@/components/Icons';
 import showConfirmModal from '@/components/ConfirmModal';
 import { notify } from '@/services/NotificationService';
-import { required } from '@/lib/validation/common';
+import { required } from '@/lib/validation/forms/common';
 import {
   nameCharset,
   nameDontWrapWithSpace,
   nameLength,
   nameStartWithUppercase,
-} from '@/lib/validation/name';
+} from '@/lib/validation/forms/name';
 
 export default function AccountPage() {
   const [working, setWorking] = useState(false);

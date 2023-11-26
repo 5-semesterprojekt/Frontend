@@ -8,15 +8,15 @@ describe('Password validation', () => {
       value: string, // @ts-ignore
     ) => await passwordLength.validator({}, value);
 
-    test('Allows length between 8 and 64', async () => {
+    test('Allow password with length between 8 and 64', async () => {
       await expect(validator('Password')).resolves.toBeUndefined();
     });
 
-    test('Disallows shorter than 8', async () => {
+    test('Disallow password shorter than 8', async () => {
       await expect(validator('TestTes')).rejects.toBeDefined();
     });
 
-    test('Disallows longer than 64', async () => {
+    test('Disallow password longer than 64', async () => {
       await expect(
         validator(
           'TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestX',

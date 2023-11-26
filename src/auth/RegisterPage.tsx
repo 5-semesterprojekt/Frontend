@@ -7,18 +7,18 @@ import PasswordStrengthBar from './components/PasswordStrengthBar';
 
 import Page from '@/components/Page';
 import { notify } from '@/services/NotificationService';
-import { emailFormat } from '@/lib/validation/email';
+import { emailFormat } from '@/lib/validation/forms/email';
 import {
   passwordCommonNotAllowed,
   passwordLength,
-} from '@/lib/validation/password';
-import { mustEqual, required } from '@/lib/validation/common';
+} from '@/lib/validation/forms/password';
+import { mustEqual, required } from '@/lib/validation/forms/common';
 import {
   nameCharset,
   nameDontWrapWithSpace,
   nameLength,
   nameStartWithUppercase,
-} from '@/lib/validation/name';
+} from '@/lib/validation/forms/name';
 
 export default function RegisterPage() {
   const [form] = useForm();
