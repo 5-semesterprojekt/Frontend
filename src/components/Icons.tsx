@@ -20,6 +20,7 @@ import {
   faKey,
   faPlus,
   faRightFromBracket,
+  faRightToBracket,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -52,6 +53,9 @@ export const AboutIcon = (props: IconProps) => (
   <Icon {...props} icon={faFileLines} />
 );
 export const LoginIcon = (props: IconProps) => (
+  <Icon {...props} icon={faRightToBracket} />
+);
+export const LogOutIcon = (props: IconProps) => (
   <Icon {...props} icon={faRightFromBracket} />
 );
 export const AccountIcon = (props: IconProps) => (
