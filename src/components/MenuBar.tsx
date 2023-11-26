@@ -1,6 +1,15 @@
-import { MenuProps, Menu, Button, Row, Col } from 'antd';
+import {
+  MenuProps,
+  Menu,
+  Button,
+  Row,
+  Col,
+  Avatar,
+  Space,
+  Popover,
+} from 'antd';
 import { ReactNode } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../auth/hooks/useAuth';
 
@@ -10,12 +19,14 @@ import {
   LoginIcon,
   CalendarIcon,
   AccountIcon,
+  LogOutIcon,
 } from './Icons';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
 function MenuBar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { user, signOutUser } = useAuth();
 
   const getItem = (label: string, to: string, icon?: ReactNode): MenuItem =>
@@ -50,12 +61,6 @@ function MenuBar() {
       visible: !user,
       icon: <LoginIcon />,
     },
-    {
-      title: 'Konto',
-      url: '/konto',
-      visible: user,
-      icon: <AccountIcon />,
-    },
   ];
 
   const menuItems: MenuProps['items'] = items
@@ -64,7 +69,7 @@ function MenuBar() {
 
   return (
     <Row>
-      <Col span={20}>
+      <Col flex="auto" style={{ marginLeft: 16 }}>
         <Menu
           items={menuItems}
           selectedKeys={items
@@ -74,7 +79,45 @@ function MenuBar() {
           style={{ borderBottom: 0 }}
         />
       </Col>
-      <Col>{user && <Button onClick={() => signOutUser()}>Log af</Button>}</Col>
+      <Col style={{ marginRight: 16 }}>
+        {user && (
+          <Button type="text">
+            <Popover
+              content={
+                <Space direction="vertical">
+                  <Button
+                    icon={<AccountIcon />}
+                    type="text"
+                    onClick={() => navigate('/konto')}
+                    style={{ width: '100%' }}
+                  >
+                    Konto
+                  </Button>
+                  <Button
+                    icon={<LogOutIcon />}
+                    type="text"
+                    onClick={() => signOutUser()}
+                    style={{ width: '100%' }}
+                  >
+                    Log af
+                  </Button>
+                </Space>
+              }
+              placement="bottomRight"
+            >
+              <Space>
+                <Avatar
+                  icon={<AccountIcon style={{ fontSize: '0.8rem' }} />}
+                  size="small"
+                />
+                <span>
+                  {user?.firstName} {user?.lastName}
+                </span>
+              </Space>
+            </Popover>
+          </Button>
+        )}
+      </Col>
     </Row>
   );
 }

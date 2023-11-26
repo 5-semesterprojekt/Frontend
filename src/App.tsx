@@ -40,7 +40,9 @@ function App() {
               </Link>
             </Col>
           </Row>
-          <MenuBar />
+          <Suspense>
+            <MenuBar />
+          </Suspense>
         </header>
         <article style={{ flex: 1 }}>
           <Suspense fallback={<FullPageSpin />}>

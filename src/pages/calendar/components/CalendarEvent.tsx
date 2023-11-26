@@ -24,7 +24,7 @@ export default function CalendarEvent({ event }: { event: Event }) {
   const [openPopover, setOpenPopover] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const refreshEvents = useRecoilRefresher_UNSTABLE(GetEvents);
-  const ref = useOutsideClick(() => setOpenPopover(false));
+  const [ref1, ref2] = useOutsideClick(() => setOpenPopover(false));
 
   const title = event.title;
 
@@ -68,69 +68,75 @@ export default function CalendarEvent({ event }: { event: Event }) {
   };
 
   return (
-    <Popover
-      key={event.id || 'temp'}
-      content={
-        event && (
-          <Space
-            ref={ref}
-            direction="vertical"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <b>{title}</b>
-            <span>
-              {startDate} - {endDate}
-            </span>
-            <span
-              style={{ maxWidth: 400, display: 'block', whiteSpace: 'normal' }}
+    <div ref={ref1}>
+      <Popover
+        key={event.id || 'temp'}
+        content={
+          event && (
+            <Space
+              ref={ref2}
+              direction="vertical"
+              onClick={(e) => e.stopPropagation()}
             >
-              {event.description}
-            </span>
-            {user && (
-              <Space>
-                <Button
-                  icon={<EditIcon />}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setOpenPopover(false);
-                    return editEvent();
-                  }}
-                >
-                  Ændr
-                </Button>
+              <b>{title}</b>
+              <span>
+                {startDate} - {endDate}
+              </span>
+              <span
+                style={{
+                  maxWidth: 400,
+                  display: 'block',
+                  whiteSpace: 'normal',
+                }}
+              >
+                {event.description}
+              </span>
+              {user && (
+                <Space>
+                  <Button
+                    icon={<EditIcon />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenPopover(false);
+                      return editEvent();
+                    }}
+                  >
+                    Ændr
+                  </Button>
 
-                <Button
-                  disabled={deleting}
-                  icon={<DeleteIcon />}
-                  danger
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setOpenPopover(false);
-                    return deleteEvent();
-                  }}
-                >
-                  Slet
-                </Button>
-              </Space>
-            )}
-          </Space>
-        )
-      }
-      open={openPopover}
-    >
-      <Tag
-        key={event.id}
-        color="red"
-        style={{ margin: 0, width: '100%' }}
-        onClick={(e) => {
-          e.stopPropagation();
-          setOpenPopover((current) => !current);
-        }}
+                  <Button
+                    disabled={deleting}
+                    icon={<DeleteIcon />}
+                    danger
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenPopover(false);
+                      return deleteEvent();
+                    }}
+                  >
+                    Slet
+                  </Button>
+                </Space>
+              )}
+            </Space>
+          )
+        }
+        open={openPopover}
       >
-        <span style={{ whiteSpace: 'normal' }}>
-          {dayjs(event.start).format('HH:mm')} - {title}
-        </span>
-      </Tag>
-    </Popover>
+        <Tag
+          key={event.id}
+          color="red"
+          style={{ margin: 0, width: '100%' }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpenPopover((value) => !value);
+          }}
+        >
+          <span style={{ whiteSpace: 'normal' }}>
+            {dayjs(event.start).format('HH:mm')} - {title}
+          </span>
+        </Tag>
+      </Popover>
+    </div>
   );
 }
