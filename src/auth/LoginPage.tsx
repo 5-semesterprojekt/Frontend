@@ -3,6 +3,7 @@ import { useForm } from 'antd/es/form/Form';
 import { Link } from 'react-router-dom';
 
 import { useAuth } from './hooks/useAuth';
+import PasswordInput from './components/PasswordInput';
 
 import Page from '@/components/Page';
 import { notify } from '@/services/NotificationService';
@@ -45,7 +46,7 @@ export default function LoginPage() {
               <Input />
             </Form.Item>
             <Form.Item label="Password" name="password" rules={[required]}>
-              <Input.Password />
+              <PasswordInput showStrength={false} />
             </Form.Item>
             <Form.Item>
               <Space size="middle" align="start">
