@@ -4,12 +4,11 @@ import { useCallback, useState } from 'react';
 import { useForm, useWatch } from 'antd/es/form/Form';
 
 import PasswordInput from './PasswordInput';
-
-import { mustEqual, required } from '@/lib/validation/common';
+import { required, mustEqual } from '@/lib/validation/forms/common';
 import {
   passwordLength,
   passwordCommonNotAllowed,
-} from '@/lib/validation/password';
+} from '@/lib/validation/forms/password';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const ChangePasswordModal = NiceModal.create(() => {

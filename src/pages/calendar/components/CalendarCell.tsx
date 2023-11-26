@@ -1,5 +1,6 @@
 import { Space } from 'antd';
 import { useState } from 'react';
+import dayjs from 'dayjs';
 
 import { Event } from '../types/event';
 import { notify } from '../../../services/NotificationService';
@@ -22,8 +23,14 @@ export default function CalendarCell({
   const { user } = useAuth();
   const [temporaryEvent] = useState<Event>({
     title: 'Ny begivenhed',
-    start: date,
-    end: date,
+    start: dayjs(date)
+      .add(new Date().getHours(), 'hour')
+      .add(new Date().getMinutes(), 'minute')
+      .toDate(),
+    end: dayjs(date)
+      .add(new Date().getHours(), 'hour')
+      .add(new Date().getMinutes(), 'minute')
+      .toDate(),
   });
   const [showTemporaryEvent, setShowTemporaryEvent] = useState(false);
 
@@ -31,7 +38,7 @@ export default function CalendarCell({
     if (user) {
       try {
         setShowTemporaryEvent(true);
-        await showEventModal({ event: temporaryEvent, date });
+        await showEventModal({ event: temporaryEvent });
       } catch (error) {
         if (error) {
           notify('error', 'Kunne ikke tilføje begivenhed', error.toString());

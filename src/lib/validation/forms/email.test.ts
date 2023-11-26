@@ -12,15 +12,15 @@ describe('E-mail validation', () => {
       await expect(validator('martin@mail.dk')).resolves.toBeUndefined();
     });
 
-    test('Disallow without top level domain', async () => {
+    test('Disallow email without top level domain', async () => {
       await expect(validator('martin@mail')).rejects.toBeDefined();
     });
 
-    test('Disallow without domain', async () => {
+    test('Disallow email without domain', async () => {
       await expect(validator('martin@')).rejects.toBeDefined();
     });
 
-    test('Disallow without @ symbol', async () => {
+    test('Disallow email without @ symbol', async () => {
       await expect(validator('martinmail.dk')).rejects.toBeDefined();
     });
   });

@@ -6,13 +6,13 @@ import { useAuth } from './hooks/useAuth';
 import PasswordInput from './components/PasswordInput';
 
 import Page from '@/components/Page';
-import { mustEqual, required } from '@/lib/validation/common';
-import { emailFormat } from '@/lib/validation/email';
+import { mustEqual, required } from '@/lib/validation/forms/common';
+import { emailFormat } from '@/lib/validation/forms/email';
 import { notify } from '@/services/NotificationService';
 import {
   passwordLength,
   passwordCommonNotAllowed,
-} from '@/lib/validation/password';
+} from '@/lib/validation/forms/password';
 
 export default function ForgotPasswordPage() {
   const [form] = useForm();
