@@ -38,7 +38,6 @@ function App() {
               <Link to="/">
                 <img src="/logo.png" style={{ width: '100%' }} />
               </Link>
-              TEST
             </Col>
           </Row>
           <Suspense>
