@@ -69,6 +69,7 @@ Formats the code according to the [.prettierrc](https://github.com/5-semesterpro
 5. <ins>**Squash and merge**</ins> when all requirements are met
 
 It is **HIGHLY** advisable, that you don't branch off secondary branches. Only branch off `main`.
+After merge the app is automatically published to Netlify.
 
 <br>
 
