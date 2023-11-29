@@ -5,6 +5,19 @@
 ![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
+# 📌 Contents
+
+1. [**Setup**](#️-setup)
+2. [**Start**](#rocket-start)
+3. [**Scripts**](#-scripts)
+4. [**Contribution**](#building_construction-contribution)
+5. [**Conventions**](#clipboard-conventions)
+    - [**Naming**](#naming)
+    - [**Directories**](#directories)
+    - [**Component structure**](#component-structure)
+
+<br>
+
 # 🛠️ Setup
 
 Using [nvm](https://github.com/coreybutler/nvm-windows) is advised.
