@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "vite --open --mode development",
-    "build": "vite build",
+    "build": "cross-env NODE_ENV=production vite build",
     "lint": "eslint . --fix --cache",
     "test": "vitest",
     "prettier": "prettier . --write **/*.{js,ts,tsx}",
@@ -38,6 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
     "@vitejs/plugin-react-swc": "^3.4.0",
+    "cross-env": "^7.0.3",
     "cross-fetch": "^4.0.0",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
