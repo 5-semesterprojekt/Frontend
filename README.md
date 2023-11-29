@@ -5,6 +5,19 @@
 ![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
+# 📌 Contents
+
+1. [**Setup**](#️-setup)
+2. [**Start**](#rocket-start)
+3. [**Scripts**](#-scripts)
+4. [**Contribution**](#building_construction-contribution)
+5. [**Conventions**](#clipboard-conventions)
+    - [**Naming**](#naming)
+    - [**Directories**](#directories)
+    - [**Component structure**](#component-structure)
+
+<br>
+
 # 🛠️ Setup
 
 Using [nvm](https://github.com/coreybutler/nvm-windows) is advised.
@@ -23,7 +36,7 @@ git clone https://github.com/5-semesterprojekt/Frontend.git
 
 Install packages:
 ```console
-cd frontend
+cd Frontend
 yarn install
 ```
 
@@ -64,7 +77,7 @@ Formats the code according to the [.prettierrc](https://github.com/5-semesterpro
 
 1. Make a branch from `main` using the suggested branch name from [Shortcut](https://app.shortcut.com/5-semester/stories/space/19/everything?team_scope_id=v2%3At%3A6536343c-3b19-48f3-96bd-e44481a7aefc%3A6536343c-ab85-4346-9338-ad967260f782). (i.e. feature/sc-{story number}/{feature-name})
 2. Commit until the feature is "complete"
-3. Run `yarn prettier` so code is formatted correctly
+3. Run `yarn prettier` so the code is formatted correctly
 4. Make pull request to `main` and request a review
 5. <ins>**Squash and merge**</ins> when all requirements are met
 
