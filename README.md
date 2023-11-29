@@ -79,11 +79,12 @@ Formats the code according to the [.prettierrc](https://github.com/5-semesterpro
 1. Make a branch from `main` using the suggested branch name from [Shortcut](https://app.shortcut.com/5-semester/stories/space/19/everything?team_scope_id=v2%3At%3A6536343c-3b19-48f3-96bd-e44481a7aefc%3A6536343c-ab85-4346-9338-ad967260f782). (i.e. feature/sc-{story number}/{feature-name})
 2. Commit until the feature is "complete"
 3. Run `yarn prettier` so the code is formatted correctly
-4. Make pull request to `main` and request a review
+4. Make a pull request to `main` and request a review
 5. <ins>**Squash and merge**</ins> when all requirements are met
 
 It is **HIGHLY** advisable, that you don't branch off secondary branches. Only branch off `main`.
 After merge the app is automatically published to Netlify.
+Feel free to customize and expand upon this documentation based on your specific contributions.
 
 <br>
 
