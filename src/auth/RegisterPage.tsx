@@ -42,7 +42,6 @@ export default function RegisterPage() {
         notify(
           'error',
           'Kunne ikke registreres',
-          'Denne e-mail er allerede i brug.',
         );
       }
     }

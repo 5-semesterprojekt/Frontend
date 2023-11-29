@@ -22,7 +22,7 @@ export function useAuth() {
     );
 
     if (response.ok) {
-      const { user } = response.data as { user: User };
+      const user = response.data as User;
       setUser(user);
       if (user.token) setAccessToken(user.token);
       navigate('/');
@@ -68,7 +68,7 @@ export function useAuth() {
     );
 
     if (response.ok) {
-      const { user } = response.data as { user: User };
+      const user = response.data as User;
       setUser(user);
       if (user.token) setAccessToken(user.token);
       navigate('/');
