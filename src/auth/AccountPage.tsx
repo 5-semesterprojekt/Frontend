@@ -31,7 +31,7 @@ import {
 
 export default function AccountPage() {
   const [working, setWorking] = useState(false);
-  const { user, updateAccount, signOutUser, deleteAccount } = useAuth();
+  const { user, updateAccount, signOutUser, deleteAccount } = useAuth(true);
   const [informationForm] = useForm();
 
   const changePasswordCallback = async () => {

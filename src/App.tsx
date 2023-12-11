@@ -11,6 +11,7 @@ import {
   YouTubeIcon,
 } from './components/Icons';
 import ForgotPasswordPage from './auth/ForgotPasswordPage';
+import AuthorizationErrorBoundary from './auth/components/AuthorizationErrorBoundary';
 
 const HomePage = lazy(() => import('@/pages/home/HomePage'));
 const AboutPage = lazy(() => import('@/pages/about/AboutPage'));
@@ -53,7 +54,16 @@ function App() {
               <Route path="/om-os" element={<AboutPage />} />
               <Route path="/log-ind" element={<LoginPage />} />
               <Route path="/registrer" element={<RegisterPage />} />
-              <Route path="/konto" element={<AccountPage />} />
+              <Route
+                path="/konto"
+                element={
+                  <AuthorizationErrorBoundary
+                    fallback={<Navigate to="/log-ind" />}
+                  >
+                    <AccountPage />
+                  </AuthorizationErrorBoundary>
+                }
+              />
               <Route
                 path="/glemt-adgangskode"
                 element={<ForgotPasswordPage />}

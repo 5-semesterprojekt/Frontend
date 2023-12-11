@@ -6,11 +6,23 @@ import { organizationConfig } from '../../../config/organization';
 import { mainApi } from '../../lib/api';
 import { User, UserUpdate } from '../types/user';
 import { CurrentUser } from '../state/user';
+import { AuthorizationError } from '../types/authorization-error';
 
-export function useAuth() {
+export function useAuth(
+  condition?: ((user: User | undefined) => void) | boolean,
+) {
   const [user, setUser] = useRecoilState<User | undefined>(CurrentUser);
   const refreshUser = useRecoilRefresher_UNSTABLE(CurrentUser);
   const navigate = useNavigate();
+
+  if (condition) {
+    if (typeof condition === 'function') {
+      condition(user);
+    }
+    if (!user) {
+      throw new AuthorizationError('Login is required');
+    }
+  }
 
   const signInUser = async (credentials: {
     email: string;
