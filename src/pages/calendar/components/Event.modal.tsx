@@ -113,7 +113,7 @@ const EventModal = NiceModal.create(
             name="title"
             rules={[{ required: true, message: 'Titel er påkrævet!' }]}
           >
-            <Input />
+            <Input placeholder="Ny begivenhed" />
           </Form.Item>
 
           <Form.Item
