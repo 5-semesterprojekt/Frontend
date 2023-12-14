@@ -64,7 +64,7 @@ function CalendarView({
               onClick={() =>
                 showEventModal({
                   event: {
-                    title: 'Ny begivenhed',
+                    title: '',
                     start: new Date(),
                     end: new Date(),
                   },

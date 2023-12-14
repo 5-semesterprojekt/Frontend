@@ -39,10 +39,7 @@ export default function RegisterPage() {
           'Der kunne ikke skabes forbindelse til serveren.',
         );
       } else {
-        notify(
-          'error',
-          'Kunne ikke registreres',
-        );
+        notify('error', 'Kunne ikke registreres');
       }
     }
   };

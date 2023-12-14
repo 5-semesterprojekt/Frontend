@@ -13,7 +13,7 @@ test('it can render the add event modal', async () => {
   act(() => {
     showEventModal({
       event: {
-        title: 'Ny begivenhed',
+        title: '',
         start: new Date(),
         end: new Date(),
       },
@@ -29,7 +29,7 @@ test('it can render the edit event modal', async () => {
   act(() => {
     showEventModal({
       event: {
-        title: 'Ny begivenhed',
+        title: '',
         start: new Date(),
         end: new Date(),
       },
